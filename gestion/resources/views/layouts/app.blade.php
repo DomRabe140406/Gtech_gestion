@@ -4,7 +4,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -54,6 +54,18 @@
 <script src="{{ asset('js/dashboard.js')}}"></script>
 <script src="{{ asset('js/formulaire_ajout.js')}}"></script>
 <script src="{{ asset('js/modifier.js')}}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let notif = document.getElementById("notif");
 
+        if (notif) {
+            setTimeout(() => {
+                notif.style.opacity = "0";
+                notif.style.transform = "translateY(-30px)";
+                setTimeout(() => notif.remove(), 500);
+            }, 3000); // disparaît après 3 secondes
+        }
+    });
+</script>
 </body>
 </html>

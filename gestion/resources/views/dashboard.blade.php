@@ -3,6 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('content')
+
+@include('layouts.notification')
+
      <section class="section_pple">
         <div class="contenue_section">
 

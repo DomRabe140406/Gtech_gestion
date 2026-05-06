@@ -10,13 +10,15 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $request->validate([
+             'email' => 'required|email',
+            'password' => 'required'
+        ]);
+         if (Auth::attempt($request->only('email', 'password'))) {
+        return redirect('/dashboard')->with('success', 'Bienvenue Admin');
+    }
 
-        if (Auth::attempt($credentials)) {
-            return redirect('/dashboard');
-        }
-
-        return back()->withErrors('Identifiants incorrects');
+    return back()->with('error', 'Identifiants incorrects');
     }
 }
 
