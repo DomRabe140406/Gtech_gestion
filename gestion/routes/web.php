@@ -1,15 +1,31 @@
 <?php
 
-use App\Http\Controllers\FacturesController;
-use App\Http\Controllers\FormationsController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FormationsController;
+use App\Http\Controllers\FacturesController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('welcome');
 });
 
-Route::get('/dashboard', [FormationsController::class, 'index'])->name('dashboard');
+Route::get('/login', function () {
+    return view('welcome');
+})->name('login');
 
-Route::resource('formations', FormationsController::class);
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::resource('factures', FacturesController::class);
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard');
+
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})-> name('logout');
+
+Route::resource('formations', FormationsController::class)->middleware('auth');
+Route::resource('factures', FacturesController::class)->middleware('auth');

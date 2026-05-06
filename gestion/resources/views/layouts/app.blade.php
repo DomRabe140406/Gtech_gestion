@@ -22,7 +22,7 @@
             </li>
 
             <li class="btnheader" id="sortie">
-                <a href="{{ url('/logout') }}">
+                <a href="{{ route('logout') }}">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </a>
             </li>
