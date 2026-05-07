@@ -3,7 +3,7 @@
 @section('title', 'Ajouter Formation')
 
 @section('content')
-
+@include('layouts.notification')
 <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-6">
 
 <form id="form_principale"
@@ -41,7 +41,7 @@
         </div>
 
         <div>
-            <label class="block mb-1 font-medium text-gray-600" id="Nb_j">Nombre de jours:</label>
+            <label class="block mb-1 font-medium text-gray-600" for="Nb_j">Nombre de jours:</label>
             <input type="number"
                    name="capacite"
                    min="1"

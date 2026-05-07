@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Formation;
 use Illuminate\Http\Request;
 
 class FormationsController extends Controller
@@ -25,9 +26,18 @@ class FormationsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    /*Fonction sert a enregistrer qlq chose dans une bdd*/
     public function store(Request $request)
-    {
-        //
+    { //create création de ligne dans une bdd donc on prend le modele
+        Formation::create([
+            'nom_formation' => $request->nom_formation,
+            'date_debut' => $request->date,
+            'nb_jours' => $request->capacite,
+            'nb_participant' => $request->nb_participant,
+            'nom_formateur' => $request->nom_formateur,
+            'prenom_formateur' => $request->prenom_formateur,
+        ]);
+        return redirect()->back()->with('success', 'Formation ajoutée avec succes');
     }
 
     /**

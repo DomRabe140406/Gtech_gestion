@@ -38,3 +38,20 @@ function updateProgress(step)
     if(step == 3)
         progress.style.width = "100%";
 }
+
+function updateProgressFacture(step)
+{
+    let progress = document.getElementById("progress");
+
+    if(step == 1)
+        progress.style.width = "25%";
+
+    if(step == 2)
+        progress.style.width = "50%";
+
+    if(step == 3)
+        progress.style.width = "75%";
+
+    if(step == 4)
+        progress.style.width = "100%";
+}
