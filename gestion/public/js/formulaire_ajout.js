@@ -24,3 +24,17 @@ function annulerForm(){
         window.location.href = "liste_formation.php";
     }
 }
+
+function updateProgress(step)
+{
+    let progress = document.getElementById("progress");
+
+    if(step == 1)
+        progress.style.width = "33%";
+
+    if(step == 2)
+        progress.style.width = "66%";
+
+    if(step == 3)
+        progress.style.width = "100%";
+}

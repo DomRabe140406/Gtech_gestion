@@ -4,54 +4,167 @@
 
 @section('content')
 
-<form id="form_principale" action="{{ route('formations.store') }}" method="POST">
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-6">
+
+<form id="form_principale"
+      action="{{ route('formations.store') }}"
+      method="POST"
+      class="bg-white shadow-2xl rounded-3xl p-5 w-full max-w-2xl transition-all">
+      
 
     @csrf
 
-    <!-- Etape 1 -->
-    <div id="etape1" class="etape active">
-        <h3>Ajouter une formation</h3>
+    <!-- ETAPE 1 -->
+    <div id="etape1" class="etape active space-y-5">
 
-        <label>Nom formation:</label><br>
-        <input type="text" name="nom_formation" required><br><br>
+        <h3 class="text-3xl font-bold text-gray-700 mb-6">
+            Ajouter une formation
+        </h3>
 
-        <label>Date de début:</label><br>
-        <input type="date" name="date" required><br><br>
+        <div>
+            <label for="Nom_formation" class="block mb-1 font-medium text-gray-600">Nom formation:</label>
+            <input type="text"
+                   name="nom_formation"
+                    id="Nom_formation"
+                    placeholder="Nom de la formation"
+                    required
+                   class="w-full border border-gray-300 rounded-xl p-5 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
 
-        <label>Nombre de jours:</label><br>
-        <input type="number" name="capacite" min="1" value="5"><br><br>
+        <div>
+            <label class="block mb-1 font-medium text-gray-600" for="Date">Date de début:</label>
+            <input type="date"
+                    id="Date"
+                   name="date"
+                   required
+                   class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
 
-        <button type="button" onclick="etapeSuivante(1,2)">Suivant</button>
-        <button type="button" onclick="annulerForm()">Annuler</button>
+        <div>
+            <label class="block mb-1 font-medium text-gray-600" id="Nb_j">Nombre de jours:</label>
+            <input type="number"
+                   name="capacite"
+                   min="1"
+                   id="Nb_j"
+                   value="5"
+                   class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <div class="flex justify-between">
+
+            <button type="button"
+                    onclick="etapeSuivante(1,2); updateProgress(2)"
+                    class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition shadow">
+                Suivant
+            </button>
+
+            <button type="button"
+                    onclick="annulerForm()"
+                    class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl transition shadow">
+                Annuler
+            </button>
+        </div>
+
     </div>
 
-    <!-- Etape 2 -->
-    <div id="etape2" class="etape">
-        <h3>Nombre de participant</h3>
+    <!-- ETAPE 2 -->
+    <div id="etape2" class="etape hidden space-y-5">
 
-        <label>Nombre de participant:</label><br>
-        <input type="number" name="nb_participant" min="0" value="20"><br><br>
+        <h3 class="text-3xl font-bold text-gray-700 mb-6">
+            Nombre de participant
+        </h3>
 
-        <button type="button" onclick="etapePrecedente(2,1)">Précédent</button>
-        <button type="button" onclick="etapeSuivante(2,3)">Suivant</button>
-        <button type="button" onclick="annulerForm()">Annuler</button>
+        <div>
+            <label class="block mb-2 font-medium text-gray-600">
+                Nombre de participant
+            </label>
+
+            <input type="number"
+                   name="nb_participant"
+                   min="0"
+                   value="20"
+                   class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <div class="flex justify-between pt-6">
+
+            <button type="button"
+                    onclick="etapePrecedente(2,1); updateProgress(1)"
+                    class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition shadow">
+                Précédent
+            </button>
+
+            <button type="button"
+                    onclick="etapeSuivante(2,3); updateProgress(3)"
+                    class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition shadow">
+                Suivant
+            </button>
+
+        </div>
+
     </div>
 
-    <!-- Etape 3 -->
-    <div id="etape3" class="etape">
-        <h3>Ajout Formateur</h3>
+    <!-- ETAPE 3 -->
+    <div id="etape3" class="etape hidden space-y-5">
 
-        <label>Nom formateur:</label><br>
-        <input type="text" name="nom_formateur"><br><br>
+        <h3 class="text-3xl font-bold text-gray-700 mb-6">
+            Ajout Formateur
+        </h3>
 
-        <label>Prénom formateur:</label><br>
-        <input type="text" name="prenom_formateur"><br><br>
+        <div>
+            <label class="block mb-2 font-medium text-gray-600">
+                Nom formateur
+            </label>
 
-        <button type="button" onclick="etapePrecedente(3,2)">Précédent</button>
-        <button type="submit">Envoyer</button>
-        <button type="button" onclick="annulerForm()">Annuler</button>
+            <input type="text"
+                   name="nom_formateur"
+                   class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <div>
+            <label class="block mb-2 font-medium text-gray-600">
+                Prénom formateur
+            </label>
+
+            <input type="text"
+                   name="prenom_formateur"
+                   class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <div class="flex justify-between pt-6">
+
+            <button type="button"
+                    onclick="etapePrecedente(3,2); updateProgress(2)"
+                    class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition shadow">
+                Précédent
+            </button>
+
+            <button type="submit"
+                    class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl transition shadow">
+                Envoyer
+            </button>
+
+        </div>
+
     </div>
+    <!-- Progress Bar -->
+    <div class="mt-10">
 
+        <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+            <div id="progress"
+                 class="bg-blue-500 h-3 rounded-full transition-all duration-500"
+                 style="width: 33%;">
+            </div>
+        </div>
+        <div class="flex justify-between  text-sm mt-3 text-gray-500 px-1">
+            <span>Étape 1</span>
+            <span>Étape 2</span>
+            <span>Étape 3</span>
+        </div>
+
+    </div>
 </form>
+
+</div>
 
 @endsection
