@@ -22,6 +22,16 @@
         </h3>
 
         <div>
+            <label for="Ref_formation" class="block mb-1 font-medium text-gray-600">Référence:</label>
+            <input type="text"
+                   name="ref_formation"
+                    id="Ref_formation"
+                    placeholder="Référence de la formation"
+                    required
+                   class="w-full border border-gray-300 rounded-xl p-5 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <div>
             <label for="Nom_formation" class="block mb-1 font-medium text-gray-600">Nom formation:</label>
             <input type="text"
                    name="nom_formation"

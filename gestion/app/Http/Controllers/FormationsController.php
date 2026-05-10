@@ -30,6 +30,7 @@ class FormationsController extends Controller
     public function store(Request $request)
     { //create création de ligne dans une bdd donc on prend le modele
         Formation::create([
+            'ref_formation' => $request->ref_formation,
             'nom_formation' => $request->nom_formation,
             'date_debut' => $request->date,
             'nb_jours' => $request->capacite,

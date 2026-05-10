@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FormationsController;
 use App\Http\Controllers\FacturesController;
+use App\Http\Controllers\ProformaController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -29,3 +30,4 @@ Route::get('/logout', function () {
 
 Route::resource('formations', FormationsController::class)->middleware('auth');
 Route::resource('factures', FacturesController::class)->middleware('auth');
+Route::resource('proforma', ProformaController::class)->middleware('auth');

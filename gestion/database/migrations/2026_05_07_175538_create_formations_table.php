@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('formations', function (Blueprint $table) {
             $table->id();
+            $table->string('ref_formation');
             $table->string('nom_formation');
             $table->date('date_debut');
             $table->integer('nb_jours');

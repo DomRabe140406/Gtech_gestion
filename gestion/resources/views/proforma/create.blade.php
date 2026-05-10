@@ -7,14 +7,14 @@
 <div class="min-h-screen flex items-start justify-center bg-gray-100 py-10 px-4">
 
 <form id="form_principale"
-      action="{{ route('factures.store') }}"
+      action="{{ route('proforma.store') }}"
       method="POST"
       class="bg-white w-full max-w-2xl p-10 rounded-3xl shadow-2xl">
 
     @csrf
 
     <h2 class="text-3xl font-bold text-gray-700 mb-8 text-center">
-        Création de facture
+        Création de proforma
     </h2>
 
     <!-- ETAPE 1 -->
@@ -141,7 +141,7 @@
         </button>
 
         <button type="button"
-                onclick="etapePrecedente(4,3);updateProgressFacture(4)"
+                onclick="etapePrecedente(4,3);updateProgressFacture(3)"
                 class="text-gray-500 underline">
             Retour
         </button>
