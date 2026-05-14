@@ -130,22 +130,31 @@
 
         <button type="submit"
                 name="btn_apercu"
-                class="w-full bg-green-500 text-white px-6 py-3 rounded-xl hover:bg-green-600 transition">
+                class="w-full bg-green-500 text-white px-6 py-3 rounded-xl hover:bg-green-600 transition"
+                onclick="document.getElementById('form_principale').target='_blank'">
             Aperçu PDF
         </button>
 
         <button type="submit"
                 name="btn_telecharge"
-                class="w-full bg-blue-500 text-white px-6 py-3 rounded-xl hover:bg-blue-600 transition">
+                class="w-full bg-blue-500 text-white px-6 py-3 rounded-xl hover:bg-blue-600 transition"
+                onclick="document.getElementById('form_principale').target='_self'">
             Télécharger PDF
         </button>
 
         <button type="button"
-                onclick="etapePrecedente(4,3);updateProgressFacture(4)"
+                style="cursor:pointer;"
+                onclick="etapePrecedente(4,3);updateProgressFacture(3)"
                 class="text-gray-500 underline">
-            Retour
+            Retour à l'étape précédente
         </button>
-
+        <br>
+        <button type="button"
+                style="cursor:pointer;"
+                onclick="etapePrecedente(4,1);updateProgressFacture(1)"
+                class="text-gray-500 underline">
+            Retour depuis le début
+        </button>
     </div>
     <div class="mt-10">
 

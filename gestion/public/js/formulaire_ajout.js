@@ -55,3 +55,35 @@ function updateProgressFacture(step)
     if(step == 4)
         progress.style.width = "100%";
 }
+
+function updateProgressFiche(step)
+{
+    let progress = document.getElementById("progress");
+
+    if(step == 1)
+        progress.style.width = "22.22%";
+
+    if(step == 2)
+        progress.style.width = "33.33%";
+
+    if(step == 3)
+        progress.style.width = "44.44%";
+
+    if(step == 4)
+        progress.style.width = "55.55%";
+
+    if(step == 5)
+        progress.style.width = "55.55%";
+
+    if(step == 6)
+        progress.style.width = "66.66%";
+
+    if(step == 7)
+        progress.style.width = "77.77%";
+
+    if(step == 8)
+        progress.style.width = "88.88%";
+
+    if(step == 9)
+        progress.style.width = "100%";
+}

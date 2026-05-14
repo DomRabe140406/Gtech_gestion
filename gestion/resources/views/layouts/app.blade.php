@@ -41,7 +41,7 @@
     <a href="{{ route('dashboard') }}">Dashboard</a>
     <a href="{{ route('formations.index') }}">Liste Formation</a>
     <a href="{{ route('formations.create') }}">Ajouter Formation</a>
-    <a href="#">Fiche Formation</a>
+    <a href="{{ route('fiche.create') }}">Fiche Formation</a>
     <a href="{{ route('proforma.create') }}">Generation Proforma</a>
     <a href="{{ route('factures.create') }}">Generation Facture</a>
 </div>
