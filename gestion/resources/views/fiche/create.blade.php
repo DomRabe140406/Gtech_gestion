@@ -88,15 +88,30 @@
 
     </div>
 
-        <!-- ETAPE 3 -->
+    <!-- ETAPE 3 -->
     <div id="etape3" class="etape space-y-5">
 
         <h3 class="text-xl font-semibold text-gray-600">Outils et Supports utilisés</h3>
-
+        <!--
         <div>
             <label class="text-gray-600">Nom du client</label>
             <input name="nom"
                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400">
+        </div>
+        Le [] permet d’envoyer plusieurs champs dans Laravel
+        -->
+
+        <div class="fields-container">
+            <div class="field-group">
+                <input
+                    type="text"
+                    name="outils[]"
+                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400"
+                >
+                <div class="add-btn">
+                    +
+                </div>
+            </div>
         </div>
 
         <div class="flex justify-between pt-6">
@@ -121,11 +136,24 @@
     <div id="etape4" class="etape space-y-5">
 
         <h3 class="text-xl font-semibold text-gray-600">Bénéfices pour les participants</h3>
-
+        <!--
         <div>
             <label class="text-gray-600">Nom du client</label>
             <input name="nom"
                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400">
+        </div>
+        -->
+        <div class="fields-container">
+            <div class="field-group">
+                <input
+                    type="text"
+                    name="benefices[]"
+                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400"
+                >
+                <div class="add-btn">
+                    +
+                </div>
+            </div>
         </div>
 
         <div class="flex justify-between pt-6">
@@ -150,11 +178,24 @@
     <div id="etape5" class="etape space-y-5">
 
         <h3 class="text-xl font-semibold text-gray-600">Public cible</h3>
-
+        <!--
         <div>
             <label class="text-gray-600">Nom du client</label>
             <input name="nom"
                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400">
+        </div>
+        -->
+        <div class="fields-container">
+            <div class="field-group">
+                <input
+                    type="text"
+                    name="public_cible[]"
+                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400"
+                >
+                <div class="add-btn">
+                    +
+                </div>
+            </div>
         </div>
 
         <div class="flex justify-between pt-6">
@@ -179,11 +220,24 @@
     <div id="etape6" class="etape space-y-5">
 
         <h3 class="text-xl font-semibold text-gray-600">Prérequis</h3>
-
+        <!--
         <div>
             <label class="text-gray-600">Nom du client</label>
             <input name="nom"
                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400">
+        </div>
+        -->
+        <div class="fields-container">
+            <div class="field-group">
+                <input
+                    type="text"
+                    name="prerequis[]"
+                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400"
+                >
+                <div class="add-btn">
+                    +
+                </div>
+            </div>
         </div>
 
         <div class="flex justify-between pt-6">
@@ -208,11 +262,24 @@
     <div id="etape7" class="etape space-y-5">
 
         <h3 class="text-xl font-semibold text-gray-600">Objectif(s) de la formation</h3>
-
+        <!-- 
         <div>
             <label class="text-gray-600">Nom du client</label>
             <input name="nom"
                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400">
+        </div>
+        -->
+        <div class="fields-container">
+            <div class="field-group">
+                <input
+                    type="text"
+                    name="objectifs[]"
+                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400"
+                >
+                <div class="add-btn">
+                    +
+                </div>
+            </div>
         </div>
 
         <div class="flex justify-between pt-6">
@@ -237,11 +304,24 @@
     <div id="etape8" class="etape space-y-5">
 
         <h3 class="text-xl font-semibold text-gray-600">Conclusion</h3>
-
+        <!--
         <div>
             <label class="text-gray-600">Nom du client</label>
             <input name="nom"
                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400">
+        </div>
+        -->
+        <div class="fields-container">
+            <div class="field-group">
+                <input
+                    type="text"
+                    name="conclusion[]"
+                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400"
+                >
+                <div class="add-btn">
+                    +
+                </div>
+            </div>
         </div>
 
         <div class="flex justify-between pt-6">
@@ -321,5 +401,99 @@
 </form>
 
 </div>
+
+<style>
+/*pour les nouveaux champs ave les boutons + et -*/
+    .field-group{
+        position:relative;
+        margin-bottom:35px;
+    }
+
+    .add-btn{
+        position:absolute;
+        bottom:-14px;
+        right:10px;
+        width:28px;
+        height:28px;
+        border-radius:999px;
+        background:#2563eb;
+        color:white;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        cursor:pointer;
+        opacity:0;
+        transition:.2s;
+        font-weight:bold;
+    }
+
+    .remove-btn{
+    position:absolute;
+    bottom:-14px;
+    right:45px;
+    width:28px;
+    height:28px;
+    border-radius:999px;
+    background:#ef4444;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    opacity:0;
+    transition:.2s;
+    font-weight:bold;
+    }
+
+    .field-group:hover .remove-btn{
+        opacity:1;
+    }
+    .field-group:hover .add-btn{
+        opacity:1;
+    }
+
+</style>
+
+<script>
+//pour le fonctionnement des boutons + et -
+document.addEventListener('click', function(e){
+
+    //AJOUTER UN CHAMP
+    if(e.target.classList.contains('add-btn')){
+
+        const fieldGroup = e.target.parentElement;
+        const container = fieldGroup.parentElement;
+        const input = fieldGroup.querySelector('input');
+        const inputName = input.getAttribute('name');
+
+        // Création nouveau champ
+        const newField = document.createElement('div');
+        newField.classList.add('field-group');
+        newField.innerHTML = `
+            <input
+                type="text"
+                name="${inputName}"
+                class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400"
+            >
+            <div class="remove-btn">
+                -
+            </div>
+            <div class="add-btn">
+                +
+            </div>
+        `;
+
+        container.appendChild(newField);
+    }
+
+     // SUPPRIMER UN CHAMP
+    if(e.target.classList.contains('remove-btn')){
+
+        e.target.parentElement.remove();
+
+    }
+});
+
+</script>
 
 @endsection
