@@ -21,7 +21,8 @@ function annulerForm(){
             });
             document.getElementById("etape1").classList.add("active")
         }*/
-        window.location.href = "liste_formation.php";
+        //window.location.href = "liste_formation.php";
+        window.location.href= "./../resources/views/dashboard.blade.php";
     }
 }
 
@@ -61,28 +62,28 @@ function updateProgressFiche(step)
     let progress = document.getElementById("progress");
 
     if(step == 1)
-        progress.style.width = "22.22%";
+        progress.style.width = "10%";
 
     if(step == 2)
-        progress.style.width = "33.33%";
+        progress.style.width = "25%";
 
     if(step == 3)
-        progress.style.width = "44.44%";
+        progress.style.width = "35%";
 
     if(step == 4)
-        progress.style.width = "55.55%";
+        progress.style.width = "45%";
 
     if(step == 5)
-        progress.style.width = "55.55%";
+        progress.style.width = "55%";
 
     if(step == 6)
-        progress.style.width = "66.66%";
+        progress.style.width = "65%";
 
     if(step == 7)
-        progress.style.width = "77.77%";
+        progress.style.width = "75%";
 
     if(step == 8)
-        progress.style.width = "88.88%";
+        progress.style.width = "87.5%";
 
     if(step == 9)
         progress.style.width = "100%";

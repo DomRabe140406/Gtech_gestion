@@ -4,6 +4,8 @@
 
 @section('content')
 
+
+
 <div class="min-h-screen flex items-start justify-center bg-gray-100 py-10 px-4">
 
 <form id="form_principale"
@@ -18,7 +20,7 @@
     </h2>
 
     <!-- ETAPE 1 -->
-    <div id="etape1" class="etape space-y-5" style="display:block">
+    <div id="etape1" class="etape active space-y-5">
 
         <h3 class="text-xl font-semibold text-gray-600">Formation</h3>
         <select name="designation"
@@ -245,7 +247,7 @@
         <div class="flex justify-between pt-6">
 
             <button type="button"
-                    onclick="etapePrecedente(8,7);updateProgressFacture(7)"
+                    onclick="etapePrecedente(8,7);updateProgressFiche(7)"
                     class="bg-gray-500 text-white px-6 py-3 rounded-xl hover:bg-gray-600 transition">
                 Précédent
             </button>
@@ -300,7 +302,7 @@
         <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
             <div id="progress"
                 class="bg-blue-500 h-3 rounded-full transition-all duration-500"
-                style="width: 25%;">
+                style="width: 10%;">
             </div>
         </div>
 
