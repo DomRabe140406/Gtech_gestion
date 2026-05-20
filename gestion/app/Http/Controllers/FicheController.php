@@ -34,13 +34,29 @@ class FicheController extends Controller
             ->where('id', $request->input('designation'))
             ->value('nom_formation');
         if($designation == null){
-            $designation = 'Formation inconnue';
+            $designation = 'Inconnue';
         }
         $description = $request->input('description') ?: 'Aucune description';
 
+        //$contenus = $request->contenu_formation;
+        $outils = $request->outils;
+        $benefices = $request->benefices;
+        $public = $request->public_cible;
+        $prerequis = $request->prerequis;
+        $objectifs = $request->objectifs;
+        $conclusion = $request->conclusion;
 
-        $pdf = Pdf::loadView('fiche.pdf');
-        
+        $pdf = Pdf::loadView('fiche.pdf', [
+            'designation' => $designation,
+            'description' => $description,
+            'outils' => $outils,
+            'benefices' => $benefices,
+            'public' => $public,
+            'prerequis' => $prerequis,
+            'objectifs' => $objectifs,
+            'conclusion' => $conclusion
+        ]);
+
         // =========================
         // OUTPUT
         // =========================

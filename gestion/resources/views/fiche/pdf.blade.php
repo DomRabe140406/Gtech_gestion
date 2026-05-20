@@ -61,7 +61,7 @@
 
     <div class="title">
         FORMATION <br>
-        Fondamentaux de l’IA appliquée aux métiers
+        {{ $designation }}
     </div>
 
     <div class="separator"></div>
@@ -69,114 +69,27 @@
     <!-- INTRODUCTION -->
 
     <div class="intro">
-
-        La formation
-        <strong>
-            Fondamentaux de l’IA appliquée aux métiers
-        </strong>
-
-        vise à familiariser les participants avec les principes essentiels
-        de l’intelligence artificielle et ses usages concrets dans le monde
-        professionnel.
-
-        Elle permet de comprendre comment l’IA peut améliorer la productivité,
-        soutenir la prise de décision et transformer les pratiques métier,
-        à travers des exemples simples et des outils accessibles aux débutants.
-
+        {{ $description }}
     </div>
 
-    <!-- SECTION 1 -->
+    <!-- SECTION 1 
 
     <div class="section-title">
         1. Contenu de la Formation et Déroulement
     </div>
-
-    <div class="item">
-        • Définition et principes de l’Intelligence Artificielle
-    </div>
-
-    <div class="item">
-        • Bref historique et évolution de l’IA
-    </div>
-
-    <div class="item">
-        • Présence de l’IA dans la vie quotidienne et le monde du travail
-    </div>
-
-    <div class="item">
-        • Mythes, réalités et idées reçues sur l’IA
-    </div>
-
-    <div class="item">
-        • Différence entre IA, automatisation et robotique
-    </div>
-
-    <div class="item">
-        • Introduction au Machine Learning et à l’apprentissage automatique
-    </div>
-
-    <div class="item">
-        • Notions simples de données, modèles et entraînement
-    </div>
-
-    <div class="item">
-        • Compréhension des algorithmes à travers des exemples concrets
-    </div>
-
-    <div class="item">
-        • Applications de l’IA dans les fonctions bureautiques,
-        marketing, éducation et service client
-    </div>
-
-    <div class="item">
-        • IA générative : texte, image et audio
-    </div>
-
-    <div class="item">
-        • Présentation d’outils d’IA accessibles aux débutants
-    </div>
-
-    <div class="item">
-        • Ateliers pratiques guidés
-    </div>
-
-    <div class="item">
-        • Éthique, responsabilité et bonnes pratiques
-    </div>
-
-    <div class="item">
-        • Impact de l’IA sur les métiers et l’emploi
-    </div>
-
+-->
     <!-- SECTION 2 -->
 
     <div class="section-title">
         2. Outils et Supports Utilisés
     </div>
-
-    <div class="item">
-        • Ordinateur pour chaque participant
-    </div>
-
-    <div class="item">
-        • Connexion Internet
-    </div>
-
-    <div class="item">
-        • Présentations PowerPoint / PDF
-    </div>
-
-    <div class="item">
-        • Démonstrations en ligne
-    </div>
-
-    <div class="item">
-        • Exercices pratiques guidés
-    </div>
-
-    <div class="item">
-        • Études de cas réels
-    </div>
+    <?php foreach ($outils as $outil): 
+        if (trim($outil) !== ''): ?>
+        <div class="item">
+            • {{ $outil }}
+        </div>
+        <?php endif; 
+    endforeach;?>
 
     <!-- SECTION 3 -->
 
@@ -184,25 +97,13 @@
         3. Bénéfices pour les Participants
     </div>
 
-    <div class="item">
-        • Compréhension claire et accessible de l’IA
-    </div>
-
-    <div class="item">
-        • Capacité à utiliser des outils d’IA au quotidien
-    </div>
-
-    <div class="item">
-        • Gain de productivité personnelle et professionnelle
-    </div>
-
-    <div class="item">
-        • Meilleure adaptation aux évolutions technologiques
-    </div>
-
-    <div class="item">
-        • Vision critique et responsable de l’Intelligence Artificielle
-    </div>
+    <?php foreach ($benefices as $benefice): 
+        if (trim($benefice) !== ''): ?>
+        <div class="item">
+            • {{ $benefice }}
+        </div>
+        <?php endif; 
+    endforeach;?>
 
     <!-- SECTION 4 -->
 
@@ -210,29 +111,13 @@
         4. Public Cible
     </div>
 
-    <div class="item">
-        • Débutants sans connaissances techniques
-    </div>
-
-    <div class="item">
-        • Étudiants
-    </div>
-
-    <div class="item">
-        • Professionnels de tous secteurs
-    </div>
-
-    <div class="item">
-        • Entrepreneurs
-    </div>
-
-    <div class="item">
-        • Formateurs et enseignants
-    </div>
-
-    <div class="item">
-        • Toute personne curieuse de comprendre l’IA
-    </div>
+    <?php foreach ($public as $public): 
+        if (trim($public) !== ''): ?>
+        <div class="item">
+            • {{ $public }}
+        </div>
+        <?php endif; 
+    endforeach;?>
 
     <!-- SECTION 5 -->
 
@@ -240,13 +125,13 @@
         5. Prérequis
     </div>
 
-    <div class="item">
-        • Savoir utiliser un ordinateur ou un smartphone
-    </div>
-
-    <div class="item">
-        • Aucune connaissance en programmation n’est requise
-    </div>
+    <?php foreach ($prerequis as $prerequis): 
+        if (trim($prerequis) !== ''): ?>
+        <div class="item">
+            • {{ $prerequis }}
+        </div>
+        <?php endif; 
+    endforeach;?>
 
     <!-- SECTION 6 -->
 
@@ -254,48 +139,26 @@
         6. Objectifs de la Formation
     </div>
 
-    <div class="item">
-        • Comprendre les concepts de base de l’Intelligence Artificielle
-        appliquée aux métiers
-    </div>
-
-    <div class="item">
-        • Identifier les différents types d’IA
-    </div>
-
-    <div class="item">
-        • Utiliser des outils d’IA accessibles au grand public
-    </div>
-
-    <div class="item">
-        • Comprendre les applications concrètes de l’IA
-    </div>
-
-    <div class="item">
-        • Avoir une vision critique et responsable de l’IA
-    </div>
+    <?php foreach ($objectifs as $objectif): 
+        if (trim($objectif) !== ''): ?>
+        <div class="item">
+            • {{ $objectif }}
+        </div>
+        <?php endif; 
+    endforeach;?>
 
     <!-- CONCLUSION -->
 
     <div class="section-title">
         7. Conclusion
     </div>
-
-    <div class="conclusion">
-
-        Cette formation
-        <strong>
-            “ l’IA appliquée aux métiers ”
-        </strong>
-
-        propose une introduction simple et progressive à l’Intelligence
-        Artificielle.
-
-        Elle permet aux participants de comprendre ses bases,
-        ses usages concrets et d’utiliser l’IA de manière responsable
-        dans leur vie personnelle et professionnelle.
-
-    </div>
+    <?php foreach ($conclusion as $conclusion): 
+        if (trim($conclusion) !== ''): ?>
+        <div class="item">
+            {{ $conclusion }}
+        </div>
+        <?php endif; 
+    endforeach;?>
 
 </body>
 </html>
