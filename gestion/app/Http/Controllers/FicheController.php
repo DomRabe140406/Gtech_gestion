@@ -38,7 +38,8 @@ class FicheController extends Controller
         }
         $description = $request->input('description') ?: 'Aucune description';
 
-        //$contenus = $request->contenu_formation;
+        $titres = $request->titres;
+        $sousContenus = $request->sous_contenus;
         $outils = $request->outils;
         $benefices = $request->benefices;
         $public = $request->public_cible;
@@ -47,6 +48,8 @@ class FicheController extends Controller
         $conclusion = $request->conclusion;
 
         $pdf = Pdf::loadView('fiche.pdf', [
+            'titres' => $titres,
+            'sousContenus' => $sousContenus,
             'designation' => $designation,
             'description' => $description,
             'outils' => $outils,

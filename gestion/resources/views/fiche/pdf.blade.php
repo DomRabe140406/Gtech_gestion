@@ -10,44 +10,45 @@
             font-family: DejaVu Sans, sans-serif;
             margin: 35px;
             color:#000;
-            font-size: 12px;
-            line-height: 1.7;
         }
 
         .title{
             text-align: center;
-            color:#f0640a;
+            color:rgb(163, 24, 24);
             font-size: 26px;
-            font-weight: bold;
             margin-bottom: 10px;
         }
 
         .separator{
-            border-bottom: 3px solid #f0640a;
+            border-bottom: 3px solid rgb(163, 24, 24);
             margin-bottom: 20px;
         }
 
         .intro{
+            font-size:15px;
             text-align: justify;
-            margin-bottom: 25px;
         }
 
         .section-title{
-            font-size: 17px;
+            font-size: 20px;
             font-weight: bold;
-            color:#003366;
-            margin-top: 25px;
-            margin-bottom: 10px;
+            color:rgb(163, 24, 24);
+            margin-top:10px;
+        }
+
+        .grand-titre{
+            font-size: 17px;
+            margin-left:50px;
         }
 
         .item{
-            margin-left: 18px;
-            margin-bottom: 6px;
+            font-size:15px;
+            margin-left: 60px;
             text-align: justify;
         }
 
         .conclusion{
-            margin-top: 15px;
+            font-size:15px;
             text-align: justify;
         }
 
@@ -61,7 +62,7 @@
 
     <div class="title">
         FORMATION <br>
-        {{ $designation }}
+        <strong>{{ $designation }}</strong>
     </div>
 
     <div class="separator"></div>
@@ -72,12 +73,26 @@
         {{ $description }}
     </div>
 
-    <!-- SECTION 1 
+    <!-- SECTION 1 -->
 
     <div class="section-title">
         1. Contenu de la Formation et Déroulement
     </div>
--->
+    <?php foreach ($titres as $index => $titre):
+        if (trim($titre) !== ''): ?>
+            <div class="grand-titre">
+                <strong>{{ $titre }}</strong>
+            </div>
+            <?php foreach ($sousContenus[$index] ?? [] as $sous):
+                if(trim($sous) !== ''): ?>
+                    <div class="item">
+                        • {{ $sous }}
+                    </div>
+                <?php endif;
+            endforeach;?>
+        <?php endif;
+    endforeach;?>
+
     <!-- SECTION 2 -->
 
     <div class="section-title">
@@ -154,7 +169,7 @@
     </div>
     <?php foreach ($conclusion as $conclusion): 
         if (trim($conclusion) !== ''): ?>
-        <div class="item">
+        <div class="conclusion">
             {{ $conclusion }}
         </div>
         <?php endif; 

@@ -39,7 +39,7 @@
 
         <div>
             <label class="text-gray-600">Description</label>
-            <input name="objectif"
+            <input name="description"
                    class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400">
         </div>
 
@@ -64,10 +64,38 @@
 
         <h3 class="text-xl font-semibold text-gray-600">Contenu de la formation et déroulement</h3>
 
-        <div>
-            <label class="text-gray-600">Nom du client</label>
-            <input name="nom"
-                   class="w-full mt-2 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400">
+        <div id="contenus-container">
+            <div class="contenu-block p-5 rounded-2x1 mb-8 relative">
+                {{-- TITRE PRINCIPAL --}}
+                <div class="field-group">
+                    <label class="text-gray-600">Grand contenu</label>
+                    <input
+                        type="text"
+                        name="titres[]"
+                        placeholder="Titre"
+                        class="w-full mt-2 p-3 border rounded-xl"
+                        >
+                    <div class="add-main-btn">
+                        +
+                    </div>
+                </div>
+
+                {{-- SOUS CONTENUS --}}
+                <div class="sous-contenus mt-6">
+                    <div class="field-group sous-item">
+                        <input
+                            type="text"
+                            name="sous_contenus[0][]"
+                            class="w-full mt-2 p-3 border rounded-xl"
+                            placeholder="Sous contenu"
+                        >
+                        <div class="add-sub-btn">
+                            +
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="flex justify-between pt-6">
@@ -409,7 +437,9 @@
         margin-bottom:35px;
     }
 
-    .add-btn{
+    .add-btn,
+    .add-main-btn,
+    .add-sub-btn{
         position:absolute;
         bottom:-14px;
         right:10px;
@@ -427,7 +457,9 @@
         font-weight:bold;
     }
 
-    .remove-btn{
+    .remove-btn,
+    .remove-main-btn,
+    .remove-sub-btn{
     position:absolute;
     bottom:-14px;
     right:45px;
@@ -445,9 +477,11 @@
     font-weight:bold;
     }
 
-    .field-group:hover .remove-btn{
-        opacity:1;
-    }
+    .field-group:hover .remove-main-btn,
+    .field-group:hover .remove-sub-btn,
+    .field-group:hover .add-main-btn,
+    .field-group:hover .add-sub-btn,
+    .field-group:hover .remove-btn,
     .field-group:hover .add-btn{
         opacity:1;
     }
@@ -455,6 +489,96 @@
 </style>
 
 <script>
+//fonctionnement btn + et - de l'etape 2
+let contenuIndex =1;
+document.addEventListener('click', function(e){
+    //AJOUTER GRAND CONTENU
+    if(e.target.classList.contains('add-main-btn')){
+        const container = document.getElementById('contenus-container');
+        const newBlock = document.createElement('div');
+        newBlock.classList.add(
+            'contenu-block',
+            'p-5',
+            'rounded-2x1',
+            'mb-8',
+            'relative'
+        );
+        
+        newBlock.innerHTML =`
+            <div class="field-group">
+                <label class="text-gray-600">Grand contenu</label>
+                <input
+                    type="text"
+                    name="titres[]"
+                    placeholder="Titre"
+                    class="w-full mt-2 p-3 border rounded-xl"
+                >
+                <div class="remove-main-btn">
+                    -
+                </div>
+                <div class="add-main-btn">
+                   +
+                </div>
+            </div>
+
+            <div class="sous-contenus mt-6">
+                <div class="field-group sous-item">
+                    <input
+                        type="text"
+                        name="sous_contenus[${contenuIndex}][]"
+                        class="w-full mt-2 p-3 border rounded-xl"
+                        placeholder="Sous contenu"
+                    >
+                    <div class="add-sub-btn">
+                        +
+                    </div>
+                </div>
+            </div>
+            
+
+        `;
+
+        container.appendChild(newBlock);
+        contenuIndex++;
+    }
+
+    //SUPPRIMER GRAND CONTENU
+    if(e.target.classList.contains('remove-main-btn')){
+        e.target.closest('.contenu-block').remove();
+    }
+
+    //AJOUTER SOUS CONTENU
+    if(e.target.classList.contains('add-sub-btn')){
+        const fieldGroup = e.target.parentElement;
+        const container = fieldGroup.parentElement;
+        const input = fieldGroup.querySelector('input');
+        const inputName = input.getAttribute('name');
+        // Création nouveau champ
+        const newSous = document.createElement('div');
+        newSous.classList.add('field-group','sous-item');
+        newSous.innerHTML = `
+            <input
+                type="text"
+                name="${inputName}"
+                class="w-full mt-2 p-3 border rounded-xl"
+                placeholder="Sous contenu"
+            >
+            <div class="remove-sub-btn">
+                -
+            </div>
+            <div class="add-sub-btn">
+                +
+            </div>
+        `;
+        container.appendChild(newSous);
+    }
+
+    //SUPPRIMER SOUS CONTENU
+    if(e.target.classList.contains('remove-sub-btn')){
+        e.target.parentElement.remove();
+    }
+});
+
 //pour le fonctionnement des boutons + et -
 document.addEventListener('click', function(e){
 
