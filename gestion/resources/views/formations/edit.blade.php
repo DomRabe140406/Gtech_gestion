@@ -19,7 +19,7 @@
                     type="text"
                     name="ref_formation"
                     value="{{ $formation->ref_formation }}"
-                    class="w-full mt-2 p-3 border rounded-xl"
+                    class="w-full mt-2 p-3 border border-gray-300 rounded-xl"
                 >
             </div>
             <div>
@@ -30,7 +30,7 @@
                     type="text"
                     name="nom_formation"
                     value="{{ $formation->nom_formation }}"
-                    class="w-full mt-2 p-3 border rounded-xl"
+                    class="w-full mt-2 p-3 border border-gray-300 rounded-xl"
                 >
             </div>
                         <div>
@@ -41,7 +41,7 @@
                     type="date"
                     name="date_debut"
                     value="{{ $formation->date_debut }}"
-                    class="w-full mt-2 p-3 border rounded-xl"
+                    class="w-full mt-2 p-3 border border-gray-300 rounded-xl"
                 >
             </div>
 

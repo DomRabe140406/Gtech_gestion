@@ -12,6 +12,7 @@
 <body>
 
 <header>
+    <!--
     <nav class="nav_header">
         <div class="logo">
             <img src="{{ asset('img/Logo.png') }}" alt="Logo">
@@ -25,9 +26,39 @@
             </li>
 
             <li class="btnheader" onclick="Menu()">
-                <div>☰</div>
+                <div><i class="fa-solid fa-bars"></i></div>
             </li>
         </ul>
+    </nav>-->
+    <nav class="flex justify-between items-center px-5 py-4 shadow">
+
+        <div>
+            <img src="{{ asset('img/Logo.png') }}" alt="Logo"
+                class="w-28 md:w-32">
+        </div>
+
+        <ul class="flex items-center gap-4 md:gap-6">
+
+            <li>
+
+                <a href="{{ route('logout') }}"
+                class="text-xl md:text-2xl hover:text-red-500">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                </a>
+
+            </li>
+
+            <li onclick="Menu()"
+                class="text-xl md:text-2xl cursor-pointer hover:text-blue-500">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </li>
+
+        </ul>
+
     </nav>
 </header>
 

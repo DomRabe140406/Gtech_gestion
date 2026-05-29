@@ -49,7 +49,7 @@
 
                 @foreach($formations as $formation)
 
-                    <tr class="border-b transition duration-300 hover:bg-gray-100">
+                    <tr class="border-b border-gray-100 transition duration-300 hover:bg-gray-100">
 
                         <td class="p-4">
 
