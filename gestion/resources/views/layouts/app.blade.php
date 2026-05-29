@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -18,10 +18,6 @@
         </div>
 
         <ul>
-            <li class="theme">
-                <button id="theme-toggle">🌙 / ☀️</button>
-            </li>
-
             <li class="btnheader" id="sortie">
                 <a href="{{ route('logout') }}">
                     <i class="fa-solid fa-right-from-bracket"></i>
@@ -39,7 +35,7 @@
     <div class="closebtn" onclick="Menu()">✖️</div>
 
     <a href="{{ route('dashboard') }}">Dashboard</a>
-    <a href="{{ route('formations.index') }}">Liste Formation</a>
+    <a href="{{ route('liste.index') }}">Liste Formation</a>
     <a href="{{ route('formations.create') }}">Ajouter Formation</a>
     <a href="{{ route('fiche.create') }}">Fiche Formation</a>
     <a href="{{ route('proforma.create') }}">Generation Proforma</a>
