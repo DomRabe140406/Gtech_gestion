@@ -28,7 +28,15 @@ class FormationsController extends Controller
      */
     /*Fonction sert a enregistrer qlq chose dans une bdd*/
     public function store(Request $request)
-    { //create création de ligne dans une bdd donc on prend le modele
+    { 
+        //validation des données
+        //after:today: il faut que la date soit strictement supérieur à la date d'aujourd'hui
+        $request->validate([
+        'ref_formation' => 'required',
+        'nom_formation' => 'required',
+        'date' => 'required|date|after:today']);
+        
+        //create création de ligne dans une bdd donc on prend le modele
         Formation::create([
             'ref_formation' => $request->ref_formation,
             'nom_formation' => $request->nom_formation,

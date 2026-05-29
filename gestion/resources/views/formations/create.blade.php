@@ -27,7 +27,6 @@
                    name="ref_formation"
                     id="Ref_formation"
                     placeholder="Référence de la formation"
-                    required
                    class="w-full border border-gray-300 rounded-xl p-5 focus:outline-none focus:ring-2 focus:ring-blue-400">
         </div>
 
@@ -37,7 +36,6 @@
                    name="nom_formation"
                     id="Nom_formation"
                     placeholder="Nom de la formation"
-                    required
                    class="w-full border border-gray-300 rounded-xl p-5 focus:outline-none focus:ring-2 focus:ring-blue-400">
         </div>
 
@@ -46,7 +44,6 @@
             <input type="date"
                     id="Date"
                    name="date"
-                   required
                    class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
         </div>
 

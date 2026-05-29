@@ -6,7 +6,7 @@
 
 <div class="max-w-5xl mx-auto py-10 px-4">
 
-    <h1 class="text-3xl font-bold mb-8">
+    <h1 class="text-3xl font-bold mb-5">
         Liste des formations
     </h1>
 
@@ -21,6 +21,13 @@
 
     @endif
 
+    <a href="{{ route('formations.create') }}"
+    class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700  duration-300 text-white px-4 py-2 rounded-lg shadow mb-2">
+
+        <i class="fa-solid fa-plus"></i>
+        Ajouter une formation
+
+    </a>
     <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
 
         <table class="w-full">

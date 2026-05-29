@@ -59,11 +59,23 @@ class ListeController extends Controller
      */
     public function update(Request $request, $id)
     {
-         DB::table('formations')
+        //validation des données
+        //after_or_equal:today: il faut que la date soit supérieur ou égal à la date d'aujourd'hui
+        $request->validate([
+            'ref_formation' => 'required',
+            'nom_formation' => 'required',
+            'date' => 'required|date|after_or_equal:today' ]);
+
+        /*Va chercher dans la table formations l'enregistrement dont l'id vaut $id, stocke-le dans $formation
+        et si cet enregistrement n'existe pas, retourne automatiquement une erreur 404.*/
+        $formation = Formation::findOrFail($id);
+
+        DB::table('formations')
         ->where('id', $id)
         ->update([
-            'nom_formation' =>
-                $request->nom_formation
+            'nom_formation' => $request->nom_formation,
+            'date_debut' => $request->date_debut,
+            'ref_formation' => $request->ref_formation
         ]);
 
         return redirect()
