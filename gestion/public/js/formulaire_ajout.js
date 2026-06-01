@@ -22,7 +22,7 @@ function annulerForm(){
             document.getElementById("etape1").classList.add("active")
         }*/
         //window.location.href = "liste_formation.php";
-        window.location.href= "./../resources/views/dashboard.blade.php";
+        window.location.href= "/dashboard";
     }
 }
 
