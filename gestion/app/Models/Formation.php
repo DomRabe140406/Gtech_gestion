@@ -11,6 +11,7 @@ class Formation extends Model
         'nom_formation',
         'date_debut',
         'nb_jours',
+        'statut',
         'nb_participant',
         'nom_formateur',
         'prenom_formateur'

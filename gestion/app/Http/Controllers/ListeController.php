@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Formation;
 
 class ListeController extends Controller
 {
@@ -59,12 +61,19 @@ class ListeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //validation des données
-        //after_or_equal:today: il faut que la date soit supérieur ou égal à la date d'aujourd'hui
-        $request->validate([
+        $validator = Validator::make($request->all(),[
             'ref_formation' => 'required',
             'nom_formation' => 'required',
-            'date' => 'required|date|after_or_equal:today' ]);
+            'date_debut' => 'required|date|after_or_equal:today',
+            'statut' => 'required' ,
+        ]);
+        //validation des données
+        //after_or_equal:today: il faut que la date soit supérieur ou égal à la date d'aujourd'hui
+        /*$request->validate([
+            'ref_formation' => 'required',
+            'nom_formation' => 'required',
+            'date_debut' => 'required|date|after_or_equal:today',
+            'statut' => 'required' , ]);*/
 
         /*Va chercher dans la table formations l'enregistrement dont l'id vaut $id, stocke-le dans $formation
         et si cet enregistrement n'existe pas, retourne automatiquement une erreur 404.*/
@@ -75,7 +84,8 @@ class ListeController extends Controller
         ->update([
             'nom_formation' => $request->nom_formation,
             'date_debut' => $request->date_debut,
-            'ref_formation' => $request->ref_formation
+            'ref_formation' => $request->ref_formation,
+            'statut' => $request->statut
         ]);
 
         return redirect()

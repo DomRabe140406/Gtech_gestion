@@ -34,7 +34,8 @@ class FormationsController extends Controller
         $request->validate([
         'ref_formation' => 'required',
         'nom_formation' => 'required',
-        'date' => 'required|date|after:today']);
+        'date' => 'required|date|after:today',
+        'statut' => 'required|in:en_inscription,en_cours,termine' ]);
         
         //create création de ligne dans une bdd donc on prend le modele
         Formation::create([
@@ -42,11 +43,12 @@ class FormationsController extends Controller
             'nom_formation' => $request->nom_formation,
             'date_debut' => $request->date,
             'nb_jours' => $request->capacite,
+            'statut' => $request->statut,
             'nb_participant' => $request->nb_participant,
             'nom_formateur' => $request->nom_formateur,
             'prenom_formateur' => $request->prenom_formateur,
         ]);
-        return redirect()->back()->with('success', 'Formation ajoutée avec succes');
+        return redirect()->route('liste.index')->with('success', 'Formation ajoutée avec succes');
     }
 
     /**

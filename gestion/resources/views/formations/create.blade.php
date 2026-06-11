@@ -57,6 +57,15 @@
                    class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Statut:</label>
+
+            <select name="statut" class="form-control">
+                <option value="en_inscription">En inscription</option>
+                <option value="en_cours">En cours</option>
+            </select>
+        </div>
+
         <div class="flex justify-between">
 
             <button type="button"

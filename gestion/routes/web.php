@@ -34,5 +34,4 @@ Route::resource('formations', FormationsController::class)->middleware('auth');
 Route::resource('factures', FacturesController::class)->middleware('auth');
 Route::resource('proforma', ProformaController::class)->middleware('auth');
 Route::resource('fiche', FicheController::class)->middleware('auth');
-
 Route::resource('liste', ListeController::class)->middleware('auth');

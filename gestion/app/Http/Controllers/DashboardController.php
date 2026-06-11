@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Formation;
 
 class DashboardController extends Controller
 {
@@ -11,7 +12,29 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $total = Formation::count();
+
+        $enInscription = Formation::where(
+            'statut',
+            'en_inscription'
+        )->count();
+
+        $enCours = Formation::where(
+            'statut',
+            'en_cours'
+        )->count();
+
+        $termine = Formation::where(
+            'statut',
+            'termine'
+        )->count();
+
+        return view('dashboard', compact(
+            'total',
+            'enInscription',
+            'enCours',
+            'termine'
+        ));
     }
 
     /**

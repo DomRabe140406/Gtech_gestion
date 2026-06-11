@@ -44,6 +44,7 @@ class FacturesController extends Controller
             $date_debut_affiche = '';
             $date_fin_affiche = '';
         } else{
+            $duree = (double)($formation->nb_jours ?? 0);
             $date_debut = $formation->date_debut;
             $date_fin = Carbon::parse($date_debut)
                 ->addDays($duree - 1);
@@ -51,7 +52,6 @@ class FacturesController extends Controller
                 ->format('d/m/Y');
             $date_fin_affiche = $date_fin->format('d/m/Y');
         }
-        $duree = (double)($formation->nb_jours ?? 0);
         $designation = $formation->nom_formation ?? 'Formation inconnue';
         $montant_unitaire = (double)$request->input('prix', 0);
         $indemnite = (double)$request->input('indemnite', 0);

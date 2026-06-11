@@ -33,7 +33,7 @@
                     class="w-full mt-2 p-3 border border-gray-300 rounded-xl"
                 >
             </div>
-                        <div>
+            <div>
                 <label class="text-gray-600">
                     Date de début
                 </label>
@@ -44,7 +44,24 @@
                     class="w-full mt-2 p-3 border border-gray-300 rounded-xl"
                 >
             </div>
+            <div>
+                <select name="statut" class="form-control">
+                    <option value="en_inscription"
+                        {{ $formation->statut == 'en_inscription' ? 'selected' : '' }}>
+                        En inscription
+                    </option>
 
+                    <option value="en_cours"
+                        {{ $formation->statut == 'en_cours' ? 'selected' : '' }}>
+                        En cours
+                    </option>
+
+                    <option value="termine"
+                        {{ $formation->statut == 'termine' ? 'selected' : '' }}>
+                        Terminé
+                    </option>
+                </select>
+            </div>
             <button
                 type="submit"
                 cursor="pointer"
