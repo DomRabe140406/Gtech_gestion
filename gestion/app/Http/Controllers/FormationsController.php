@@ -10,9 +10,22 @@ class FormationsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->search;
+
+        $formations = Formation::when($search, function ($query) use ($search) {
+
+            $query->where('nom_formation', 'like', "%{$search}%");
+
+        })
+        ->orderBy('nom_formation', 'asc')   // Tri alphabétique A → Z
+        //->get();
+        ->paginate(10) // Pagination avec 10 éléments par page
+        ->withQueryString();//pour conserver les paramètres de recherche lors de la pagination
+
+        //on fait une recherche et renvois la liste des formations concernées 
+        return view('formations.liste', compact('formations'));
     }
 
     /**
@@ -20,6 +33,7 @@ class FormationsController extends Controller
      */
     public function create()
     {
+        //creation de formation donc on retourne la vue de creation
         return view ('formations.create');
     }
 

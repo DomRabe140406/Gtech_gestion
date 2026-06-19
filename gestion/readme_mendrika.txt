@@ -21,6 +21,17 @@ NB: faire composer install pour mettre à jour les packages composer utilisé (d
 - creation de pdf.blade.php pour la mise en forme du fiche généré 
 - modification de app.blade pour la redirection, et web.php pour que laravel connait la route
 
+5)Dashboard
+- cercle doughnut pour affiché le pourcentage des formations en inscription,en cours et termine avec total
+
+6)Liste
+- par ordre alphabetique avec pagination (par 10)
+- fonction de recherche
+- ajout de la colonne statut avec couleur respectif
+
+7)Connexion
+- icone œil/œil barré
+____________________________________________________________________________
 
 NB: pour ajouter un admin
 Dans le terminal de mon projet:

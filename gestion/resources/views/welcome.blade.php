@@ -14,12 +14,39 @@
 
     <h2>Connexion Admin</h2>
 
-    <input type="email" name="email" placeholder="Email" required><br><br>
+    <input type="email" name="email" placeholder="Email" required>
+    <div class="password-field">
+        <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            required
+        >
 
-    <input type="password" name="password" placeholder="Password" required><br><br>
+        <!-- Icône œil -->
+        <i id="eyeIcon" class="fa-solid fa-eye"></i>
+    </div>
 
     <button type="submit">Se connecter</button>
 
 </form>
+<script>
+    const password = document.getElementById('password');
+    //const togglePassword = document.getElementById('togglePassword');
+    const eyeIcon = document.getElementById('eyeIcon');
 
-@endsection
+    eyeIcon.addEventListener('click', function () {
+
+        if (password.type === 'password') {
+            password.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            password.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+
+    });
+</script>@endsection

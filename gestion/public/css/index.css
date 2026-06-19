@@ -22,6 +22,25 @@ body {
 .loginForm img{
     margin-bottom: 1vw;
 }
+.password-field{
+    position: relative;
+    width:95%;
+    margin:1vw auto;
+}
+
+.password-field input{
+    width:100%;
+    padding-right:45px;
+}
+
+.password-field i{
+    position:absolute;
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    color:gray;
+    cursor:pointer;
+}
 
 .loginForm input{
     width: 95%;

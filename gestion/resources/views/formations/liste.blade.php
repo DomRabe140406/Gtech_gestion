@@ -28,6 +28,28 @@
         Ajouter une formation
 
     </a>
+
+    <!-- Barre de recherche -->
+    <div class="flex justify-between items-center mb-6">
+        <form action="{{ route('formations.index') }}" method="GET" class="flex">
+            <input
+                type="text"
+                name="search"
+                placeholder="Rechercher une formation..."
+                value="{{ request('search') }}"
+                class="w-72 px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+
+            <button
+                type="submit"
+                class="bg-blue-600 text-white px-4 rounded-r-lg hover:bg-blue-700"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+
+    </div>
+
     <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
 
         <table class="w-full">
@@ -37,11 +59,11 @@
                 <tr>
 
                     <th class="p-4 text-left">
-                        ID
+                        Formation
                     </th>
 
                     <th class="p-4 text-left">
-                        Formation
+                        Statut
                     </th>
 
                     <th class="p-4 text-center">
@@ -60,16 +82,32 @@
 
                         <td class="p-4">
 
-                            {{ $formation->id }}
-
-                        </td>
-
-                        <td class="p-4">
-
                             {{ $formation->nom_formation }}
 
                         </td>
 
+                        <td class="p-4">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+                                @switch($formation->statut)
+                                    @case('en_inscription')
+                                        bg-blue-100 text-blue-800
+                                        @break
+
+                                    @case('en_cours')
+                                        bg-orange-100 text-orange-800
+                                        @break
+
+                                    @case('termine')
+                                        bg-green-100 text-green-800
+                                        @break
+
+                                    @default
+                                        bg-gray-100 text-gray-800
+                                @endswitch">
+                                {{ ucfirst(str_replace('_', ' ', $formation->statut)) }}
+                            </span>
+                        </td>
+                        
                         <td class="p-4">
 
                             <div class="flex justify-center gap-4">
@@ -113,6 +151,10 @@
 
         </table>
 
+    </div>
+    <!-- Pagination -->
+    <div class="mt-6">
+        {{ $formations->links() }}
     </div>
 
 </div>

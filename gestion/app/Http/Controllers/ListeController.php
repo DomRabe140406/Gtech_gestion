@@ -15,8 +15,10 @@ class ListeController extends Controller
     public function index()
     {
         $formations = DB::table('formations')
-        ->orderBy('id', 'desc')
-        ->get();
+        ->orderBy('nom_formation', 'asc')
+        //->get();
+        ->paginate(10); // Pagination avec 10 éléments par page
+
         return view('formations.liste', compact('formations'));
     }
 
