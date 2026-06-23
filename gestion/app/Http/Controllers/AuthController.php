@@ -14,11 +14,23 @@ class AuthController extends Controller
              'email' => 'required|email',
             'password' => 'required'
         ]);
-         if (Auth::attempt($request->only('email', 'password'))) {
-        return redirect('/dashboard')->with('success', 'Bienvenue Admin');
+        if (Auth::attempt($request->only('email', 'password'))) {
+            \App\Helpers\AdminHistory::add("Connexion au système");//ajout d'une ligne dans l'historique de l'admin
+            return redirect('/dashboard')->with('success', 'Bienvenue Admin');
+        }
+
+        return back()->with('error', 'Identifiants incorrects');
     }
 
-    return back()->with('error', 'Identifiants incorrects');
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login')
+            ->with('success', 'Déconnexion réussie');
     }
 }
 

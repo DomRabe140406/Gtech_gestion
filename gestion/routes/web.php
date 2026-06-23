@@ -24,11 +24,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
 
-
-Route::get('/logout', function () {
-    Auth::logout();
-    return redirect('/login')->with('success', 'Déconnexion réussie');
-})-> name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
 
 Route::resource('formations', FormationsController::class)->middleware('auth');
 Route::resource('factures', FacturesController::class)->middleware('auth');

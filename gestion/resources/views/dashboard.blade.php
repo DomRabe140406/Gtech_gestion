@@ -10,13 +10,51 @@
         <div style="text-align:center; font-size:30px;">
             <h2><strong>Répartition des formations</strong></h2>
         </div>
-<br>
+        <br>
         <div class="card-body">
             <div style="width: 300px; margin:auto;">
                 <canvas id="formationsChart"></canvas>
             </div>
         </div>
     </div>
+<br><br>
+        <div style="text-align:center; font-size:30px;">
+            <h2><strong>Historique des actions</strong></h2>
+        </div>
+
+        <div class="bg-white">
+
+            @if(count($history))
+
+                <table class="shadow-xl rounded-2x1" style="width: 1000px; margin: auto;">
+
+                    <thead class="bg-gray-300">
+                        <tr>
+                            <th class="p-4 text-left">Date</th>
+                            <th class="p-4 text-left">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach($history as $item)
+
+                        <tr class="border-b border-gray-100 transition duration-300 hover:bg-gray-100">
+                            <td class="p-4">{{ $item['time'] }}</td>
+                            <td class="p-4">{{ $item['message'] }}</td>
+                        </tr>
+
+                        @endforeach
+                    </tbody>
+
+                </table>
+
+            @else
+                <div class="alert alert-info">
+                    Aucun historique.
+                </div>
+            @endif
+        </div>
+<br><br>
 @endsection
 @section('scripts')
         <script>

@@ -52,7 +52,7 @@ class FormationsController extends Controller
         'statut' => 'required|in:en_inscription,en_cours,termine' ]);
         
         //create création de ligne dans une bdd donc on prend le modele
-        Formation::create([
+        $formation = Formation::create([
             'ref_formation' => $request->ref_formation,
             'nom_formation' => $request->nom_formation,
             'date_debut' => $request->date,
@@ -62,6 +62,11 @@ class FormationsController extends Controller
             'nom_formateur' => $request->nom_formateur,
             'prenom_formateur' => $request->prenom_formateur,
         ]);
+
+        //historique
+        \App\Helpers\AdminHistory::add(
+            "Ajout de la formation : ".$formation->nom_formation." | Référence : ".$formation->ref_formation
+        );
         return redirect()->route('liste.index')->with('success', 'Formation ajoutée avec succes');
     }
 

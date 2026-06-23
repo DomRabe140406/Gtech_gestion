@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Formation;
+use App\Helpers\AdminHistory;
 
 class DashboardController extends Controller
 {
@@ -29,11 +30,14 @@ class DashboardController extends Controller
             'termine'
         )->count();
 
+        $history = AdminHistory::get();//pour afficher l'historique de l'admin sur le dashboard
+
         return view('dashboard', compact(
             'total',
             'enInscription',
             'enCours',
-            'termine'
+            'termine',
+            'history'
         ));
     }
 

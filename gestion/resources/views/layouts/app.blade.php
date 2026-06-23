@@ -37,7 +37,15 @@
                 class="w-28 md:w-32">
         </div>
 
+
         <ul class="flex items-center gap-4 md:gap-6">
+
+            <li class= "flex space-x-1">
+                <p class="font-semibold border border-gray-500 rounded-full px-3 py-1 shadow hover:shadow-md transition duration-300">
+                    {{ Auth::user()->name }}
+                    <i class="fas fa-user text-gray-500 bg-gray-200 rounded-full p-2"></i>
+                </p>
+            </li>
 
             <li>
 

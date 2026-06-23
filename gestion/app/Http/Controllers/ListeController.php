@@ -51,9 +51,10 @@ class ListeController extends Controller
      */
     public function edit($id)
     {
+        //pour modifier une formation, on va chercher la formation dont l'id est $id et on retourne la vue de modification
         $formation = DB::table('formations')
         ->where('id', $id)
-        ->first();
+        ->first();//signifie: donne moi le premier enregistrement qui correspond à la condition
 
         return view('formations.edit', compact('formation'));
     }
@@ -63,33 +64,30 @@ class ListeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //validation des données
+        //after_or_equal:today: il faut que la date soit supérieur ou égal à la date d'aujourd'hui
         $validator = Validator::make($request->all(),[
             'ref_formation' => 'required',
             'nom_formation' => 'required',
             'date_debut' => 'required|date|after_or_equal:today',
             'statut' => 'required' ,
         ]);
-        //validation des données
-        //after_or_equal:today: il faut que la date soit supérieur ou égal à la date d'aujourd'hui
-        /*$request->validate([
-            'ref_formation' => 'required',
-            'nom_formation' => 'required',
-            'date_debut' => 'required|date|after_or_equal:today',
-            'statut' => 'required' , ]);*/
 
         /*Va chercher dans la table formations l'enregistrement dont l'id vaut $id, stocke-le dans $formation
         et si cet enregistrement n'existe pas, retourne automatiquement une erreur 404.*/
         $formation = Formation::findOrFail($id);
-
-        DB::table('formations')
-        ->where('id', $id)
-        ->update([
+        
+        $formation->update([
             'nom_formation' => $request->nom_formation,
             'date_debut' => $request->date_debut,
             'ref_formation' => $request->ref_formation,
             'statut' => $request->statut
         ]);
 
+        //historique
+        \App\Helpers\AdminHistory::add(
+            "Modification de la formation : ".$formation->nom_formation." | Référence : ".$formation->ref_formation
+        );
         return redirect()
             ->route('liste.index')
             ->with('success', 'Formation modifiée');
@@ -100,10 +98,14 @@ class ListeController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('formations')
-        ->where('id', $id)
-        ->delete();
+        //historique
+        $formation = Formation::findOrFail($id);
+        \App\Helpers\AdminHistory::add(
+            "Suppression de la formation : ".$formation->nom_formation." | Référence : ".$formation->ref_formation
+        );
 
+        $formation->delete();
+        
         return redirect()
             ->route('liste.index')
             ->with('success', 'Formation supprimée');
