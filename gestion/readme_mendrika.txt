@@ -23,6 +23,9 @@ NB: faire composer install pour mettre à jour les packages composer utilisé (d
 
 5)Dashboard
 - cercle doughnut pour affiché le pourcentage des formations en inscription,en cours et termine avec total
+- graphe illustratif pour l'évolution du nombre de formation chaque mois (départ au premier mois avec création de formation jusqu'au 11è mois)
+- tableau des historiques d'actions
+- icone d'admin connecté
 
 6)Liste
 - par ordre alphabetique avec pagination (par 10)
