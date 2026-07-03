@@ -12,24 +12,6 @@
 <body>
 
 <header>
-    <!--
-    <nav class="nav_header">
-        <div class="logo">
-            <img src="{{ asset('img/Logo.png') }}" alt="Logo">
-        </div>
-
-        <ul>
-            <li class="btnheader" id="sortie">
-                <a href="{{ route('logout') }}">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                </a>
-            </li>
-
-            <li class="btnheader" onclick="Menu()">
-                <div><i class="fa-solid fa-bars"></i></div>
-            </li>
-        </ul>
-    </nav>-->
     <nav class="flex justify-between items-center px-5 py-4 shadow">
 
         <div>
@@ -66,7 +48,6 @@
             </li>
 
         </ul>
-
     </nav>
 </header>
 
@@ -89,6 +70,7 @@
 <script src="{{ asset('js/dashboard.js')}}"></script>
 <script src="{{ asset('js/formulaire_ajout.js')}}"></script>
 <script src="{{ asset('js/modifier.js')}}"></script>
+<script src="{{ asset('js/validation.js') }}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let notif = document.getElementById("notif");

@@ -28,6 +28,13 @@
                     id="Ref_formation"
                     placeholder="Référence de la formation"
                    class="w-full border border-gray-300 rounded-xl p-5 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <!-- Message d'erreur en cas de champ invalide -->
+            @error('ref_formation')
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
+            <small class="text-red-500 erreur"></small>
         </div>
 
         <div>
@@ -37,6 +44,13 @@
                     id="Nom_formation"
                     placeholder="Nom de la formation"
                    class="w-full border border-gray-300 rounded-xl p-5 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <!-- Message d'erreur en cas de champ invalide -->
+            @error('nom_formation')
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
+            <small class="text-red-500 erreur"></small>
         </div>
 
         <div>
@@ -45,6 +59,13 @@
                     id="Date"
                    name="date"
                    class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <!-- Message d'erreur en cas de champ invalide -->
+            @error('date')
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
+            <small class="text-red-500 erreur"></small>
         </div>
 
         <div>
@@ -55,21 +76,36 @@
                    id="Nb_j"
                    value="5"
                    class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <!-- Message d'erreur en cas de champ invalide -->
+            @error('capacite')
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
+            <small class="text-red-500 erreur"></small>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Statut:</label>
 
-            <select name="statut" class="form-control">
+            <select id="Statut" name="statut" class="form-control">
                 <option value="en_inscription">En inscription</option>
                 <option value="en_cours">En cours</option>
             </select>
+            <!-- Message d'erreur en cas de champ invalide -->
+            @error('statut')
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
+            <small class="text-red-500 erreur"></small>
+
         </div>
 
         <div class="flex justify-between">
 
             <button type="button"
-                    onclick="etapeSuivante(1,2); updateProgress(2)"
+                    onclick="passerEtape(1)"
                     class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition shadow">
                 Suivant
             </button>
@@ -96,10 +132,17 @@
             </label>
 
             <input type="number"
+                   id="Nb_participant"
                    name="nb_participant"
-                   min="0"
                    value="20"
                    class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <!-- Message d'erreur en cas de champ invalide -->
+            @error('nb_participant')
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
+            <small class="text-red-500 erreur"></small>
         </div>
 
         <div class="flex justify-between pt-6">
@@ -111,7 +154,7 @@
             </button>
 
             <button type="button"
-                    onclick="etapeSuivante(2,3); updateProgress(3)"
+                    onclick="passerEtape(2)"
                     class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition shadow">
                 Suivant
             </button>

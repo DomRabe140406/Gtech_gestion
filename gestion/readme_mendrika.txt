@@ -34,6 +34,9 @@ NB: faire composer install pour mettre à jour les packages composer utilisé (d
 
 7)Connexion
 - icone œil/œil barré
+
+8)Formulaire
+- validation avant de passer à l'étape suivante (Ajout de formation)
 ____________________________________________________________________________
 
 NB: pour ajouter un admin
