@@ -117,6 +117,10 @@ class FacturesController extends Controller
         // APERÇU
         // =========================
         if ($request->has('btn_apercu')) {
+            //historique
+            \App\Helpers\AdminHistory::add(
+                "Création de facture : ".$filename
+            );
             return $pdf->stream($filename);
         }
 
@@ -124,8 +128,14 @@ class FacturesController extends Controller
         // TÉLÉCHARGEMENT
         // =========================
         if ($request->has('btn_telecharge')) {
+            //historique
+            \App\Helpers\AdminHistory::add(
+                "Téléchargement de facture : ".$filename
+            );
             return $pdf->download($filename);
         }
+
+        
     }
 
     /**

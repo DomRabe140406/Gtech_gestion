@@ -69,6 +69,10 @@ class FicheController extends Controller
         // APERCU
         // =========================
         if ($request->has('btn_apercu')) {
+            //historique
+            \App\Helpers\AdminHistory::add(
+                "Création de fiche de formation : ".$filename
+            );
             return $pdf->stream($filename);
         }
 
@@ -76,6 +80,10 @@ class FicheController extends Controller
         // TÉLÉCHARGEMENT
         // =========================
         if ($request->has('btn_telecharge')) {
+            //historique
+            \App\Helpers\AdminHistory::add(
+                "Téléchargement de fiche de formation : ".$filename
+            );
             return $pdf->download($filename);
         }
     }

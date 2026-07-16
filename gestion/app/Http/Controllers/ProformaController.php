@@ -152,6 +152,10 @@ class ProformaController extends Controller
         // APERÇU
         // =========================
         if ($request->has('btn_apercu')) {
+            //historique
+            \App\Helpers\AdminHistory::add(
+                "Création de proforma : ".$filename
+            );
             return $pdf->stream($filename);
         }
 
@@ -159,6 +163,10 @@ class ProformaController extends Controller
         // TÉLÉCHARGEMENT
         // =========================
         if ($request->has('btn_telecharge')) {
+            //historique
+            \App\Helpers\AdminHistory::add(
+                "Téléchargement de proforma : ".$filename
+            );
             return $pdf->download($filename);
         }
     }

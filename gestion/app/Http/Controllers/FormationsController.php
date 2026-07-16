@@ -26,7 +26,7 @@ class FormationsController extends Controller
 
         ->orderBy('nom_formation', 'asc')   // Tri alphabétique A → Z
         //->get();
-        ->paginate(5) // Pagination avec 10 éléments par page
+        ->paginate(5) // Pagination avec 5 éléments par page
         ->withQueryString();//pour conserver les paramètres de recherche lors de la pagination
 
         //on fait une recherche et renvois la liste des formations concernées 

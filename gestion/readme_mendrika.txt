@@ -28,7 +28,7 @@ NB: faire composer install pour mettre à jour les packages composer utilisé (d
 - icone d'admin connecté
 
 6)Liste
-- par ordre alphabetique avec pagination (par 10)
+- par ordre alphabetique avec pagination (par 5)
 - fonction de recherche
 - ajout de la colonne statut avec couleur respectif
 
