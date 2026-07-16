@@ -29,23 +29,41 @@
 
     </a>
 
-    <!-- Barre de recherche -->
     <div class="flex justify-between items-center mb-6">
-        <form action="{{ route('formations.index') }}" method="GET" class="flex">
+        <form action="{{ route('formations.index') }}" method="GET" id="searchForm" class="flex">
+            <!-- Barre de recherche -->
             <input
                 type="text"
+                id="search"
                 name="search"
                 placeholder="Rechercher une formation..."
                 value="{{ request('search') }}"
                 class="w-72 px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
+            
+            <!-- Filtre par statut -->
+            <select name="statut"
+                    onchange="this.form.submit()"
+                    class="border rounded px-3 py-2">
 
-            <button
-                type="submit"
-                class="bg-blue-600 text-white px-4 rounded-r-lg hover:bg-blue-700"
-            >
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+                <option value="">Tous les statuts</option>
+
+                <option value="en_inscription"
+                    {{ request()->statut  == 'en_inscription' ? 'selected' : '' }}>
+                    En inscription
+                </option>
+
+                <option value="en_cours"
+                    {{ request()->statut == 'en_cours' ? 'selected' : '' }}>
+                    En cours
+                </option>
+
+                <option value="termine"
+                    {{ request()->statut == 'termine' ? 'selected' : '' }}>
+                    Terminée
+                </option>
+            </select>
+
         </form>
 
     </div>
@@ -57,6 +75,10 @@
             <thead class="bg-gray-300">
 
                 <tr>
+
+                    <th class="p-4 text-left">
+                        Référence
+                    </th>
 
                     <th class="p-4 text-left">
                         Formation
@@ -79,6 +101,12 @@
                 @foreach($formations as $formation)
 
                     <tr class="border-b border-gray-100 transition duration-300 hover:bg-gray-100">
+
+                        <td class="p-4">
+
+                            {{ $formation->ref_formation }}
+
+                        </td>
 
                         <td class="p-4">
 
@@ -159,4 +187,19 @@
 
 </div>
 
+@endsection
+
+@section('scripts')
+<script>
+    //pour permettre la recherche automatique
+    let timer;
+
+    document.getElementById('search').addEventListener('input', function () {
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+            document.getElementById('searchForm').submit();
+        }, 500); // délai de 500 ms
+    });
+</script>
 @endsection

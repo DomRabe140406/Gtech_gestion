@@ -93,3 +93,18 @@ Route::get('/formations', ...);
 Route::post('/formations', ...);
 
 CREER LES VUES BLADE (html)
+
+______________________________________________________________________________
+GIT CLONER UN PROJET LARAVEL
+1) copier le lien et git cloner dans le dossier de mon choix
+2) installer les dépendances PHP: composer install
+3) installer les dépendances JavaScript: npm install
+4) copier le fichier d'environnement: copy .env.example .env (sous Windows) / cp .env.example .env (sous Linux/MacOS)
+5) générer la clé de l'application: php artisan key:generate
+6) configurer la base de données (ce qui est écrit dans .env)
+7) exécuter les migrations: php artisan migrate
+8) compiler les fichiers CSS/JS : npm run dev
+9) lancer le serveur : php artisan serve
+
+NB:- le lancement peut etre fait par composer run dev pour mieux voir les erreurs
+   - si besoin de lancement des services séparement ,ajouter php artisan --tries=1 --timeout=0

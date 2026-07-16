@@ -14,15 +14,19 @@ class FormationsController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
-
+        $statut = $request->statut;
+        //recherche par nom
         $formations = Formation::when($search, function ($query) use ($search) {
-
             $query->where('nom_formation', 'like', "%{$search}%");
-
         })
+        //filtre par statut
+        ->when($statut, function ($query) use ($statut) {
+            $query->where('statut', $statut);
+        })
+
         ->orderBy('nom_formation', 'asc')   // Tri alphabétique A → Z
         //->get();
-        ->paginate(10) // Pagination avec 10 éléments par page
+        ->paginate(5) // Pagination avec 10 éléments par page
         ->withQueryString();//pour conserver les paramètres de recherche lors de la pagination
 
         //on fait une recherche et renvois la liste des formations concernées 
