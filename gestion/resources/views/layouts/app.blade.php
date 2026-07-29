@@ -52,13 +52,14 @@
 </header>
 
 <div id="sidebar" class="sidebar">
-    <div class="closebtn" onclick="Menu()">✖️</div>
+    <div class="closebtn" onclick="Menu()"><i class="fa-solid fa-xmark"></i></div>
 
-    <a href="{{ route('dashboard') }}">Dashboard</a>
-    <a href="{{ route('liste.index') }}">Liste Formation</a>
-    <a href="{{ route('fiche.create') }}">Fiche Formation</a>
-    <a href="{{ route('proforma.create') }}">Generation Proforma</a>
-    <a href="{{ route('factures.create') }}">Generation Facture</a>
+    <a href="{{ route('dashboard') }}"> <i class="fa-solid fa-chart-line"></i> Dashboard</a>
+    <a href="{{ route('liste.index') }}"><i class="fa-solid fa-graduation-cap"></i>  Liste Formation</a>
+    <a href=""> <i class="fa-solid fa-users"></i>  Liste des Formateurs</a>
+    <a href="{{ route('fiche.create') }}"><i class="fa-solid fa-calendar-days"></i>  Fiche Formation</a>
+    <a href="{{ route('proforma.create') }}"><i class="fa-solid fa-calendar-days"></i>  Generation Proforma</a>
+    <a href="{{ route('factures.create') }}"><i class="fa-solid fa-calendar-days"></i>  Generation Facture</a>
 </div>
 
 <main>

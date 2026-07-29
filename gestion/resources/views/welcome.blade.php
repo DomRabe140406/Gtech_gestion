@@ -29,13 +29,14 @@
 
             <div class="input-group">
 
-                <label>Email</label>
+                <label for="email">Email:</label>
 
                 <div class="input-box">
 
                     <i class="fa-regular fa-envelope"></i>
 
                     <input
+                        id="email"
                         type="email"
                         name="email"
                         placeholder="admin@example.com"
@@ -48,7 +49,7 @@
 
             <div class="input-group">
 
-                <label>Mot de passe</label>
+                <label for="password">Mot de passe:</label>
 
                 <div class="input-box">
 
