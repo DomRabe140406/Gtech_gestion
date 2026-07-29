@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+
+.login-page{
+    @apply min-h-screen flex justify-center items-center bg-gradient-to-br from-slate-50 via-indigo-50 to-slate-100 relative overflow-hidden px-4;
+}
+
+.background-circle{
+    @apply absolute rounded-full blur-3xl opacity-30;
+}
+
+.circle1{
+    @apply w-96 h-96 bg-cyan-300 -top-24 -left-24;
+}
+
+.circle2{
+    @apply w-[520px] h-[520px] bg-indigo-300 -bottom-32 -right-32;
+}
+
+.login-card{
+    @apply relative z-10 w-full max-w-3xl bg-white/80 backdrop-blur-xl rounded-[32px] shadow-2xl border border-white px-12 py-10;
+}
+
+.logo{
+    @apply flex justify-center mb-5;
+}
+
+.logo img{
+    @apply h-20;
+}
+
+.login-card h1{
+    @apply text-4xl font-bold text-slate-800 text-center;
+}
+
+.subtitle{
+    @apply text-center text-slate-500 mt-3 mb-10;
+}
+
+.input-group{
+    @apply mb-7;
+}
+
+.input-group label{
+    @apply block mb-2 font-semibold text-slate-700;
+}
+
+.input-box{
+    @apply flex items-center bg-white rounded-2xl border border-slate-200 shadow-sm transition;
+}
+
+.input-box:focus-within{
+    @apply ring-2 ring-cyan-400;
+}
+
+.input-box i:first-child{
+    @apply w-14 text-center text-indigo-500 text-lg;
+}
+
+.input-box input{
+    @apply flex-1 py-5 bg-transparent outline-none;
+}
+
+#togglePassword{
+    @apply px-5 text-slate-500 hover:text-indigo-600;
+}
+
+.options{
+    @apply flex justify-between items-center text-sm mt-4 mb-8;
+}
+
+.options label{
+    @apply flex items-center gap-2 text-slate-600;
+}
+
+.options a{
+    @apply text-indigo-600 hover:underline;
+}
+
+.login-btn{
+    @apply w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-400 to-blue-600 text-white font-semibold text-lg shadow-lg transition;
+}
+
+.login-btn:hover{
+    @apply scale-[1.02];
+}
+
+.footer{
+    @apply mt-10 text-center;
+}
+
+.separator{
+    @apply flex items-center justify-center mb-4;
+}
+
+.separator::before,
+.separator::after{
+    content:"";
+    @apply h-px flex-1 bg-slate-200;
+}
+
+.separator span{
+    @apply mx-4 w-10 h-10 rounded-full border bg-white flex items-center justify-center text-indigo-500;
+}
+
+.footer p{
+    @apply text-slate-500;
+}
+
+}

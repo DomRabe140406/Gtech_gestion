@@ -1,52 +1,132 @@
 @extends('layouts.auth')
 
-@section('title', 'Login Admin')
+@section('title', 'Connexion Admin')
 
 @section('content')
 
 @include('layouts.notification')
 
-<form action="{{ route ('login') }}" method="POST" class="loginForm">
+<div class="login-page">
 
-    @csrf
+    <div class="background-circle circle1"></div>
+    <div class="background-circle circle2"></div>
 
-    <img src="{{ asset('img/Logo.png') }}" alt="logo">
+    <div class="login-card">
 
-    <h2>Connexion Admin</h2>
+        <div class="logo">
+            <img src="{{ asset('img/Logo.png') }}" alt="Logo">
+        </div>
 
-    <input type="email" name="email" placeholder="Email" required>
-    <div class="password-field">
-        <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            required
-        >
+        <h1>Connexion Admin</h1>
 
-        <!-- Icône œil -->
-        <i id="eyeIcon" class="fa-solid fa-eye"></i>
+        <p class="subtitle">
+            Veuillez saisir vos identifiants pour accéder au tableau de bord.
+        </p>
+
+        <form action="{{ route('login') }}" method="POST">
+
+            @csrf
+
+            <div class="input-group">
+
+                <label>Email</label>
+
+                <div class="input-box">
+
+                    <i class="fa-regular fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="admin@example.com"
+                        value="{{ old('email') }}"
+                        required>
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Mot de passe</label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="************"
+                        required>
+
+                    <button
+                        type="button"
+                        id="togglePassword">
+
+                        <i id="eyeIcon" class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button class="login-btn">
+
+                Se connecter
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </form>
+
+        <div class="footer">
+
+            <div class="separator">
+
+                <span>
+                    <i class="fa-solid fa-shield"></i>
+                </span>
+
+            </div>
+
+            <p>
+                Accès sécurisé réservé aux administrateurs
+            </p>
+
+        </div>
+
     </div>
 
-    <button type="submit">Se connecter</button>
+</div>
 
-</form>
 <script>
-    const password = document.getElementById('password');
-    //const togglePassword = document.getElementById('togglePassword');
-    const eyeIcon = document.getElementById('eyeIcon');
 
-    eyeIcon.addEventListener('click', function () {
+const password=document.getElementById('password');
+const toggle=document.getElementById('togglePassword');
+const eye=document.getElementById('eyeIcon');
 
-        if (password.type === 'password') {
-            password.type = 'text';
-            eyeIcon.classList.remove('fa-eye');
-            eyeIcon.classList.add('fa-eye-slash');
-        } else {
-            password.type = 'password';
-            eyeIcon.classList.remove('fa-eye-slash');
-            eyeIcon.classList.add('fa-eye');
-        }
+toggle.addEventListener('click',()=>{
 
-    });
-</script>@endsection
+    if(password.type==="password"){
+
+        password.type="text";
+
+        eye.classList.replace("fa-eye","fa-eye-slash");
+
+    }else{
+
+        password.type="password";
+
+        eye.classList.replace("fa-eye-slash","fa-eye");
+
+    }
+
+});
+
+</script>
+
+@endsection
