@@ -5,84 +5,261 @@
 @section('content')
 
 @include('layouts.notification')
-<br><br><br>
-    <div class="max-w-5xl mx-auto w-full">
-        <div class="flex justify-around items-center mb-4">
-            <!-- Graphe Chart -->
-            <div class="h-72 w-1/2">
+<div class="text-center mt-8 ">
+
+    <h1 class="text-3xl md:text-5xl font-bold text-gray-700 tracking-tight">
+
+        Tableau de bord administrateur
+
+    </h1>
+
+    <p class="mt-3 text-gray-500 text-base md:text-lg">
+        Consultez les statistiques et l'historique des activités de la plateforme.
+    </p>
+
+</div>
+<div class="max-w-7xl mx-auto px-6 py-6">
+    
+    <!-- Graphiques -->
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+
+        <!-- Evolution -->
+
+        <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm
+                   p-6 transition-all duration-300
+                   hover:-translate-y-1 hover:shadow-xl
+                   hover:border-blue-300">
+
+            <h2 class="text-xl font-semibold text-gray-800 mb-6">
+                Evolution du nombre de formations
+            </h2>
+
+            <div class="h-72">
                 <canvas id="formationGraphe"></canvas>
             </div>
-            <!-- Doughnut Chart -->
-            <div class="card-body">
-                <div>
-                    <canvas id="formationsChart"></canvas>
-                </div>
+
+            <div class="flex justify-center gap-3 mt-6">
+
+                <button
+                    id="btnPrev"
+                    class="w-11 h-11 rounded-full bg-slate-100
+                           hover:bg-blue-500 hover:text-white
+                           transition duration-300 shadow">
+
+                    <i class="fas fa-chevron-left"></i>
+
+                </button>
+
+                <button
+                    id="btnNext"
+                    class="w-11 h-11 rounded-full bg-slate-100
+                           hover:bg-blue-500 hover:text-white
+                           transition duration-300 shadow">
+
+                    <i class="fas fa-chevron-right"></i>
+
+                </button>
+
             </div>
+
         </div>
 
-        <!-- Flèches de navigation -->
-        <div class="flex gap-2">
-            <button
-                id="btnPrev"
-                class="w-10 h-10 rounded-full transition duration-300">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button
-                id="btnNext"
-                class="w-10 h-10 rounded-full transition duration-300">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+        <!-- Doughnut -->
+
+        <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm
+                   p-6 transition-all duration-300
+                   hover:-translate-y-1 hover:shadow-xl
+                   hover:border-blue-300">
+
+            <h2 class="text-xl font-semibold text-gray-800 mb-6">
+                Répartition des formations
+            </h2>
+
+            <div class="h-72 flex justify-center items-center">
+
+                <canvas id="formationsChart"></canvas>
+
+            </div>
+
         </div>
 
-        <div class="flex justify-around items-center mt-4">
-        <p class="text-lg font-semibold mb-4">
-            Evolution du nombre de formations
-        </p>
-        <p class="text-lg font-semibold mb-4">
-            Répartition des formations
-        </p>
-        </div>
     </div>
-<br><br>
-        <!-- Historique des actions -->
-        <div style="text-align:center; font-size:30px;">
-            <h2><strong>Historique des actions</strong></h2>
+
+    <!-- tableau des historiques -->
+
+    <div
+        class="mt-8 bg-white rounded-2xl border border-gray-200
+               shadow-sm transition-all duration-300
+               hover:shadow-xl hover:border-blue-300">
+
+        <div class="px-6 py-5 border-b border-gray-200">
+
+            <h2 class="text-2xl font-semibold text-gray-800">
+
+                Historique des actions
+
+            </h2>
+
+            <p class="text-sm text-gray-500 mt-1">
+
+                Toutes les opérations réalisées sur la plateforme.
+
+            </p>
+
         </div>
 
-        <div class="bg-white overflow-x-auto">
+        <div class="overflow-x-auto">
 
             @if(count($history))
 
-                <table class="shadow-xl rounded-2x1 w-semifull mx-auto">
+            <table class="w-full">
 
-                    <thead class="bg-gray-300">
-                        <tr>
-                            <th class="p-4 text-left">Date</th>
-                            <th class="p-4 text-left">Action</th>
-                        </tr>
-                    </thead>
+                <thead class="bg-slate-50">
 
-                    <tbody>
-                        @foreach($history as $item)
+                    <tr>
 
-                        <tr class="border-b border-gray-100 transition duration-300 hover:bg-gray-100">
-                            <td class="p-4">{{ $item['time'] }}</td>
-                            <td class="p-4">{{ $item['message'] }}</td>
-                        </tr>
+                        <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">
 
-                        @endforeach
-                    </tbody>
+                            Date
 
-                </table>
+                        </th>
+
+                        <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">
+
+                            Action
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach($history as $item)
+
+                    <tr
+                        class="border-t border-gray-200
+                               hover:bg-blue-50
+                               transition duration-300">
+
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-600">
+
+                            {{ $item['time'] }}
+
+                        </td>
+
+                        <td class="px-6 py-4 text-gray-700">
+
+                            {{ $item['message'] }}
+
+                        </td>
+
+                    </tr>
+
+                    @endforeach
+
+                </tbody>
+
+            </table>
 
             @else
-                <div class="alert alert-info">
-                    Aucun historique.
-                </div>
+
+            <div class="py-16 text-center">
+
+                <i class="fa-solid fa-clock-rotate-left text-5xl text-gray-300 mb-4"></i>
+
+                <p class="text-gray-500 text-lg">
+
+                    Aucun historique disponible.
+
+                </p>
+
+            </div>
+
             @endif
+
         </div>
-<br><br>
-    <!--verification 
+
+    </div>
+
+</div>    
+<footer class="mt-12 bg-white border-t border-gray-200">
+
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col lg:flex-row justify-between items-center gap-6">
+
+        <div class="flex items-center gap-3">
+
+            <img src="{{ asset('img/Logo.png') }}"
+                 class="h-10"
+                 alt="Logo">
+
+            <div>
+
+                <h3 class="font-bold text-gray-700">
+                    GASY TECH
+                </h3>
+
+                <p class="text-sm text-gray-500">
+                    Gestion intelligente des formations
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="text-center">
+
+            <p class="text-gray-500 text-sm">
+
+                © {{ date('Y') }}
+                <span class="font-semibold text-gray-700">
+                    GASY TECH
+                </span>
+
+                • Tous droits réservés.
+
+            </p>
+
+        </div>
+
+        <!-- icones reseaux sociaux -->
+
+        <div class="flex gap-4">
+
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-blue-500 hover:text-white transition">
+
+                <i class="fab fa-facebook-f"></i>
+
+            </a>
+
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-sky-500 hover:text-white transition">
+
+                <i class="fab fa-twitter"></i>
+
+            </a>
+
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-blue-700 hover:text-white transition">
+
+                <i class="fab fa-linkedin-in"></i>
+
+            </a>
+
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-red-500 hover:text-white transition">
+
+                <i class="fas fa-envelope"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+<!--verification 
 <pre>
 {{ json_encode($labels, JSON_PRETTY_PRINT) }}
 </pre>
