@@ -4,190 +4,511 @@
 
 @section('content')
 
-<div class="max-w-5xl mx-auto py-10 px-4">
 
-    <h1 class="text-3xl font-bold mb-5">
-        Liste des formations
-    </h1>
+<div class="max-w-7xl mx-auto px-6 py-8">
+    <!--  Titres  -->
 
-    {{-- MESSAGE SUCCESS --}}
-    @if(session('success'))
+        <div class="flex flex-col lg:flex-row justify-between items-center gap-4 mb-8">
 
-        <div class="bg-green-100 text-green-700 p-4 rounded-xl mb-6">
+                <div>
 
-            {{ session('success') }}
+                    <h2 class="text-2xl font-bold text-gray-700">
 
-        </div>
+                        Gestion des formations
 
-    @endif
+                    </h2>
 
-    <a href="{{ route('formations.create') }}"
-    class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700  duration-300 text-white px-4 py-2 rounded-lg shadow mb-2">
+                    <p class="text-gray-500 mt-1">
 
-        <i class="fa-solid fa-plus"></i>
-        Ajouter une formation
+                        Consultez, modifiez et supprimez les formations.
 
-    </a>
+                    </p>
 
-    <div class="flex justify-between items-center mb-6">
-        <form action="{{ route('formations.index') }}" method="GET" id="searchForm" class="flex">
-            <!-- Barre de recherche -->
-            <input
-                type="text"
-                id="search"
-                name="search"
-                placeholder="Rechercher une formation..."
-                value="{{ request('search') }}"
-                class="w-72 px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-            
-            <!-- Filtre par statut -->
-            <select name="statut"
-                    onchange="this.form.submit()"
-                    class="border rounded px-3 py-2">
+                </div>
+    <!-- Notifications -->
 
-                <option value="">Tous les statuts</option>
+        {{-- Notifications --}}
 
-                <option value="en_inscription"
-                    {{ request()->statut  == 'en_inscription' ? 'selected' : '' }}>
-                    En inscription
-                </option>
+        @if(session('success'))
 
-                <option value="en_cours"
-                    {{ request()->statut == 'en_cours' ? 'selected' : '' }}>
-                    En cours
-                </option>
+            <div id="notif"
+                class="mb-6 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-md transition-all duration-500">
 
-                <option value="termine"
-                    {{ request()->statut == 'termine' ? 'selected' : '' }}>
-                    Terminée
-                </option>
-            </select>
+                <div class="flex items-center gap-3">
 
-        </form>
+                    <i class="fa-solid fa-circle-check text-green-600 text-xl"></i>
 
-    </div>
+                    <span>{{ session('success') }}</span>
 
-    <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+                </div>
 
-        <table class="w-full">
+            </div>
 
-            <thead class="bg-gray-300">
+        @endif
 
-                <tr>
+        @if(session('error'))
 
-                    <th class="p-4 text-left">
-                        Référence
-                    </th>
+            <div id="notif"
+                class="mb-6 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-md transition-all duration-500">
 
-                    <th class="p-4 text-left">
-                        Formation
-                    </th>
+                <div class="flex items-center gap-3">
 
-                    <th class="p-4 text-left">
-                        Statut
-                    </th>
+                    <i class="fa-solid fa-circle-xmark text-red-600 text-xl"></i>
 
-                    <th class="p-4 text-center">
-                        Actions
-                    </th>
+                    <span>{{ session('error') }}</span>
 
-                </tr>
+                </div>
 
-            </thead>
+            </div>
 
-            <tbody>
+        @endif
+    <!-- bTN AJOUT de formation -->
+        <a href="{{ route('formations.create') }}"
+           class="inline-flex items-center gap-3
+           bg-gradient-to-r from-blue-600 to-blue-500
+           hover:from-blue-700 hover:to-blue-600
+           text-white
+           px-6 py-3
+           rounded-xl
+           shadow-lg
+           transition">
 
-                @foreach($formations as $formation)
+            <i class="fa-solid fa-plus"></i>
 
-                    <tr class="border-b border-gray-100 transition duration-300 hover:bg-gray-100">
+            Ajouter une formation
 
-                        <td class="p-4">
+        </a>
 
-                            {{ $formation->ref_formation }}
+</div>
+    <!-- CARTES -->
 
-                        </td>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
 
-                        <td class="p-4">
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition">
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-16 h-16 rounded-full bg-blue-100 flex justify-center items-center">
+
+                            <i class="fa-solid fa-graduation-cap text-blue-600 text-2xl"></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-gray-500 text-sm">
+
+                                Total formations
+
+                            </p>
+
+                            <h3 class="text-3xl font-bold">
+
+                                {{ $formations->total() }}
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition">
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-16 h-16 rounded-full bg-blue-50 flex justify-center items-center">
+
+                            <i class="fa-solid fa-user-plus text-blue-500 text-2xl"></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-gray-500 text-sm">
+
+                                En inscription
+
+                            </p>
+
+                            <h3 class="text-3xl font-bold">
+
+                                {{ $formations->where('statut','en_inscription')->count() }}
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition">
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-16 h-16 rounded-full bg-orange-100 flex justify-center items-center">
+
+                            <i class="fa-solid fa-spinner text-orange-500 text-2xl"></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-gray-500 text-sm">
+
+                                En cours
+
+                            </p>
+
+                            <h3 class="text-3xl font-bold">
+
+                                {{ $formations->where('statut','en_cours')->count() }}
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition">
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-16 h-16 rounded-full bg-green-100 flex justify-center items-center">
+
+                            <i class="fa-solid fa-circle-check text-green-600 text-2xl"></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-gray-500 text-sm">
+
+                                Terminées
+
+                            </p>
+
+                            <h3 class="text-3xl font-bold">
+
+                                {{ $formations->where('statut','termine')->count() }}
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+    <!--  Tableau  -->
+
+            <div class="bg-white rounded-3xl border border-gray-200 shadow-lg p-6">
+
+
+
+                <div class="flex flex-col lg:flex-row justify-between gap-4 mb-6">
+
+
+
+                    <form action="{{ route('formations.index') }}"
+                        method="GET"
+                        id="searchForm"
+                        class="flex flex-col md:flex-row gap-3 w-full">
+
+
+
+                        <div class="relative w-full md:w-96">
+
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+                            <input
+
+                                type="text"
+
+                                id="search"
+
+                                name="search"
+
+                                value="{{ request('search') }}"
+
+                                placeholder="Rechercher une formation..."
+
+                                class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+
+                            >
+
+                        </div>
+
+
+
+                        <select
+
+                            name="statut"
+
+                            onchange="this.form.submit()"
+
+                            class="rounded-xl border border-gray-300 px-5 py-3">
+
+                            <option value="">Tous les statuts</option>
+
+                            <option value="en_inscription"
+                                {{ request()->statut=='en_inscription'?'selected':'' }}>
+                                En inscription
+                            </option>
+
+                            <option value="en_cours"
+                                {{ request()->statut=='en_cours'?'selected':'' }}>
+                                En cours
+                            </option>
+
+                            <option value="termine"
+                                {{ request()->statut=='termine'?'selected':'' }}>
+                                Terminée
+                            </option>
+
+                        </select>
+
+                    </form>
+
+                </div>
+
+
+
+                <div class="overflow-x-auto">
+
+                    <table class="w-full">
+
+                        <thead class="bg-slate-100">
+
+                            <tr>
+
+                                <th class="px-6 py-4 text-left">Référence</th>
+
+                                <th class="px-6 py-4 text-left">Formation</th>
+
+                                <th class="px-6 py-4 text-left">Statut</th>
+
+                                <th class="px-6 py-4 text-center">Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            @foreach($formations as $formation)
+
+        <tr class="border-b border-gray-200 hover:bg-slate-50 transition duration-300">
+
+            <!-- Référence -->
+
+            <td class="px-6 py-5 font-medium text-gray-700">
+
+                {{ $formation->ref_formation }}
+
+            </td>
+
+            <!-- Nom -->
+
+            <td class="px-6 py-5">
+
+                <div class="flex items-center gap-3">
+
+                    <div class="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center">
+
+                        <i class="fa-solid fa-graduation-cap text-blue-600"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="font-semibold text-gray-800">
 
                             {{ $formation->nom_formation }}
 
-                        </td>
+                        </h3>
 
-                        <td class="p-4">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
-                                @switch($formation->statut)
-                                    @case('en_inscription')
-                                        bg-blue-100 text-blue-800
-                                        @break
+                    </div>
 
-                                    @case('en_cours')
-                                        bg-orange-100 text-orange-800
-                                        @break
+                </div>
 
-                                    @case('termine')
-                                        bg-green-100 text-green-800
-                                        @break
+            </td>
 
-                                    @default
-                                        bg-gray-100 text-gray-800
-                                @endswitch">
-                                {{ ucfirst(str_replace('_', ' ', $formation->statut)) }}
-                            </span>
-                        </td>
-                        
-                        <td class="p-4">
+            <!-- Statut -->
 
-                            <div class="flex justify-center gap-4">
+            <td class="px-6 py-5">
 
-                                {{-- MODIFIER --}}
-                                <a href="{{ route('liste.edit', $formation->id) }}"
-                                   class="text-blue-500 hover:text-blue-700 text-xl">
+                @switch($formation->statut)
 
-                                    <i class="fa-solid fa-pen"></i>
+                    @case('en_inscription')
 
-                                </a>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
 
-                                {{-- SUPPRIMER --}}
-                                <form action="{{ route('liste.destroy', $formation->id) }}"
-                                      method="POST"
-                                      onsubmit="return confirm('Supprimer cette formation ?')">
+                            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
 
-                                    @csrf
+                            En inscription
 
-                                    @method('DELETE')
+                        </span>
 
-                                    <button type="submit"
-                                            style="cursor: pointer;"
-                                            class="text-red-500 hover:text-red-700 text-xl">
+                    @break
 
-                                        <i class="fa-solid fa-trash"></i>
+                    @case('en_cours')
 
-                                    </button>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-sm font-semibold">
 
-                                </form>
+                            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
 
-                            </div>
+                            En cours
 
-                        </td>
+                        </span>
 
-                    </tr>
+                    @break
 
-                @endforeach
+                    @case('termine')
 
-            </tbody>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
+
+                            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+
+                            Terminée
+
+                        </span>
+
+                    @break
+
+                    @default
+
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-sm font-semibold">
+
+                            <span class="w-2 h-2 rounded-full bg-gray-500"></span>
+
+                            Inconnu
+
+                        </span>
+
+                @endswitch
+
+            </td>
+
+            <!-- Actions -->
+
+            <td class="px-6 py-5">
+
+                <div class="flex justify-center items-center gap-3">
+
+                    <!-- Modifier -->
+
+                    <a href="{{ route('liste.edit',$formation->id) }}"
+
+                        class="w-10 h-10 rounded-full
+                            bg-blue-100
+                            text-blue-600
+                            hover:bg-blue-600
+                            hover:text-white
+                            transition
+                            duration-300
+                            flex items-center justify-center">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                    </a>
+
+                    <!-- Supprimer -->
+
+                    <form action="{{ route('liste.destroy',$formation->id) }}"
+                        method="POST"
+                        onsubmit="return confirm('Supprimer cette formation ?')">
+
+                        @csrf
+                        @method('DELETE')
+
+                        <button
+                            class="w-10 h-10 rounded-full
+                                bg-red-100
+                                text-red-600
+                                hover:bg-red-600
+                                hover:text-white
+                                transition
+                                duration-300
+                                flex items-center justify-center">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        @endforeach
+
+        </tbody>
 
         </table>
 
-    </div>
-    <!-- Pagination -->
-    <div class="mt-6">
-        {{ $formations->links() }}
-    </div>
+        </div>
+
+        </div>
+
+            </div>
+            @if($formations->count() == 0)
+
+        <div class="py-16 text-center">
+
+            <div class="w-24 h-24 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
+
+                <i class="fa-solid fa-folder-open text-4xl text-gray-400"></i>
+
+            </div>
+
+            <h2 class="text-2xl font-semibold text-gray-700">
+
+                Aucune formation trouvée
+
+            </h2>
+
+            <p class="text-gray-500 mt-2">
+
+                Essayez une autre recherche ou ajoutez une nouvelle formation.
+
+            </p>
+
+        </div>
+
+@endif
+
+
+
+    <!--  Pagination  -->
+
+        @if($formations->hasPages())
+
+        <div class="mt-8 flex justify-center">
+
+            {{ $formations->links() }}
+
+        </div>
+
+        @endif
 
 </div>
 
 @endsection
+
 
 @section('scripts')
 <script>
@@ -201,5 +522,29 @@
             document.getElementById('searchForm').submit();
         }, 500); // délai de 500 ms
     });
+    //notification
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const notif = document.getElementById("notif");
+
+    if (notif) {
+
+        setTimeout(() => {
+
+            notif.style.opacity = "0";
+            notif.style.transform = "translateY(-20px)";
+
+            setTimeout(() => {
+
+                notif.remove();
+
+            }, 500);
+
+        }, 3000);
+
+    }
+
+});
+
 </script>
 @endsection

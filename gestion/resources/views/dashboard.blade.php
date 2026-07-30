@@ -5,9 +5,10 @@
 @section('content')
 
 @include('layouts.notification')
+
 <div class="text-center mt-8 ">
 
-    <h1 class="text-3xl md:text-5xl font-bold text-gray-700 tracking-tight">
+    <h1 class="text-2xl md:text-4xl font-bold text-gray-700 tracking-tight">
 
         Tableau de bord administrateur
 
