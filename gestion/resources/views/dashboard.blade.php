@@ -20,6 +20,98 @@
 
 </div>
 <div class="max-w-7xl mx-auto px-6 py-6">
+
+    <!-- Cartes statistiques -->
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+
+        <!-- Formateurs -->
+        <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm
+                   p-5 transition-all duration-300
+                   hover:-translate-y-1 hover:shadow-xl
+                   hover:border-blue-300">
+
+            <div class="flex items-center justify-between mb-3">
+                <i class="fas fa-chalkboard-teacher text-blue-500 text-xl"></i>
+            </div>
+
+            <p class="text-2xl font-bold text-gray-800">
+                {{ $totalFormateurs ?? 0 }}
+            </p>
+
+            <p class="text-sm text-gray-500 mt-1">
+                Formateurs
+            </p>
+
+        </div>
+
+        <!-- Factures -->
+        <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm
+                   p-5 transition-all duration-300
+                   hover:-translate-y-1 hover:shadow-xl
+                   hover:border-orange-300">
+
+            <div class="flex items-center justify-between mb-3">
+                <i class="fas fa-file-invoice-dollar text-orange-500 text-xl"></i>
+            </div>
+
+            <p class="text-2xl font-bold text-gray-800">
+                {{ $totalFactures ?? 0 }}
+            </p>
+
+            <p class="text-sm text-gray-500 mt-1">
+                Factures <span class="text-gray-400">(ce mois)</span>
+            </p>
+
+        </div>
+
+        <!-- Proforma -->
+        <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm
+                   p-5 transition-all duration-300
+                   hover:-translate-y-1 hover:shadow-xl
+                   hover:border-purple-300">
+
+            <div class="flex items-center justify-between mb-3">
+                <i class="fas fa-file-signature text-purple-500 text-xl"></i>
+            </div>
+
+            <p class="text-2xl font-bold text-gray-800">
+                {{ $totalProforma ?? 0 }}
+            </p>
+
+            <p class="text-sm text-gray-500 mt-1">
+                Proforma <span class="text-gray-400">(ce mois)</span>
+            </p>
+
+        </div>
+
+        <!-- Fiches téléchargées -->
+        <div
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm
+                   p-5 transition-all duration-300
+                   hover:-translate-y-1 hover:shadow-xl
+                   hover:border-green-300">
+
+            <div class="flex items-center justify-between mb-3">
+                <i class="fas fa-download text-green-500 text-xl"></i>
+            </div>
+
+            <p class="text-2xl font-bold text-gray-800">
+                {{ $totalFichesTelechargees ?? 0 }}
+            </p>
+
+            <p class="text-sm text-gray-500 mt-1">
+                Fiches téléchargées <span class="text-gray-400">(ce mois)</span>
+            </p>
+
+        </div>
+
+    </div>
+
+<div class="max-w-7xl mx-auto px-6 py-6">
     
     <!-- Graphiques -->
 
