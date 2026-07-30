@@ -62,7 +62,7 @@
             </p>
 
             <p class="text-sm text-gray-500 mt-1">
-                Factures <span class="text-gray-400">(ce mois)</span>
+                Factures téléchargées <span class="text-gray-400">(ce mois)</span>
             </p>
 
         </div>
@@ -83,7 +83,7 @@
             </p>
 
             <p class="text-sm text-gray-500 mt-1">
-                Proforma <span class="text-gray-400">(ce mois)</span>
+                Proforma téléchargées <span class="text-gray-400">(ce mois)</span>
             </p>
 
         </div>
@@ -100,7 +100,7 @@
             </div>
 
             <p class="text-2xl font-bold text-gray-800">
-                {{ $totalFichesTelechargees ?? 0 }}
+                {{ $totalFiches ?? 0 }}
             </p>
 
             <p class="text-sm text-gray-500 mt-1">

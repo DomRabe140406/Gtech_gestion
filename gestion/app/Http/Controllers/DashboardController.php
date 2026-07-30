@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\FicheDownload;
+use App\Models\ProformaDownload;
 use App\Models\FactureDownload;
 use Illuminate\Http\Request;
 use App\Models\Formation;
@@ -35,6 +38,14 @@ class DashboardController extends Controller
         $history = AdminHistory::get();//pour afficher l'historique de l'admin sur le dashboard
 
         $totalFactures = FactureDownload::whereMonth('downloaded_at', now()->month)
+        ->whereYear('downloaded_at', now()->year)
+        ->count();
+
+        $totalProforma = ProformaDownload::whereMonth('downloaded_at', now()->month)
+        ->whereYear('downloaded_at', now()->year)
+        ->count();
+
+        $totalFiches = FicheDownload::whereMonth('downloaded_at', now()->month)
         ->whereYear('downloaded_at', now()->year)
         ->count();
         //pour le graphe
@@ -109,7 +120,9 @@ class DashboardController extends Controller
             'history',
             'labels',
             'data',
-            'totalFactures' 
+            'totalFactures',
+            'totalProforma',
+            'totalFiches'
         ));
     }
 

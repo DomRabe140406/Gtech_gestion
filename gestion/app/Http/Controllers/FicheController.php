@@ -80,10 +80,19 @@ class FicheController extends Controller
         // TÉLÉCHARGEMENT
         // =========================
         if ($request->has('btn_telecharge')) {
+
+            // Enregistrement du téléchargement pour les stats du dashboard
+            \App\Models\FicheDownload::create([
+                'formation_nom' => $designation,
+                'user_id' => auth()->id(),
+                'downloaded_at' => now(),
+            ]);
+
             //historique
             \App\Helpers\AdminHistory::add(
                 "Téléchargement de fiche de formation : ".$filename
             );
+
             return $pdf->download($filename);
         }
     }

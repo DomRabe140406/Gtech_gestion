@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
@@ -163,10 +162,19 @@ class ProformaController extends Controller
         // TÉLÉCHARGEMENT
         // =========================
         if ($request->has('btn_telecharge')) {
+
+            // Enregistrement du téléchargement pour les stats du dashboard
+            \App\Models\ProformaDownload::create([
+                'client_nom' => $client,
+                'user_id' => auth()->id(),
+                'downloaded_at' => now(),
+            ]);
+
             //historique
             \App\Helpers\AdminHistory::add(
                 "Téléchargement de proforma : ".$filename
             );
+
             return $pdf->download($filename);
         }
     }
