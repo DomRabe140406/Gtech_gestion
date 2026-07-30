@@ -207,3 +207,43 @@ function envoyerFormulaireFormateur() {
     // Si tout est correct, on envoie le formulaire
     document.getElementById("form_principale").submit();
 }
+
+//pour ouvrir et fermer la popup d'ajout de specialité
+function ouvrirPopupSpecialite() {
+
+    const popup = document.getElementById("popupSpecialite");
+
+    popup.classList.remove("hidden");
+    popup.classList.add("flex");
+}
+
+function fermerPopupSpecialite() {
+
+    const popup = document.getElementById("popupSpecialite");
+
+    popup.classList.remove("flex");
+    popup.classList.add("hidden");
+}
+
+//pour fermer et ouvrir la popup de suppression de specialité
+function ouvrirPopupSuppressionSpecialite(){
+
+    document
+        .getElementById("popupSuppressionSpecialite")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("popupSuppressionSpecialite")
+        .classList.add("flex");
+}
+
+function fermerPopupSuppressionSpecialite(){
+
+    document
+        .getElementById("popupSuppressionSpecialite")
+        .classList.add("hidden");
+
+    document
+        .getElementById("popupSuppressionSpecialite")
+        .classList.remove("flex");
+}

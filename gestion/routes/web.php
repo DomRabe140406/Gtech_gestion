@@ -9,6 +9,7 @@ use App\Http\Controllers\ProformaController;
 use App\Http\Controllers\FicheController;
 use App\Http\Controllers\ListeController;
 use App\Http\Controllers\FormateursController;
+use App\Http\Controllers\SpecialitesController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -34,3 +35,10 @@ Route::resource('proforma', ProformaController::class)->middleware('auth');
 Route::resource('fiche', FicheController::class)->middleware('auth');
 Route::resource('liste', ListeController::class)->middleware('auth');
 Route::resource('formateurs', FormateursController::class)->middleware('auth');
+Route::resource('specialites', SpecialitesController::class)->middleware('auth');
+
+//pour suppression de specialité
+Route::delete('/specialites-suppression-multiple', 
+    [SpecialitesController::class, 'destroyMultiple'])
+    ->name('specialites.destroyMultiple')
+    ->middleware('auth');

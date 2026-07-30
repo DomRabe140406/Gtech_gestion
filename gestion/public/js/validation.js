@@ -50,7 +50,7 @@ const zonesErreur = {
     Prenom_formateur: "erreur-prenom",
     email: "erreur-email",
     telephone: "erreur-telephone",
-    specialites: "erreur-specialites"
+    specialites: "erreur-specialites",
 };
 
 function validerChamp(input, regles) {

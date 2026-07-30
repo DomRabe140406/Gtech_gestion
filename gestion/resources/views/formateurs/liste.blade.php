@@ -40,7 +40,7 @@
             </div>
         @endif
             
-        <!-- BTN AJOUT de formation -->
+        <!-- BTN AJOUT formateur -->
         <a href="{{ route('formateurs.create') }}"
             class="inline-flex items-center gap-3
             bg-gradient-to-r from-blue-600 to-blue-500
@@ -54,6 +54,36 @@
             <i class="fa-solid fa-plus"></i>
             Ajouter un formateur
         </a>
+
+        <!-- BTN AJOUT spécialité -->
+       <button
+            type="button"
+            onclick="ouvrirPopupSpecialite()"
+            class="inline-flex items-center gap-3
+            bg-gradient-to-r from-blue-600 to-blue-500
+            hover:from-blue-700 hover:to-blue-600
+            text-white
+            px-6 py-3
+            rounded-xl
+            shadow-lg
+            transition">
+
+            <i class="fa-solid fa-plus mr-2"></i>
+            Ajouter une spécialité
+        </button>
+
+        <!-- BTN SUPPRIMER spécialité -->
+        <button
+            type="button"
+            onclick="ouvrirPopupSuppressionSpecialite()"
+            class="inline-flex items-center gap-3
+            bg-gradient-to-r from-red-600 to-red-500
+            hover:from-red-700 hover:to-red-600
+            text-white px-6 py-3 rounded-xl shadow-lg transition">
+
+            <i class="fa-solid fa-trash"></i>
+            Supprimer des spécialités
+        </button>
     </div>
 
     <!-- CARTES -->
@@ -100,7 +130,7 @@
                     'icon' => 'fa-palette',
                     'color' => 'text-pink-500'
                 ],
-                'Réseaux informatiques et Cybersécurité' => [
+                'Réseaux Informatiques et Cybersécurité' => [
                     'icon' => 'fa-shield-halved',
                     'color' => 'text-red-600'
                 ],
@@ -301,9 +331,154 @@
     </div>
 @endif
 
+<!--  popup pour ajouter une spécialité  -->
+<div
+    id="popupSpecialite"
+    class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6">
+
+        <h2 class="text-2xl font-bold mb-6">
+            Nouvelle spécialité
+        </h2>
+
+        <form action="{{ route('specialites.store') }}" method="POST">
+
+            @csrf
+
+            <div class="mb-5">
+
+                <label class="block mb-2 font-medium">
+                    Nom de la spécialité
+                </label>
+
+                <input
+                    type="text"
+                    name="nom_specialite"
+                    value="{{ old('nom_specialite') }}"
+                    class="w-full border rounded-xl p-3 @error('nom_specialite') border-red-500 @enderror">
+
+                    @error('nom_specialite')
+                        <p class="text-red-500 text-sm mt-2">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                    <small id="erreur-nom-specialite" class="text-red-500"></small>
+            </div>
+
+            <div class="flex justify-end gap-3">
+
+                <button
+                    type="button"
+                    onclick="fermerPopupSpecialite()"
+                    class="bg-gray-500 text-white px-5 py-2 rounded-xl">
+
+                    Annuler
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="bg-green-600 text-white px-5 py-2 rounded-xl">
+
+                    Enregistrer
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!--  popup pour supprimer une spécialité  -->
+<div
+    id="popupSuppressionSpecialite"
+    class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6">
+
+        <h2 class="text-2xl font-bold mb-6">
+            Supprimer des spécialités
+        </h2>
+
+        <form
+            action="{{ route('specialites.destroyMultiple') }}"
+            method="POST">
+
+            @csrf
+            @method('DELETE')
+
+            <div class="space-y-3 max-h-72 overflow-y-auto">
+
+                @foreach($specialites as $specialite)
+
+                    <label class="flex items-center gap-3">
+
+                        <input
+                            type="checkbox"
+                            name="specialites[]"
+                            value="{{ $specialite->id }}">
+
+                        {{ $specialite->nom_specialite }}
+                    </label>
+                @endforeach
+            </div>
+
+            @error('specialites')
+                <p class="text-red-500">
+                    {{ $message }}
+                </p>
+            @enderror
+
+            <div class="flex justify-end gap-3 mt-6">
+
+                <button
+                    type="button"
+                    onclick="fermerPopupSuppressionSpecialite()"
+                    class="bg-gray-500 text-white px-5 py-2 rounded-xl">
+                    
+                    Annuler
+                </button>
+
+                <button
+                    type="submit"
+                    class="bg-red-600 text-white px-5 py-2 rounded-xl">
+
+                    Supprimer
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 @endsection
 
 @section('scripts')
+
+@if ($errors->has('nom_specialite'))
+<script>
+    //ouvrir automatiquement le popup d'ajout de specialite si une erreur de validation se produit
+    document.addEventListener("DOMContentLoaded", function () {
+        ouvrirPopupSpecialite();
+        //pour que le curseur soit tout de suite sur champ
+        document.querySelector('input[name="nom_specialite"]').focus();
+    });
+</script>
+@endif
+@if ($errors->has('specialites'))
+<script>
+    //ouvrir automatiquement le popup de suppression de specialite si une erreur de validation se produit
+    document.addEventListener("DOMContentLoaded", function () {
+        ouvrirPopupSuppressionSpecialite();
+        //pour que le curseur soit tout de suite sur champ
+        document.querySelector('input[name="nom_specialite"]').focus();
+    });
+</script>
+@endif
+
 <script>
     //pour permettre la recherche automatique
     let timer;
