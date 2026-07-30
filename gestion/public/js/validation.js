@@ -37,7 +37,20 @@ const rules = {
 const messages = {
     required:"Ce champ est obligatoire.",
     afterToday:"La date doit être supérieure à aujourd'hui.",
-    min:"Valeur trop petite."
+    min:"Valeur trop petite.",
+    emailOrTelephone:"Veuillez saisir un e-mail ou un numéro de téléphone.",
+    email:"Adresse e-mail invalide : jean@gmail.com",
+    telephone:"Numéro de téléphone invalide (Malagasy)"
+};
+
+//les zones d'erreur pour chaque champ du formulaire d'ajout de formateur
+// Association entre l'id d'un champ et la zone où afficher son erreur
+const zonesErreur = {
+    Nom_formateur: "erreur-nom",
+    Prenom_formateur: "erreur-prenom",
+    email: "erreur-email",
+    telephone: "erreur-telephone",
+    specialites: "erreur-specialites"
 };
 
 function validerChamp(input, regles) {
@@ -99,14 +112,34 @@ function validerEtape(numero){
 
 function afficherErreur(input,message){
     input.classList.add("border-red-500");
-    let erreur=input.nextElementSibling;
-    erreur.innerText=message;
+    const idErreur = zonesErreur[input.id];
+
+    if(idErreur){
+        document.getElementById(idErreur).textContent = message;
+        return;
+    }
+
+    const erreur = input.parentElement.querySelector(".erreur");
+
+    if(erreur){
+        erreur.textContent = message;
+    }
 }
 
 function effacerErreur(input){
     input.classList.remove("border-red-500");
-    let erreur=input.nextElementSibling;
-    erreur.innerText="";
+    const idErreur = zonesErreur[input.id];
+
+    if(idErreur){
+        document.getElementById(idErreur).textContent = "";
+        return;
+    }
+
+    const erreur = input.parentElement.querySelector(".erreur");
+
+    if(erreur){
+        erreur.textContent = "";
+    }
 }
 //Gestion des étapes du formulaire
 function passerEtape(step) {

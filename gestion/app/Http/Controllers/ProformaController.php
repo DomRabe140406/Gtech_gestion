@@ -153,7 +153,7 @@ class ProformaController extends Controller
         if ($request->has('btn_apercu')) {
             //historique
             \App\Helpers\AdminHistory::add(
-                "Création de proforma : ".$filename
+                "Aperçu de proforma : ".$filename
             );
             return $pdf->stream($filename);
         }

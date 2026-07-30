@@ -8,6 +8,7 @@ use App\Http\Controllers\FacturesController;
 use App\Http\Controllers\ProformaController;
 use App\Http\Controllers\FicheController;
 use App\Http\Controllers\ListeController;
+use App\Http\Controllers\FormateursController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -32,3 +33,4 @@ Route::resource('factures', FacturesController::class)->middleware('auth');
 Route::resource('proforma', ProformaController::class)->middleware('auth');
 Route::resource('fiche', FicheController::class)->middleware('auth');
 Route::resource('liste', ListeController::class)->middleware('auth');
+Route::resource('formateurs', FormateursController::class)->middleware('auth');

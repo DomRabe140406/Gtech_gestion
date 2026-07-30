@@ -120,7 +120,7 @@ class FacturesController extends Controller
         if ($request->has('btn_apercu')) {
             //historique
             \App\Helpers\AdminHistory::add(
-                "Création de facture : ".$filename
+                "Aperçu de facture : ".$filename
             );
             return $pdf->stream($filename);
         }

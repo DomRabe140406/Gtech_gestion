@@ -4,6 +4,12 @@
 
 @layer components{
 
+/* Supprimer l'icône native d'Edge */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
 .login-page{
     @apply min-h-screen flex justify-center items-center bg-gradient-to-br from-slate-50 via-indigo-50 to-slate-100 relative overflow-hidden px-4;
 }

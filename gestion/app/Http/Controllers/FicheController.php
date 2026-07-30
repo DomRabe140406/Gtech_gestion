@@ -71,7 +71,7 @@ class FicheController extends Controller
         if ($request->has('btn_apercu')) {
             //historique
             \App\Helpers\AdminHistory::add(
-                "Création de fiche de formation : ".$filename
+                "Aperçu de fiche de formation : ".$filename
             );
             return $pdf->stream($filename);
         }

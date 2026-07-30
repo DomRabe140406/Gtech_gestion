@@ -19,7 +19,13 @@ class ListeController extends Controller
         //->get();
         ->paginate(5); // Pagination avec 5 éléments par page
 
-        return view('formations.liste', compact('formations'));
+        $totalFormations = Formation::count();
+        //récupération du nombre de formations par statut
+        $formationsInscription = Formation::where('statut', 'en_inscription')->count();
+        $formationsEnCours = Formation::where('statut', 'en_cours')->count();
+        $formationsTerminees = Formation::where('statut', 'termine')->count();
+
+        return view('formations.liste', compact('formations', 'totalFormations', 'formationsInscription', 'formationsEnCours', 'formationsTerminees'));
     }
 
     /**

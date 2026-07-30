@@ -56,10 +56,10 @@
     <div class="closebtn" onclick="Menu()"><i class="fa-solid fa-xmark"></i></div>
 
     <a href="{{ route('dashboard') }}"> <i class="fa-solid fa-chart-line"></i> Dashboard</a>
-    <h5>Gestion</h5>
+    <h4 class="ml-10 text-gray-300">Gestion</h4>
     <a href="{{ route('liste.index') }}"><i class="fa-solid fa-graduation-cap"></i>  Liste Formation</a>
-    <a href=""> <i class="fa-solid fa-users"></i>  Liste des Formateurs</a>
-    <h5>Generation pdf</h5>
+    <a href="{{ route('formateurs.index') }}"> <i class="fa-solid fa-users"></i>  Liste des Formateurs</a>
+    <h4 class="ml-10 text-gray-300">Generation pdf</h4 >
     <a href="{{ route('fiche.create') }}"><i class="fa-solid fa-calendar-days"></i>  Fiche Formation</a>
     <a href="{{ route('proforma.create') }}"><i class="fa-solid fa-calendar-days"></i>  Generation Proforma</a>
     <a href="{{ route('factures.create') }}"><i class="fa-solid fa-calendar-days"></i>  Generation Facture</a>
@@ -75,6 +75,7 @@
 <script src="{{ asset('js/formulaire_ajout.js')}}"></script>
 <script src="{{ asset('js/modifier.js')}}"></script>
 <script src="{{ asset('js/validation.js') }}"></script>
+<script src="{{ asset('js/formateur.js') }}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let notif = document.getElementById("notif");
