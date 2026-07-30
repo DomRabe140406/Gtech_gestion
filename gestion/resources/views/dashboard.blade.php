@@ -182,57 +182,84 @@
     </div>
 
     <!-- tableau des historiques -->
+<!-- tableau des historiques -->
 
-    <div
-        class="mt-8 bg-white rounded-2xl border border-gray-200
-               shadow-sm transition-all duration-300
-               hover:shadow-xl hover:border-blue-300">
+<div
+    class="mt-8 bg-white rounded-2xl border border-gray-200
+           shadow-sm transition-all duration-300
+           hover:shadow-xl hover:border-blue-300">
 
-        <div class="px-6 py-5 border-b border-gray-200">
+    <div class="px-6 py-5 border-b border-gray-200">
 
-            <h2 class="text-2xl font-semibold text-gray-800">
+        <h2 class="text-2xl font-semibold text-gray-800">
+            Historique des actions
+        </h2>
 
-                Historique des actions
+        <p class="text-sm text-gray-500 mt-1">
+            Toutes les opérations réalisées sur la plateforme.
+        </p>
 
-            </h2>
+    </div>
 
-            <p class="text-sm text-gray-500 mt-1">
+    <div class="overflow-x-auto">
 
-                Toutes les opérations réalisées sur la plateforme.
+        @if(count($history))
 
-            </p>
+        <table class="w-full">
 
-        </div>
+            <thead class="bg-slate-50">
 
-        <div class="overflow-x-auto">
+                <tr>
 
-            @if(count($history))
+                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">
+                        Date
+                    </th>
 
-            <table class="w-full">
+                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">
+                        Action
+                    </th>
 
-                <thead class="bg-slate-50">
+                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">
+                        Type
+                    </th>
 
-                    <tr>
+                </tr>
 
-                        <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">
+            </thead>
 
-                            Date
+            <tbody>
 
-                        </th>
+                @foreach($history as $item)
 
-                        <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">
+                    @php
+                        $msg = strtolower($item['message']);
 
-                            Action
-
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    @foreach($history as $item)
+                        if (str_contains($msg, 'connexion')) {
+                            $typeLabel = 'Connexion';
+                            $icon = 'fa-right-to-bracket';
+                            $color = 'text-green-600';
+                            $badgeBg = 'bg-green-100';
+                            $badgeText = 'text-green-700';
+                        } elseif (str_contains($msg, 'suppress') || str_contains($msg, 'supprim')) {
+                            $typeLabel = 'Suppression';
+                            $icon = 'fa-trash';
+                            $color = 'text-red-600';
+                            $badgeBg = 'bg-red-100';
+                            $badgeText = 'text-red-700';
+                        } elseif (str_contains($msg, 'créat') || str_contains($msg, 'ajout') || str_contains($msg, 'création')) {
+                            $typeLabel = 'Création';
+                            $icon = 'fa-file-circle-plus';
+                            $color = 'text-blue-600';
+                            $badgeBg = 'bg-blue-100';
+                            $badgeText = 'text-blue-700';
+                        } else {
+                            $typeLabel = 'Autre';
+                            $icon = 'fa-pen';
+                            $color = 'text-gray-500';
+                            $badgeBg = 'bg-gray-100';
+                            $badgeText = 'text-gray-600';
+                        }
+                    @endphp
 
                     <tr
                         class="border-t border-gray-200
@@ -240,44 +267,42 @@
                                transition duration-300">
 
                         <td class="px-6 py-4 whitespace-nowrap text-gray-600">
-
                             {{ $item['time'] }}
-
                         </td>
 
                         <td class="px-6 py-4 text-gray-700">
-
+                            <i class="fa-solid {{ $icon }} {{ $color }} mr-2"></i>
                             {{ $item['message'] }}
+                        </td>
 
+                        <td class="px-6 py-4">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium {{ $badgeBg }} {{ $badgeText }}">
+                                {{ $typeLabel }}
+                            </span>
                         </td>
 
                     </tr>
 
-                    @endforeach
+                @endforeach
 
-                </tbody>
+            </tbody>
 
-            </table>
+        </table>
 
-            @else
+        @else
 
-            <div class="py-16 text-center">
-
-                <i class="fa-solid fa-clock-rotate-left text-5xl text-gray-300 mb-4"></i>
-
-                <p class="text-gray-500 text-lg">
-
-                    Aucun historique disponible.
-
-                </p>
-
-            </div>
-
-            @endif
-
+        <div class="py-16 text-center">
+            <i class="fa-solid fa-clock-rotate-left text-5xl text-gray-300 mb-4"></i>
+            <p class="text-gray-500 text-lg">
+                Aucun historique disponible.
+            </p>
         </div>
 
+        @endif
+
     </div>
+
+</div>
 
 </div>    
 <footer class="mt-12 bg-white border-t border-gray-200">

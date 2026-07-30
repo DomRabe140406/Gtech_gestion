@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\FactureDownload;
 use Illuminate\Http\Request;
 use App\Models\Formation;
 use App\Helpers\AdminHistory;
@@ -34,7 +34,9 @@ class DashboardController extends Controller
 
         $history = AdminHistory::get();//pour afficher l'historique de l'admin sur le dashboard
 
-
+        $totalFactures = FactureDownload::whereMonth('downloaded_at', now()->month)
+        ->whereYear('downloaded_at', now()->year)
+        ->count();
         //pour le graphe
         //on récupère les données( date de création et le nombre de formations créées par mois) de la table formations
         /*$formationsParMois = Formation::select(
@@ -106,7 +108,8 @@ class DashboardController extends Controller
             'termine',
             'history',
             'labels',
-            'data'
+            'data',
+            'totalFactures' 
         ));
     }
 

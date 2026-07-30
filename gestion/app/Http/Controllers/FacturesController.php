@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\FactureDownload;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -128,12 +129,21 @@ class FacturesController extends Controller
         // TÉLÉCHARGEMENT
         // =========================
         if ($request->has('btn_telecharge')) {
-            //historique
-            \App\Helpers\AdminHistory::add(
-                "Téléchargement de facture : ".$filename
-            );
-            return $pdf->download($filename);
-        }
+
+            // Enregistrement du téléchargement pour les stats du dashboard
+              FactureDownload::create([
+              'client_nom' => $client,
+               'user_id' => auth()->id(),
+              'downloaded_at' => now(),
+          ]);
+
+    //historique
+    \App\Helpers\AdminHistory::add(
+        "Téléchargement de facture : ".$filename
+    );
+
+    return $pdf->download($filename);
+}
 
         
     }
