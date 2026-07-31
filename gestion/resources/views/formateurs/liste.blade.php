@@ -19,18 +19,17 @@
     
         
         <!-- BTN AJOUT formateur -->
-        <a href="{{ route('formateurs.create') }}"
-           class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600
-           text-white px-6 py-3 rounded-xl shadow-lg transition dark:text-gray-200 dark:bg-blue-900/40">
-        
-        <i class="fa-solid fa-plus "></i>
-        Ajouter un formateur
+        <a href="{{ route('formateurs.create') }}" 
+           class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 dark:bg-none dark:bg-blue-900/40 dark:hover:bg-blue-900/60
+           text-white px-6 py-3 rounded-xl shadow-lg transition-colors duration-300 ">
+            <i class="fa-solid fa-plus"></i>
+            Ajouter un formateur
         </a>
     
     <!-- BTN AJOUT spécialité -->
         <button type="button" onclick="ouvrirPopupSpecialite()"
-                class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white
-                px-6 py-3 rounded-xl shadow-lg transition dark:bg-blue-900/40">
+                class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 dark:bg-none dark:bg-blue-900/40 dark:hover:bg-blue-900/60
+           text-white px-6 py-3 rounded-xl shadow-lg transition-colors duration-300 ">
     
         <i class="fa-solid fa-plus mr-2"></i>
             Ajouter une spécialité
@@ -38,8 +37,8 @@
 
     <!-- BTN SUPPRIMER spécialité -->
         <button type="button" onclick="ouvrirPopupSuppressionSpecialite()"
-                class="inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600
-                text-white px-6 py-3 rounded-xl shadow-lg transition dark:bg-blue-900/40">
+                class="inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 dark:bg-none dark:bg-red-900/40 dark:hover:bg-red-900/60
+           text-white px-6 py-3 rounded-xl shadow-lg transition-colors duration-300 ">
 
                  <i class="fa-solid fa-trash"></i>
                 Supprimer des spécialités
@@ -284,7 +283,8 @@
 </div>
 
 @if($formateurs->count() == 0)
-<div class="py-16 text-center">
+<!--  Si liste vide  -->
+    <div class="py-16 text-center">
         <div class="w-24 h-24 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
             <i class="fa-solid fa-folder-open text-4xl text-gray-400"></i>
         </div>
@@ -306,15 +306,19 @@
 @endif
 
 <!--  popup pour ajouter une spécialité  -->
-<div
-    id="popupSpecialite"
-    class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+<div id="popupSpecialite"
+     class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
 
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md p-6 border border-transparent dark:border-gray-700 transition-colors duration-300">
 
-        <h2 class="text-2xl font-bold mb-6">
-            Nouvelle spécialité
-        </h2>
+        <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center">
+                <i class="fas fa-plus text-green-600 dark:text-green-400"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                Nouvelle spécialité
+            </h2>
+        </div>
 
         <form action="{{ route('specialites.store') }}" method="POST">
 
@@ -322,41 +326,38 @@
 
             <div class="mb-5">
 
-                <label class="block mb-2 font-medium">
+                <label class="block mb-2 font-medium text-gray-600 dark:text-gray-300">
                     Nom de la spécialité
                 </label>
 
-                <input
-                    type="text"
-                    name="nom_specialite"
-                    value="{{ old('nom_specialite') }}"
-                    class="w-full border rounded-xl p-3 @error('nom_specialite') border-red-500 @enderror">
+                <input type="text" name="nom_specialite" value="{{ old('nom_specialite') }}"
+                       class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-3 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
+                       focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-colors
+                       @error('nom_specialite') border-red-500 dark:border-red-500 @enderror">
 
-                    @error('nom_specialite')
-                        <p class="text-red-500 text-sm mt-2">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                    <small id="erreur-nom-specialite" class="text-red-500"></small>
+                @error('nom_specialite')
+                    <p class="text-red-500 dark:text-red-400 text-sm mt-2">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+                <small id="erreur-nom-specialite" class="text-red-500 dark:text-red-400"></small>
+
             </div>
 
             <div class="flex justify-end gap-3">
 
-                <button
-                    type="button"
-                    onclick="fermerPopupSpecialite()"
-                    class="bg-gray-500 text-white px-5 py-2 rounded-xl">
-
+                <button type="button" onclick="fermerPopupSpecialite()"
+                        class="bg-gray-100  hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-600 dark:bg-red-900/40 dark:text-red-300
+                        px-5 py-2.5 rounded-xl transition-colors duration-300 font-medium">
                     Annuler
-
                 </button>
 
-                <button
-                    type="submit"
-                    class="bg-green-600 text-white px-5 py-2 rounded-xl">
-
+                <button type="submit"
+                        class="bg-green-600 hover:bg-green-700  dark:hover:bg-green-500 text-white px-5 py-2.5 rounded-xl transition-colors duration-300
+                        font-medium flex items-center gap-2 dark:bg-green-900/40 dark:text-green-300">
+                    <i class="fas fa-check text-sm"></i>
                     Enregistrer
-
                 </button>
 
             </div>
@@ -368,15 +369,19 @@
 </div>
 
 <!--  popup pour supprimer une spécialité  -->
-<div
-    id="popupSuppressionSpecialite"
-    class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+<div id="popupSuppressionSpecialite"
+     class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
 
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-lg p-6 border border-transparent dark:border-gray-700 transition-colors duration-300">
 
-        <h2 class="text-2xl font-bold mb-6">
-            Supprimer des spécialités
-        </h2>
+        <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/40 flex items-center justify-center">
+                <i class="fas fa-trash text-red-600 dark:text-red-400"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                Supprimer des spécialités
+            </h2>
+        </div>
 
         <form
             action="{{ route('specialites.destroyMultiple') }}"
@@ -385,47 +390,51 @@
             @csrf
             @method('DELETE')
 
-            <div class="space-y-3 max-h-72 overflow-y-auto">
+            <div class="space-y-1 max-h-72 overflow-y-auto pr-1">
 
                 @foreach($specialites as $specialite)
 
-                    <label class="flex items-center gap-3">
+                    <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-red-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200
+                                  cursor-pointer transition-colors">
 
-                        <input
-                            type="checkbox"
-                            name="specialites[]"
-                            value="{{ $specialite->id }}">
+                        <input type="checkbox" name="specialites[]" value="{{ $specialite->id }}"
+                            class="rounded border-gray-300 dark:border-gray-600 text-red-600 dark:bg-gray-900 focus:ring-red-400 dark:focus:ring-red-500">
 
                         {{ $specialite->nom_specialite }}
+
                     </label>
+
                 @endforeach
+
             </div>
 
             @error('specialites')
-                <p class="text-red-500">
+                <p class="text-red-500 dark:text-red-400 mt-3">
                     {{ $message }}
                 </p>
             @enderror
 
             <div class="flex justify-end gap-3 mt-6">
 
-                <button
-                    type="button"
-                    onclick="fermerPopupSuppressionSpecialite()"
-                    class="bg-gray-500 text-white px-5 py-2 rounded-xl">
-                    
+                <button type="button" onclick="fermerPopupSuppressionSpecialite()"
+                        class="bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-600 dark:bg-gray-900/40 dark:text-gray-300
+                        px-5 py-2.5 rounded-xl transition-colors duration-300 font-medium">
                     Annuler
                 </button>
 
-                <button
-                    type="submit"
-                    class="bg-red-600 text-white px-5 py-2 rounded-xl">
-
+                <button type="submit"
+                        class="bg-red-600 hover:bg-red-700 dark:hover:bg-red-500 text-white px-5 py-2.5 rounded-xl transition-colors duration-300
+                           font-medium flex items-center gap-2 dark:bg-red-900/40 dark:text-red-300">
+                    <i class="fas fa-trash text-sm"></i>
                     Supprimer
                 </button>
+
             </div>
+
         </form>
+
     </div>
+
 </div>
 
 @endsection

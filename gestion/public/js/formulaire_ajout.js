@@ -14,14 +14,6 @@ function annulerForm(){
     let confirmation = confirm("Voulez-vous annuler le formulaire ?");
 
     if(confirmation){
-       /* if(confirmation){
-            document.getElementById("form_principale").reset();
-            document.querySelectorAll(".etape").forEach(etape => {
-                etape.classList.remove("active");
-            });
-            document.getElementById("etape1").classList.add("active")
-        }*/
-        //window.location.href = "liste_formation.php";
         window.location.href= "/dashboard";
     }
 }
@@ -40,51 +32,27 @@ function updateProgress(step)
         progress.style.width = "100%";
 }
 
+
 function updateProgressFacture(step)
-{
-    let progress = document.getElementById("progress");
+    {
+        const largeurs = {1:25, 2:50, 3:75, 4:100};
 
-    if(step == 1)
-        progress.style.width = "25%";
+        const stepLabel = document.getElementById("stepLabelFacture");
+        const stepPercent = document.getElementById("stepPercentFacture");
 
-    if(step == 2)
-        progress.style.width = "50%";
+        if (stepLabel) stepLabel.textContent = "Étape " + step + " sur 4";
+        if (stepPercent) stepPercent.textContent = Math.round(largeurs[step]) + "%";
 
-    if(step == 3)
-        progress.style.width = "75%";
+        for (let i = 1; i <= 4; i++) {
+            const segment = document.getElementById("segmentFacture" + i);
+            if (!segment) continue;
 
-    if(step == 4)
-        progress.style.width = "100%";
-}
-
-function updateProgressFiche(step)
-{
-    let progress = document.getElementById("progress");
-
-    if(step == 1)
-        progress.style.width = "10%";
-
-    if(step == 2)
-        progress.style.width = "25%";
-
-    if(step == 3)
-        progress.style.width = "35%";
-
-    if(step == 4)
-        progress.style.width = "45%";
-
-    if(step == 5)
-        progress.style.width = "55%";
-
-    if(step == 6)
-        progress.style.width = "65%";
-
-    if(step == 7)
-        progress.style.width = "75%";
-
-    if(step == 8)
-        progress.style.width = "87.5%";
-
-    if(step == 9)
-        progress.style.width = "100%";
-}
+            if (i <= step) {
+                segment.classList.remove("bg-gray-200", "dark:bg-gray-700");
+                segment.classList.add("bg-blue-500");
+            } else {
+                segment.classList.remove("bg-blue-500");
+                segment.classList.add("bg-gray-200", "dark:bg-gray-700");
+            }
+        }
+    }
