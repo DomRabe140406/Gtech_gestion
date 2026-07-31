@@ -163,19 +163,12 @@
                 <!-- Barre de recherche -->
                 <div class="relative w-full md:w-96">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    <input type="text"
-                            id="search"
-                            name="search"
-                            value="{{ request('search') }}"
-                            placeholder="Rechercher un formateur..."
-                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
-                    >
+                    <input type="text" id="search" name="search" value="{{ request('search') }}" placeholder="Rechercher un formateur..."
+                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
                 
                 <!-- Filtre par spécialité -->
-                <select name="specialite"
-                        onchange="this.form.submit()"
-                        class="rounded-xl border border-gray-300 px-5 py-3">
+                <select name="specialite" onchange="this.form.submit()" class="rounded-xl border border-gray-300 px-5 py-3">
 
                     <option value="" {{ request('specialite') == '' ? 'selected' : '' }}>
                         Toutes les spécialités</option>
@@ -251,8 +244,7 @@
                                 
                                 {{-- MODIFIER --}}
                                 <a href="{{ route('formateurs.edit', $formateur->id) }}"
-                                  class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white
-                                        transition duration-300 flex items-center justify-center dark:bg-blue-900/40">
+                                  class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300 flex items-center justify-center dark:bg-blue-900/40">
 
                                     <i class="fa-solid fa-pen"></i>
 
@@ -265,8 +257,7 @@
 
                                     @method('DELETE')
                                     
-                                    <button type="submit" style="cursor: pointer;"
-                                            class="w-10 h-10 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition duration-300
+                                    <button type="submit" style="cursor: pointer;" class="w-10 h-10 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition duration-300
                                             flex items-center justify-center dark:bg-red-900/40">
 
                                         <i class="fa-solid fa-trash"></i>
