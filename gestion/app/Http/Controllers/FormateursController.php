@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Models\Specialite;
 use App\Models\Formateur;
 
@@ -147,9 +148,9 @@ class FormateursController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Formateur $formateur)
     {
-                //met à jour le formateur sélectionné
+        //met à jour le formateur sélectionné
         //validation
         $validator = Validator::make($request->all(),[
             'nom_formateur' => 'required',
