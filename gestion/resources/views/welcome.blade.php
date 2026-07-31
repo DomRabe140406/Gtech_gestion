@@ -35,13 +35,7 @@
 
                     <i class="fa-regular fa-envelope"></i>
 
-                    <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        placeholder="admin@example.com"
-                        value="{{ old('email') }}"
-                        required>
+                    <input id="email" type="email" name="email" placeholder="admin@example.com" value="{{ old('email') }}" required>
 
                 </div>
 
@@ -55,16 +49,9 @@
 
                     <i class="fa-solid fa-lock"></i>
 
-                    <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        placeholder="************"
-                        required>
+                    <input id="password" type="password" name="password" placeholder="************" required>
 
-                    <button
-                        type="button"
-                        id="togglePassword">
+                    <button type="button" id="togglePassword">
 
                         <i id="eyeIcon" class="fa-solid fa-eye"></i>
 

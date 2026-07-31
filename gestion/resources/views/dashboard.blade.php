@@ -103,194 +103,190 @@
 
     </div>
 
-<div class="max-w-7xl mx-auto px-6 py-6">
+    <div class="max-w-7xl mx-auto px-6 py-6">
     
-    <!-- Graphiques -->
+        <!-- Graphiques -->
 
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
 
-        <!-- Evolution -->
+            <!-- Evolution -->
 
-        <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
-                   hover:border-blue-300 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-6 transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                 hover:border-blue-300 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-6 transition-all duration-300
+                 hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
-            <h2 class="text-xl font-semibold text-gray-800 mb-6 dark:text-gray-100 mb-6">
-                Evolution du nombre de formations
-            </h2>
+                <h2 class="text-xl font-semibold text-gray-800 mb-6 dark:text-gray-100 mb-6">
+                    Evolution du nombre de formations
+                </h2>
 
-            <div class="h-72">
-                <canvas id="formationGraphe"></canvas>
-            </div>
+                <div class="h-72">
+                    <canvas id="formationGraphe"></canvas>
+                </div>
 
-            <div class="flex justify-center gap-3 mt-6">
+                <div class="flex justify-center gap-3 mt-6">
 
-                <button
-                    id="btnPrev"
-                    class="w-11 h-11 rounded-full bg-slate-100 hover:bg-blue-500 hover:text-white transition duration-300 shadow dark:bg-gray-700
-                           hover:bg-blue-500 hover:text-white dark:text-gray-200 dark:hover:bg-blue-500 dark:hover:text-white transition duration-300 shadow">
+                    <button id="btnPrev"
+                        class="w-11 h-11 rounded-full bg-slate-100 hover:bg-blue-500 hover:text-white transition duration-300 shadow dark:bg-gray-700
+                        hover:bg-blue-500 hover:text-white dark:text-gray-200 dark:hover:bg-blue-500 dark:hover:text-white transition duration-300 shadow">
 
-                    <i class="fas fa-chevron-left"></i>
+                        <i class="fas fa-chevron-left"></i>
 
-                </button>
+                    </button>
 
-                <button
-                    id="btnNext"
-                    class="w-11 h-11 rounded-full bg-slate-100 hover:bg-blue-500 hover:text-white transition duration-300 shadow dark:bg-gray-700
-                           hover:bg-blue-500 hover:text-white dark:text-gray-200 dark:hover:bg-blue-500 dark:hover:text-white
-                           transition duration-300 shadow">
+                    <button id="btnNext"
+                        class="w-11 h-11 rounded-full bg-slate-100 hover:bg-blue-500 hover:text-white transition duration-300 shadow dark:bg-gray-700
+                        hover:bg-blue-500 hover:text-white dark:text-gray-200 dark:hover:bg-blue-500 dark:hover:text-white
+                        transition duration-300 shadow">
 
-                    <i class="fas fa-chevron-right"></i>
+                        <i class="fas fa-chevron-right"></i>
 
-                </button>
+                    </button>
 
-            </div>
-
-        </div>
-
-        <!-- Doughnut -->
-
-        <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
-                   hover:border-blue-300 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-6 transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
-
-            <h2 class="text-xl font-semibold text-gray-800 mb-6 dark:text-gray-100 mb-6">
-                Répartition des formations
-            </h2>
-
-            <div class="h-72 flex justify-center items-center">
-
-                <canvas id="formationsChart"></canvas>
+                </div>
 
             </div>
+
+            <!-- Donut -->
+
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                 hover:border-blue-300 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-6 transition-all duration-300
+                 hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
+
+                <h2 class="text-xl font-semibold text-gray-800 mb-6 dark:text-gray-100 mb-6">
+                    Répartition des formations
+                </h2>
+
+                <div class="h-72 flex justify-center items-center">
+
+                    <canvas id="formationsChart"></canvas>
+
+                </div>
 
         </div>
 
     </div>
 
     <!-- tableau des historiques -->
-<!-- tableau des historiques -->
 
-<div class="mt-8 bg-white rounded-2xl border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-300
-            dark:bg-gray-800 rounded-2xl border dark:border-gray-700 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
+    <div class="mt-8 bg-white rounded-2xl border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-300
+                dark:bg-gray-800 rounded-2xl border dark:border-gray-700 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
-    <div class="px-6 py-5 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <div class="px-6 py-5 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-2xl">
 
-        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">
-            Historique des actions
-        </h2>
+            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">
+                Historique des actions
+            </h2>
 
-        <p class="text-sm text-gray-500 mt-1 dark:text-gray-400 mt-1">
-            Toutes les opérations réalisées sur la plateforme.
-        </p>
+            <p class="text-sm text-gray-500 mt-1 dark:text-gray-400 mt-1">
+                Toutes les opérations réalisées sur la plateforme.
+            </p>
 
-    </div>
+        </div>
 
-    <div class="overflow-x-auto">
+        <div class="overflow-x-auto">
 
-        @if(count($history))
+            @if(count($history))
 
-        <table class="w-full">
+            <table class="w-full">
 
-            <thead class="bg-slate-50 dark:bg-gray-700">
+                <thead class="bg-slate-50 dark:bg-gray-700">
 
-                <tr>
+                    <tr>
 
-                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
-                        Date
-                    </th>
+                        <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
+                            Date
+                        </th>
 
-                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
-                        Action
-                    </th>
+                        <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
+                            Action
+                        </th>
 
-                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
-                        Type
-                    </th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                @foreach($history as $item)
-
-                    @php
-                        $msg = strtolower($item['message']);
-
-                        if (str_contains($msg, 'connexion')) {
-                            $typeLabel = 'Connexion';
-                            $icon = 'fa-right-to-bracket';
-                            $color = 'text-green-600 dark:text-green-400';
-                            $badgeBg = 'bg-green-100 dark:bg-green-900/40';
-                            $badgeText = 'text-green-700 dark:text-green-300';
-                        } elseif (str_contains($msg, 'suppress') || str_contains($msg, 'supprim')) {
-                            $typeLabel = 'Suppression';
-                            $icon = 'fa-trash';
-                            $color = 'text-red-600 dark:text-red-400';
-                            $badgeBg = 'bg-red-100 dark:bg-red-900/40';
-                            $badgeText = 'text-red-700 dark:text-red-300';
-                        } elseif (str_contains($msg, 'créat') || str_contains($msg, 'ajout') || str_contains($msg, 'création')) {
-                            $typeLabel = 'Création';
-                            $icon = 'fa-file-circle-plus';
-                            $color = 'text-blue-600 dark:text-blue-400';
-                            $badgeBg = 'bg-blue-100 dark:bg-blue-900/40';
-                            $badgeText = 'text-blue-700vdark:text-blue-300 ';
-                        } else {
-                            $typeLabel = 'Autre';
-                            $icon = 'fa-pen';
-                            $color = 'text-gray-500 dark:text-gray-400';
-                            $badgeBg = 'bg-gray-100 dark:bg-gray-700';
-                            $badgeText = 'text-gray-600 dark:text-gray-300';
-                        }
-                    @endphp
-
-                    <tr
-                        class="border-t border-gray-200 hover:bg-blue-50 transition duration-300 dark:border-gray-700
-                               hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-300">
-
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-300">
-                            {{ $item['time'] }}
-                        </td>
-
-                        <td class="px-6 py-4 text-gray-700 dark:text-gray-200">
-                            <i class="fa-solid {{ $icon }} {{ $color }} mr-2"></i>
-                            {{ $item['message'] }}
-                        </td>
-
-                        <td class="px-6 py-4">
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium {{ $badgeBg }} {{ $badgeText }}">
-                                {{ $typeLabel }}
-                            </span>
-                        </td>
+                        <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
+                            Type
+                        </th>
 
                     </tr>
 
-                @endforeach
+                </thead>
 
-            </tbody>
+                <tbody>
 
-        </table>
+                    @foreach($history as $item)
 
-        @else
+                        @php
+                            $msg = strtolower($item['message']);
 
-        <div class="py-16 text-center">
-            <i class="fa-solid fa-clock-rotate-left text-5xl text-gray-300 mb-4 dark:text-gray-600 mb-4"></i>
-            <p class="text-gray-500 text-lg dark:text-gray-400 text-lg">
-                Aucun historique disponible.
-            </p>
+                            if (str_contains($msg, 'connexion')) {
+                                $typeLabel = 'Connexion';
+                                $icon = 'fa-right-to-bracket';
+                                $color = 'text-green-600 dark:text-green-400';
+                                $badgeBg = 'bg-green-100 dark:bg-green-900/40';
+                                $badgeText = 'text-green-700 dark:text-green-300';
+                            } elseif (str_contains($msg, 'suppress') || str_contains($msg, 'supprim')) {
+                                $typeLabel = 'Suppression';
+                                $icon = 'fa-trash';
+                                $color = 'text-red-600 dark:text-red-400';
+                                $badgeBg = 'bg-red-100 dark:bg-red-900/40';
+                                $badgeText = 'text-red-700 dark:text-red-300';
+                            } elseif (str_contains($msg, 'créat') || str_contains($msg, 'ajout') || str_contains($msg, 'création')) {
+                                $typeLabel = 'Création';
+                                $icon = 'fa-file-circle-plus';
+                                $color = 'text-blue-600 dark:text-blue-400';
+                                $badgeBg = 'bg-blue-100 dark:bg-blue-900/40';
+                                $badgeText = 'text-blue-700vdark:text-blue-300 ';
+                            } else {
+                                $typeLabel = 'Autre';
+                                $icon = 'fa-pen';
+                                $color = 'text-gray-500 dark:text-gray-400';
+                                $badgeBg = 'bg-gray-100 dark:bg-gray-700';
+                                $badgeText = 'text-gray-600 dark:text-gray-300';
+                            }
+                        @endphp
+
+                        <tr class="border-t border-gray-200 hover:bg-blue-50 transition duration-300 dark:border-gray-700
+                            hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-300">
+
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-300">
+                                {{ $item['time'] }}
+                            </td>
+
+                            <td class="px-6 py-4 text-gray-700 dark:text-gray-200">
+                                <i class="fa-solid {{ $icon }} {{ $color }} mr-2"></i>
+                                {{ $item['message'] }}
+                            </td>
+
+                            <td class="px-6 py-4">
+                                <span class="inline-block px-3 py-1 rounded-full text-xs font-medium {{ $badgeBg }} {{ $badgeText }}">
+                                    {{ $typeLabel }}
+                                </span>
+                            </td>
+
+                        </tr>
+
+                    @endforeach
+
+                </tbody>
+
+            </table>
+
+            @else
+
+            <div class="py-16 text-center">
+                <i class="fa-solid fa-clock-rotate-left text-5xl text-gray-300 mb-4 dark:text-gray-600 mb-4"></i>
+                <p class="text-gray-500 text-lg dark:text-gray-400 text-lg">
+                    Aucun historique disponible.
+                </p>
+            </div>
+
+            @endif
+
         </div>
-
-        @endif
 
     </div>
 
 </div>
 
-</div>    
+<!-- footer -->
 <footer class="mt-12 bg-white border-t border-gray-200">
 
     <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col lg:flex-row justify-between items-center gap-6 dark:bg-gray-800">

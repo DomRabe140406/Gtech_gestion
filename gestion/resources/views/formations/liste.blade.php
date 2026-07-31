@@ -20,42 +20,45 @@
     
         
         <!-- BTN AJOUT de formation -->
-        <a href="{{ route('formations.create') }}" class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600
-        text-white px-6 py-3 rounded-xl shadow-lg transition dark:text-gray-200 dark:bg-blue-900/40">
+        <a href="{{ route('formations.create') }}" 
+           class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600
+           text-white px-6 py-3 rounded-xl shadow-lg transition dark:text-gray-200 dark:bg-blue-900/40">
         
-        <i class="fa-solid fa-plus dark:text-gray-200"></i>
-        Ajouter une formation
-    </a>
-</div>
+            <i class="fa-solid fa-plus dark:text-gray-200"></i>
+            Ajouter une formation
+        </a>
+    
+    </div>
 
-<!-- Notifications -->
-    {{-- Notifications --}}
+    <!-- Notifications -->
+        {{-- Notifications --}}
 
-    @if(session('success'))
-        <div id="notif"
-            class="mb-6 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-md transition-all duration-500">
+        @if(session('success'))
+            <div id="notif"
+                 class="mb-6 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-md transition-all duration-500">
 
-            <div class="flex items-center gap-3">
-                <i class="fa-solid fa-circle-check text-green-600 text-xl"></i>
-                <span>{{ session('success') }}</span>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-circle-check text-green-600 text-xl"></i>
+                    <span>{{ session('success') }}</span>
+                </div>
             </div>
-        </div>
-    @endif
+        @endif
 
-    @if(session('error'))
-        <div id="notif"
-            class="mb-6 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-md transition-all duration-500">
+        @if(session('error'))
+            <div id="notif"
+                 class="mb-6 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-md transition-all duration-500">
 
-            <div class="flex items-center gap-3">
-                <i class="fa-solid fa-circle-xmark text-red-600 text-xl"></i>
-                <span>{{ session('error') }}</span>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-circle-xmark text-red-600 text-xl"></i>
+                    <span>{{ session('error') }}</span>
+                </div>
             </div>
-        </div>
-    @endif
+        @endif
 
-<!-- CARTES -->
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-        <!-- CARTES TOTALES FORMATIONS-->
+    <!-- CARTES -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+
+            <!-- CARTES TOTALES FORMATIONS-->
             <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition
                         dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
                         hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
@@ -76,7 +79,7 @@
                     </div>
                 </div>
             </div>
-        <!-- CARTES TOTALES EN INSCRIPTION-->
+            <!-- CARTES TOTALES EN INSCRIPTION-->
             <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition
                         dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
                         hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
@@ -97,7 +100,7 @@
                 </div>
             </div>
 
-        <!-- CARTES TOTALES EN COURS-->
+            <!-- CARTES TOTALES EN COURS-->
             <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition
                         dark:bg-gray-800 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
                         hover:border-orange-300 dark:hover:border-orange-500">
@@ -116,25 +119,25 @@
                 </div>
             </div>
 
-    <!-- CARTES TOTALES TERMINEES-->
-        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition 
+            <!-- CARTES TOTALES TERMINEES-->
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition 
                     dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
                     hover:-translate-y-1 hover:shadow-xl hover:border-green-300 dark:hover:border-green-500">
-            <div class="flex items-center gap-4">
-                <div class="w-16 h-16 rounded-full bg-green-100 flex justify-center items-center  dark:bg-green-900/40">
-                    <i class="fa-solid fa-circle-check text-green-600 text-2xl"></i>
-                </div>
-                <div>
-                    <p class="text-gray-500 text-sm dark:text-gray-100">
-                        Terminées
-                    </p>
-                    <h3 class="text-3xl font-bold dark:text-gray-100">
-                        {{ $formationsTerminees }}
-                    </h3>
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-green-100 flex justify-center items-center  dark:bg-green-900/40">
+                        <i class="fa-solid fa-circle-check text-green-600 text-2xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm dark:text-gray-100">
+                            Terminées
+                        </p>
+                        <h3 class="text-3xl font-bold dark:text-gray-100">
+                            {{ $formationsTerminees }}
+                        </h3>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <!--  Tableau  -->
     <div class="bg-white rounded-3xl border border-gray-200 shadow-lg p-6  dark:bg-gray-800 rounded-2xl border 
@@ -217,8 +220,8 @@
                                 @break
 
                                 @case('en_cours')
-                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-sm font-semibold">
-                                        <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-sm font-semibold dark:bg-orange-900/40 dark:text-orange-300">
+                                        <span class="w-2 h-2 rounded-full bg-orange-500 dark:bg-orange-900/40 dark:text-orange-300"></span>
                                         En cours
                                     </span>
                                 @break
