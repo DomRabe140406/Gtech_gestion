@@ -21,8 +21,8 @@
         
         <!-- BTN AJOUT de formation -->
         <a href="{{ route('formations.create') }}" 
-           class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600
-           text-white px-6 py-3 rounded-xl shadow-lg transition dark:text-gray-200 dark:bg-blue-900/40">
+           class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 dark:bg-none dark:bg-blue-900/40 dark:hover:bg-blue-900/60
+           text-white px-6 py-3 rounded-xl shadow-lg transition-colors duration-300">
         
             <i class="fa-solid fa-plus dark:text-gray-200"></i>
             Ajouter une formation
@@ -220,7 +220,7 @@
                                 @break
 
                                 @case('en_cours')
-                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-sm font-semibold dark:bg-orange-900/40 dark:text-orange-300">
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-sm font-semibold ">
                                         <span class="w-2 h-2 rounded-full bg-orange-500 dark:bg-orange-900/40 dark:text-orange-300"></span>
                                         En cours
                                     </span>

@@ -41,14 +41,14 @@
 
         <div class="flex justify-between pt-6">
             <button type="button" onclick="etapeSuivante(1,2);updateProgressFiche(2)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500
                            text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Suivant
             </button>
 
             <button type="button" onclick="annulerForm()"
                     class="bg-gray-100 dark:bg-gray-700 hover:bg-red-500 dark:hover:bg-red-600 text-gray-600 dark:text-gray-200 hover:text-white
-                           px-6 py-3 rounded-xl transition-colors duration-300">
+                           px-6 py-3 rounded-xl transition-colors duration-300 dark:bg-red-900/40">
                 Annuler
             </button>
         </div>
@@ -86,13 +86,13 @@
         <div class="flex justify-between pt-6">
 
             <button type="button" onclick="etapePrecedente(2,1);updateProgressFiche(1)"
-                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600
+                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700/40 dark:hover:bg-gray-600
                            text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Précédent
             </button>
 
             <button type="button" onclick="etapeSuivante(2,3);updateProgressFiche(3)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500
                            text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Suivant
             </button>
@@ -117,12 +117,12 @@
         <div class="flex justify-between pt-6">
 
             <button type="button" onclick="etapePrecedente(3,2);updateProgressFiche(2)"
-                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700/40 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Précédent
             </button>
 
             <button type="button" onclick="etapeSuivante(3,4);updateProgressFiche(4)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Suivant
             </button>
 
@@ -146,12 +146,12 @@
         <div class="flex justify-between pt-6">
 
             <button type="button" onclick="etapePrecedente(4,3);updateProgressFiche(3)"
-                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-900/40 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Précédent
             </button>
 
             <button type="button" onclick="etapeSuivante(4,5);updateProgressFiche(5)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Suivant
             </button>
 
@@ -175,12 +175,12 @@
         <div class="flex justify-between pt-6">
 
             <button type="button" onclick="etapePrecedente(5,4);updateProgressFiche(4)"
-                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-900/40 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Précédent
             </button>
 
             <button type="button" onclick="etapeSuivante(5,6);updateProgressFiche(6)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Suivant
             </button>
 
@@ -204,12 +204,12 @@
         <div class="flex justify-between pt-6">
 
             <button type="button" onclick="etapePrecedente(6,5);updateProgressFiche(5)"
-                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-900/40 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Précédent
             </button>
 
             <button type="button" onclick="etapeSuivante(6,7);updateProgressFiche(7)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Suivant
             </button>
 
@@ -233,12 +233,12 @@
         <div class="flex justify-between pt-6">
 
             <button type="button" onclick="etapePrecedente(7,6);updateProgressFiche(6)"
-                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-900/40 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Précédent
             </button>
 
             <button type="button" onclick="etapeSuivante(7,8);updateProgressFiche(8)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Suivant
             </button>
 
@@ -262,12 +262,12 @@
         <div class="flex justify-between pt-6">
 
             <button type="button" onclick="etapePrecedente(8,7);updateProgressFiche(7)"
-                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-900/40 dark:hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Précédent
             </button>
 
             <button type="button" onclick="etapeSuivante(8,9);updateProgressFiche(9)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300">
                 Suivant
             </button>
 
@@ -290,7 +290,7 @@
             Télécharger PDF
         </button>
 
-        <button type="button" onclick="etapePrecedente(9,8);updateProgressFiche(8)" class="text-gray-500 dark:text-gray-400 underline cursor-pointer">
+        <button type="button" onclick="etapePrecedente(9,8);updateProgressFiche(8)" class="text-gray-500 dark:text-gray-400  underline cursor-pointer">
             Retour à l'étape précédente
         </button>
         <br>
@@ -300,7 +300,7 @@
 
     </div>
 
-    <!-- Barre de progression modernisée -->
+    <!-- Barre de progression -->
     <div class="mt-10">
 
         <div class="flex items-center justify-between mb-2">
