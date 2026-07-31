@@ -71,13 +71,28 @@
                     </select>
                 </div>
 
-                <div class="flex justify-end pt-4">
-                    <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300 shadow
-                               font-medium flex items-center gap-2 cursor-pointer">
+                <div class="flex justify-between pt-4">
+
+                    <button
+                        type="button"
+                        onclick="annulerFormFormation()"
+                        class="bg-gray-100 dark:bg-gray-700 hover:bg-red-500 dark:hover:bg-red-600
+                            text-gray-600 dark:text-gray-200 hover:text-white
+                            px-6 py-3 rounded-xl transition-colors duration-300 shadow
+                            font-medium flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-xmark text-sm"></i>
+                        Annuler
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500
+                            text-white px-6 py-3 rounded-xl transition-colors duration-300 shadow
+                            font-medium flex items-center gap-2 cursor-pointer">
                         <i class="fas fa-check text-sm"></i>
                         Modifier
                     </button>
+
                 </div>
 
             </form>

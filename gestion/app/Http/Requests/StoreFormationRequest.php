@@ -23,12 +23,13 @@ class StoreFormationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ref_formation' => 'required',
+            'specialite_id' => 'required|exists:specialites,id',
             'nom_formation' => 'required',
             'date' => 'required|date|after:today',
             'statut' => 'required|in:en_inscription,en_cours,termine',
             'capacite' => 'required|integer|min:1',
             'nb_participant' => 'required|integer|min:1',
+            'formateur_id' => 'exists:formateurs,id',
         ];
     }
 
@@ -38,8 +39,10 @@ class StoreFormationRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'ref_formation.required' =>
-                'La référence est obligatoire.',
+            'specialite_id.required' =>
+                'La spécialité est obligatoire.',
+            'specialite_id.exists' =>
+                'La spécialité sélectionnée est invalide.',
             'nom_formation.required' =>
                 'Le nom de la formation est obligatoire.',
             'date.required' =>
@@ -58,6 +61,8 @@ class StoreFormationRequest extends FormRequest
                 'Le nombre de participant est obligatoire.',
             'nb_participant.min' =>
                 'Le nombre de participant ne peut pas être négatif (minimum:1).',
+            'formateur_id.exists' =>
+                'Le formateur sélectionné est invalide.',
         ];
     }
 }

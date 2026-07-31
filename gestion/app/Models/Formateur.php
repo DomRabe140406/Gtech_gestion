@@ -22,4 +22,8 @@ class Formateur extends Model
         return $this->belongsToMany(Specialite::class);
     }
 
+    public function formations()
+    {
+        return $this->hasMany(Formation::class);
+    }
 }

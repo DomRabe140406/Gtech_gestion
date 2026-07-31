@@ -23,10 +23,19 @@
                 <i class="fas fa-hashtag text-blue-500 dark:text-blue-400 text-sm"></i>
                 Référence:
             </label>
-            <input type="text" name="ref_formation" id="Ref_formation" placeholder="Référence de la formation"
-                   class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-4 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
-                          placeholder-gray-400 dark:placeholder-gray-500focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500
-                          transition-colors">
+            <select name="specialite_id" id="specialite_id"
+                    class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-4
+                           bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
+                           focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500
+                           transition-colors">
+                <option value="">Choisir une référence</option>
+
+                @foreach($specialites as $specialite)
+                    <option value="{{ $specialite->id }}">
+                        {{ $specialite->nom_specialite }}
+                    </option>
+                @endforeach
+            </select>
             @error('ref_formation')
                 <p class="text-red-500 dark:text-red-400 text-sm mt-1">
                     {{ $message }}
@@ -116,10 +125,14 @@
 
         <div class="flex justify-between pt-2">
 
-            <button type="button" onclick="annulerForm()"
-                    class="bg-gray-100 dark:bg-gray-700 hover:bg-red-500 dark:hover:bg-red-600
-                           text-gray-600 dark:text-gray-200 hover:text-white
-                           px-6 py-3 rounded-xl transition-colors duration-300 shadow font-medium">
+            <button
+                type="button"
+                onclick="annulerFormFormation()"
+                class="bg-gray-100 dark:bg-gray-700 hover:bg-red-500 dark:hover:bg-red-600
+                            text-gray-600 dark:text-gray-200 hover:text-white
+                            px-6 py-3 rounded-xl transition-colors duration-300 shadow
+                            font-medium flex items-center gap-2 cursor-pointer">
+                <i class="fas fa-xmark text-sm"></i>
                 Annuler
             </button>
 
@@ -162,6 +175,16 @@
         </div>
 
         <div class="flex justify-between pt-6">
+            <button
+                type="button"
+                onclick="annulerFormFormation()"
+                class="bg-gray-100 dark:bg-gray-700 hover:bg-red-500 dark:hover:bg-red-600
+                            text-gray-600 dark:text-gray-200 hover:text-white
+                            px-6 py-3 rounded-xl transition-colors duration-300 shadow
+                            font-medium flex items-center gap-2 cursor-pointer">
+                <i class="fas fa-xmark text-sm"></i>
+                Annuler
+            </button>
 
             <button type="button" onclick="etapePrecedente(2,1); updateProgress(1)"
                     class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600
@@ -196,27 +219,32 @@
                 Nom formateur
             </label>
 
-            <input type="text" name="nom_formateur"
-                   class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-4
-                          bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
-                          focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500
-                          transition-colors">
-        </div>
+            <select name="formateur_id" id="formateur_id"
+                    class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-4
+                           bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
+                           focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500
+                           transition-colors">
+                <option value="">Choisir un formateur</option>
 
-        <div>
-            <label class="flex items-center gap-2 mb-2 font-medium text-gray-600 dark:text-gray-300">
-                <i class="fas fa-id-card text-blue-500 dark:text-blue-400 text-sm"></i>
-                Prénom formateur
-            </label>
-
-            <input type="text" name="prenom_formateur"
-                   class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-4
-                          bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
-                          focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500
-                          transition-colors">
+                @foreach($formateurs as $formateur)
+                    <option value="{{ $formateur->id }}">
+                        {{ $formateur->nom_formateur }} {{ $formateur->prenom_formateur }}
+                    </option>
+                @endforeach
+            </select>
         </div>
 
         <div class="flex justify-between pt-6">
+            <button
+                type="button"
+                onclick="annulerFormFormation()"
+                class="bg-gray-100 dark:bg-gray-700 hover:bg-red-500 dark:hover:bg-red-600
+                            text-gray-600 dark:text-gray-200 hover:text-white
+                            px-6 py-3 rounded-xl transition-colors duration-300 shadow
+                            font-medium flex items-center gap-2 cursor-pointer">
+                <i class="fas fa-xmark text-sm"></i>
+                Annuler
+            </button>
 
             <button type="button" onclick="etapePrecedente(3,2); updateProgress(2)"
                     class="bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600

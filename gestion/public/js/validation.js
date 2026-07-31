@@ -2,7 +2,7 @@
 const rules = {
 
     1:{
-        Ref_formation:[
+        specialite_id:[
             "required"
         ],
 
@@ -103,6 +103,11 @@ function validerEtape(numero){
     const champs = rules[numero];
     for (const id in champs) {
         const input = document.getElementById(id);
+        // On vérifie si l'élément existe avant de continuer
+        if (!input) {
+            console.error("Champ introuvable :", id);
+            continue;
+        }
         if (!validerChamp(input, champs[id])) {
             valide = false;
         }

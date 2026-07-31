@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Formation;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreFormationRequest;
+use App\Models\Specialite;
+use App\Models\Formateur;
 
 class FormationsController extends Controller
 {
@@ -16,7 +18,11 @@ class FormationsController extends Controller
         $search = $request->search;
         $statut = $request->statut;
         //recherche par nom
-        $formations = Formation::when($search, function ($query) use ($search) {
+        $formations = Formation::with([
+            'formateur',
+            'specialite'
+        ])
+        ->when($search, function ($query) use ($search) {
             $query->where('nom_formation', 'like', "%{$search}%");
         })
         //filtre par statut
@@ -44,7 +50,9 @@ class FormationsController extends Controller
     public function create()
     {
         //creation de formation donc on retourne la vue de creation
-        return view ('formations.create');
+        $specialites = Specialite::all();
+        $formateurs = Formateur::all();
+        return view ('formations.create', compact('specialites', 'formateurs'));
     }
 
     /**
@@ -53,24 +61,19 @@ class FormationsController extends Controller
     /*Fonction sert a enregistrer qlq chose dans une bdd*/
     public function store(StoreFormationRequest $request)
     { 
-        /*validation des données
-        //after:today: il faut que la date soit strictement supérieur à la date d'aujourd'hui
-        $request->validate([
-        'ref_formation' => 'required',
-        'nom_formation' => 'required',
-        'date' => 'required|date|after:today',
-        'statut' => 'required|in:en_inscription,en_cours,termine' ]);*/
-        
+        //validation des données est fait grâce à la requête StoreFormationRequest
+
+        $formateur = Formateur::findOrFail($request->formateur_id);
+
         //create création de ligne dans une bdd donc on prend le modele
         $formation = Formation::create([
-            'ref_formation' => $request->ref_formation,
             'nom_formation' => $request->nom_formation,
             'date_debut' => $request->date,
             'nb_jours' => $request->capacite,
             'statut' => $request->statut,
             'nb_participant' => $request->nb_participant,
-            'nom_formateur' => $request->nom_formateur,
-            'prenom_formateur' => $request->prenom_formateur,
+            'formateur_id' => $request->formateur_id,
+            'specialite_id' => $request->specialite_id,
         ]);
 
         //historique

@@ -12,11 +12,17 @@ function etapePrecedente(maintenant,precedente)
 
 function annulerForm(){
     let confirmation = confirm("Voulez-vous annuler le formulaire ?");
-
     if(confirmation){
         window.location.href= "/dashboard";
     }
 }
+function annulerFormFormation(){
+    let confirmation = confirm("Voulez-vous annuler le formulaire ?");
+    if(confirmation){
+        window.location.href= "/formations";
+    }
+}
+
 
 function updateProgress(step)
 {
