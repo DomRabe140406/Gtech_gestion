@@ -9,9 +9,7 @@
 <div class="text-center mt-8 ">
 
     <h1 class="text-2xl md:text-4xl font-bold text-gray-700 tracking-tight dark:text-gray-400">
-
         Tableau de bord administrateur
-
     </h1>
 
     <p class="mt-3 text-gray-500 text-base md:text-lg dark:text-gray-500">

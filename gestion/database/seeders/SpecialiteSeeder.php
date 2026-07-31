@@ -26,7 +26,7 @@ class SpecialiteSeeder extends Seeder
             ],
 
             [
-                'nom_specialite' => 'Réseaux informatiques et Cybersécurité',
+                'nom_specialite' => 'Réseaux Informatiques et Cybersécurité',
             ],
 
             [

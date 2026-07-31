@@ -7,6 +7,7 @@ use App\Models\ProformaDownload;
 use App\Models\FactureDownload;
 use Illuminate\Http\Request;
 use App\Models\Formation;
+use App\Models\Formateur;
 use App\Helpers\AdminHistory;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -19,6 +20,9 @@ class DashboardController extends Controller
     public function index()
     {
         $total = Formation::count();
+
+        //récupération du nombre total de formateurs
+        $totalFormateurs = Formateur::count();
 
         $enInscription = Formation::where(
             'statut',
@@ -50,27 +54,6 @@ class DashboardController extends Controller
         ->count();
         //pour le graphe
         //on récupère les données( date de création et le nombre de formations créées par mois) de la table formations
-        /*$formationsParMois = Formation::select(
-                    DB::raw('YEAR(created_at) as annee'),
-                    DB::raw('MONTH(created_at) as mois'),
-                    DB::raw('COUNT(*) as total')
-                )
-                ->groupBy('annee', 'mois')
-                ->orderBy('annee')
-                ->orderBy('mois')
-                ->get();
-        $labels = [];
-        $data = [];
-
-        foreach ($formationsParMois as $formation) {
-
-            $labels[] = date(
-                'M Y',
-                mktime(0,0,0,$formation->mois,1,$formation->annee)
-            );
-
-            $data[] = $formation->total;
-        }*/
         // Toutes les formations regroupées par mois
         $formations = Formation::select(
                 DB::raw('YEAR(created_at) as annee'),
@@ -114,6 +97,7 @@ class DashboardController extends Controller
 
         return view('dashboard', compact(
             'total',
+            'totalFormateurs',
             'enInscription',
             'enCours',
             'termine',
