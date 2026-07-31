@@ -29,7 +29,7 @@ class StoreFormationRequest extends FormRequest
             'statut' => 'required|in:en_inscription,en_cours,termine',
             'capacite' => 'required|integer|min:1',
             'nb_participant' => 'required|integer|min:1',
-            'formateur_id' => 'exists:formateurs,id',
+            'formateur_id' => 'nullable'
         ];
     }
 
@@ -61,8 +61,6 @@ class StoreFormationRequest extends FormRequest
                 'Le nombre de participant est obligatoire.',
             'nb_participant.min' =>
                 'Le nombre de participant ne peut pas être négatif (minimum:1).',
-            'formateur_id.exists' =>
-                'Le formateur sélectionné est invalide.',
         ];
     }
 }

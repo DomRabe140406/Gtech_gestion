@@ -164,11 +164,11 @@
                 <div class="relative w-full md:w-96">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                     <input type="text" id="search" name="search" value="{{ request('search') }}" placeholder="Rechercher un formateur..."
-                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
                 
                 <!-- Filtre par spécialité -->
-                <select name="specialite" onchange="this.form.submit()" class="rounded-xl border border-gray-300 px-5 py-3">
+                <select name="specialite" onchange="this.form.submit()" class="rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 px-5 py-3">
 
                     <option value="" {{ request('specialite') == '' ? 'selected' : '' }}>
                         Toutes les spécialités</option>

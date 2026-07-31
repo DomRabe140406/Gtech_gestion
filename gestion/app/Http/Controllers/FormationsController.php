@@ -18,10 +18,7 @@ class FormationsController extends Controller
         $search = $request->search;
         $statut = $request->statut;
         //recherche par nom
-        $formations = Formation::with([
-            'formateur',
-            'specialite'
-        ])
+        $formations = Formation::with(['formateur', 'specialite'])
         ->when($search, function ($query) use ($search) {
             $query->where('nom_formation', 'like', "%{$search}%");
         })
@@ -63,8 +60,6 @@ class FormationsController extends Controller
     { 
         //validation des données est fait grâce à la requête StoreFormationRequest
 
-        $formateur = Formateur::findOrFail($request->formateur_id);
-
         //create création de ligne dans une bdd donc on prend le modele
         $formation = Formation::create([
             'nom_formation' => $request->nom_formation,
@@ -72,13 +67,12 @@ class FormationsController extends Controller
             'nb_jours' => $request->capacite,
             'statut' => $request->statut,
             'nb_participant' => $request->nb_participant,
-            'formateur_id' => $request->formateur_id,
+            'formateur_id' => $request->formateur_id ?: null,
             'specialite_id' => $request->specialite_id,
         ]);
-
         //historique
         \App\Helpers\AdminHistory::add(
-            "Ajout de la formation : ".$formation->nom_formation." | Référence : ".$formation->ref_formation
+            "Ajout de la formation : ".$formation->nom_formation." | Référence : ".$formation->specialite->nom_specialite
         );
         return redirect()->route('liste.index')->with('success', 'Formation ajoutée avec succes');
     }

@@ -10,12 +10,15 @@ function etapePrecedente(maintenant,precedente)
     document.getElementById("etape" + precedente).classList.add("active");
 }
 
+//annulation global
 function annulerForm(){
     let confirmation = confirm("Voulez-vous annuler le formulaire ?");
     if(confirmation){
         window.location.href= "/dashboard";
     }
 }
+
+//annulation pour formation
 function annulerFormFormation(){
     let confirmation = confirm("Voulez-vous annuler le formulaire ?");
     if(confirmation){
@@ -23,16 +26,13 @@ function annulerFormFormation(){
     }
 }
 
-
 //annulation pour formateur
 function annulerFormateur() {
     let confirmation = confirm("Voulez-vous annuler le formulaire ?");
-
     if (confirmation) {
         window.location.href = "/formateurs";
     }
 }
-
 
 function updateProgress(step)
 {

@@ -22,10 +22,19 @@
                         <i class="fas fa-hashtag text-blue-500 dark:text-blue-400 text-sm"></i>
                         Référence
                     </label>
-                    <input type="text" name="ref_formation" value="{{ $formation->ref_formation }}"
-                           class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
-                                  focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-colors">
-                </div>
+                    <select name="specialite_id" id="specialite_id"
+                            class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-4
+                           bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
+                           focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500
+                           transition-colors">
+
+                        @foreach($specialites as $specialite)
+                            <option value="{{ $specialite->id }}" {{ $formation->specialite_id == $specialite->id ? 'selected' : '' }}>
+                                {{ $specialite->nom_specialite }}
+                            </option>
+                        @endforeach
+                    </select>
+                    </div>
 
                 <div>
                     <label class="flex items-center gap-2 mb-2 font-medium text-gray-600 dark:text-gray-300">
@@ -36,6 +45,35 @@
                            class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
                            focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-colors">
                 </div>
+
+                <div>
+                    <label class="flex items-center gap-2 mb-2 font-medium text-gray-600 dark:text-gray-300">
+                        <i class="fas fa-book text-blue-500 dark:text-blue-400 text-sm"></i>
+                        Formateur
+                    </label>
+                    <select
+                        id="formateur_id"
+                        name="formateur_id"
+                        class="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-4
+                           bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
+                           focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500
+                           transition-colors">
+                        <option value="" {{ $formation->formateur_id == null ? 'selected' : '' }}>
+                            Aucun formateur
+                        </option>
+                        @foreach($formateurs as $formateur)
+
+                            <option
+                                value="{{ $formateur->id }}"
+                                {{ $formation->formateur_id == $formateur->id ? 'selected' : '' }}>
+
+                                {{ $formateur->nom_formateur }} {{ $formateur->prenom_formateur }}
+                            </option>
+
+                        @endforeach
+
+                    </select>
+                    </div>
 
                 <div>
                     <label class="flex items-center gap-2 mb-2 font-medium text-gray-600 dark:text-gray-300">

@@ -146,6 +146,7 @@
             <form action="{{ route('formations.index') }}" method="GET" id="searchForm"
                     class="flex flex-col md:flex-row gap-3 w-full">
 
+                <!-- Barre de recherche -->
                 <div class="relative w-full md:w-96">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                     <input type="text"
@@ -153,12 +154,13 @@
                             name="search"
                             value="{{ request('search') }}"
                             placeholder="Rechercher une formation..."
-                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 outline-none"
                     >
                 </div>
+                <!-- Filtre par statut -->
                 <select name="statut"
                         onchange="this.form.submit()"
-                        class="rounded-xl border border-gray-300 px-5 py-3">
+                        class="rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 px-5 py-3">
                     <option value="">Tous les statuts</option>
                     <option value="en_inscription"
                         {{ request()->statut=='en_inscription'?'selected':'' }}>
@@ -182,6 +184,7 @@
                     <tr>
                         <th class="px-6 py-4 text-left">Référence</th>
                         <th class="px-6 py-4 text-left">Formation</th>
+                        <th class="px-6 py-4 text-left">Formateur</th>
                         <th class="px-6 py-4 text-left">Statut</th>
                         <th class="px-6 py-4 text-center">Actions</th>
                     </tr>
@@ -192,7 +195,7 @@
                                hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-300">
                         <!-- Référence -->
                         <td class="px-6 py-5 font-medium text-gray-700 dark:text-gray-300">
-                            {{ $formation->ref_formation }}
+                            {{ $formation->specialite->nom_specialite }}
                         </td>
 
                         <!-- Nom -->
@@ -204,6 +207,25 @@
                                 <div>
                                     <h3 class="font-semibold text-gray-800 dark:text-gray-300">
                                         {{ $formation->nom_formation }}
+                                    </h3>
+                                </div>
+                            </div>
+                        </td>
+
+                        <!-- Formateur -->
+                        <td class="px-6 py-5">
+                            <div class="flex items-center gap-3">
+                                <div class="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center  dark:bg-green-900/40">
+                                    <i class="fa-solid fa-user text-blue-600  "></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 dark:text-gray-300">
+                                        @if($formation->formateur)
+                                            {{ $formation->formateur->nom_formateur }}
+                                            {{ $formation->formateur->prenom_formateur }}
+                                        @else
+                                            Aucun formateur attribué
+                                        @endif
                                     </h3>
                                 </div>
                             </div>

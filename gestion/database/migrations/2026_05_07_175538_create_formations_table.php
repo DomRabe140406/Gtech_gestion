@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('formations', function (Blueprint $table) {
             $table->id();
-            $table->string('ref_formation');
             $table->string('nom_formation');
             $table->date('date_debut');
             $table->integer('nb_jours');
             $table->integer('nb_participant')->nullable();
-            $table->string('nom_formateur')->nullable();
-            $table->string('prenom_formateur')->nullable();
+            $table->foreignId('formateur_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignId('specialite_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

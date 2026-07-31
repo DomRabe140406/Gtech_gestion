@@ -6,18 +6,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Formation;
+use App\Models\Specialite;
+use App\Models\Formateur;
 
 class ListeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $formations = DB::table('formations')
+        $search = $request->search;
+        $statut = $request->statut;
+
+        $formations = Formation::with(['formateur', 'specialite'])
+        ->when($search, function ($query) use ($search) {
+            $query->where('nom_formation', 'like', "%{$search}%");
+        })
+        ->when($statut, function ($query) use ($statut) {
+            $query->where('statut', $statut);
+        })
         ->orderBy('nom_formation', 'asc')
         //->get();
-        ->paginate(5); // Pagination avec 5 éléments par page
+        ->paginate(5) // Pagination avec 5 éléments par page
+        ->withQueryString();
 
         $totalFormations = Formation::count();
         //récupération du nombre de formations par statut
@@ -58,11 +70,14 @@ class ListeController extends Controller
     public function edit($id)
     {
         //pour modifier une formation, on va chercher la formation dont l'id est $id et on retourne la vue de modification
-        $formation = DB::table('formations')
-        ->where('id', $id)
-        ->first();//signifie: donne moi le premier enregistrement qui correspond à la condition
+        $formation = Formation::findOrFail($id);
+        $specialites = Specialite::all();
+        $formateurs = Formateur::all();
 
-        return view('formations.edit', compact('formation'));
+        return view(
+            'formations.edit',
+            compact('formation', 'specialites', 'formateurs')
+        );
     }
 
     /**
@@ -86,13 +101,14 @@ class ListeController extends Controller
         $formation->update([
             'nom_formation' => $request->nom_formation,
             'date_debut' => $request->date_debut,
-            'ref_formation' => $request->ref_formation,
-            'statut' => $request->statut
+            'statut' => $request->statut,
+            'specialite_id' => $request->specialite_id,
+            'formateur_id' => $request->formateur_id,
         ]);
 
         //historique
         \App\Helpers\AdminHistory::add(
-            "Modification de la formation : ".$formation->nom_formation." | Référence : ".$formation->ref_formation
+            "Modification de la formation : ".$formation->nom_formation." | Référence : ".$formation->specialite->nom_specialite
         );
         return redirect()
             ->route('liste.index')
@@ -107,7 +123,7 @@ class ListeController extends Controller
         //historique
         $formation = Formation::findOrFail($id);
         \App\Helpers\AdminHistory::add(
-            "Suppression de la formation : ".$formation->nom_formation." | Référence : ".$formation->ref_formation
+            "Suppression de la formation : ".$formation->nom_formation." | Référence : ".$formation->specialite->nom_specialite
         );
 
         $formation->delete();
