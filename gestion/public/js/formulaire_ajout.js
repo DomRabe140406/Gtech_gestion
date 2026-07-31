@@ -24,6 +24,16 @@ function annulerFormFormation(){
 }
 
 
+//annulation pour formateur
+function annulerFormateur() {
+    let confirmation = confirm("Voulez-vous annuler le formulaire ?");
+
+    if (confirmation) {
+        window.location.href = "/formateurs";
+    }
+}
+
+
 function updateProgress(step)
 {
     let progress = document.getElementById("progress");

@@ -57,12 +57,7 @@
 
                 <label class="flex items-center gap-2 mb-2">
 
-                    <input
-                        type="checkbox"
-                        name="specialites[]"
-                        value="{{ $specialite->id }}"
-                        class="rounded"
-                    >
+                    <input type="checkbox" name="specialites[]" value="{{ $specialite->id }}" class="rounded">
                     {{ $specialite->nom_specialite }}
                 </label>
 
@@ -72,14 +67,12 @@
 
         <div class="flex justify-between">
 
-            <button type="button"
-                    onclick="passerEtapeFormateur(1)"
+            <button type="button" onclick="passerEtapeFormateur(1)"
                     class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition shadow dark:bg-blue-900/40 dark:text-blue-300">
                 Suivant
             </button>
 
-            <button type="button"
-                    onclick="annulerForm()"
+            <button type="button" onclick="annulerFormateur()"
                     class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl transition shadow dark:bg-red-900/40 dark:text-red-300">
                 Annuler
             </button>
@@ -95,11 +88,7 @@
                 E-mail :
             </label>
 
-            <input type="text"
-                   id="email"
-                   name="email"
-                   placeholder="jean@gmail.com"
-                   class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <input type="text" id="email" name="email" placeholder="jean@gmail.com" class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <!-- Message d'erreur en cas de champ invalide -->
             @error('email')
                 <p class="text-red-500 text-sm mt-1">
@@ -114,11 +103,7 @@
                 Téléphone :
             </label>
 
-            <input type="text"
-                   id="telephone"
-                   name="telephone"
-                   placeholder="03*******"
-                   class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <input type="text" id="telephone" name="telephone" placeholder="03*******" class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <!-- Message d'erreur en cas de champ invalide -->
             @error('telephone')
                 <p class="text-red-500 text-sm mt-1">
@@ -130,20 +115,17 @@
 
         <div class="flex justify-between pt-6">
 
-            <button type="button"
-                    onclick="etapePrecedente(2,1); updateProgress(1)"
+            <button type="button" onclick="etapePrecedente(2,1); updateProgress(1)"
                     class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition shadow dark:bg-gray-900/40 dark:text-gray-300">
                 Précédent
             </button>
 
-            <button type="button"
-                    onclick="annulerForm()"
+            <button type="button" onclick="annulerFormateur()"
                     class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl transition shadow dark:bg-red-900/40 dark:text-red-300">
                 Annuler
             </button>
 
-            <button type="button"
-                    onclick="envoyerFormulaireFormateur()"
+            <button type="button" onclick="envoyerFormulaireFormateur()"
                     class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl transition shadow dark:bg-green-900/40 dark:text-green-300">
                 Envoyer
             </button>
