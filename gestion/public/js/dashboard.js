@@ -1,5 +1,21 @@
-function Menu() {
-  document.getElementById("sidebar").classList.toggle("active");
+function Menu()
+{
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    const estOuvert = sidebar.classList.contains('translate-x-0');
+
+    if (estOuvert) {
+        // Fermer
+        sidebar.classList.remove('translate-x-0');
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+    } else {
+        // Ouvrir
+        sidebar.classList.remove('-translate-x-full');
+        sidebar.classList.add('translate-x-0');
+        overlay.classList.remove('hidden');
+    }
 }
 
 //pour le Doughnut Chart

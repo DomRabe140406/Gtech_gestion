@@ -39,7 +39,7 @@
 
         <div class="flex justify-between pt-6">
             <button type="button" onclick="etapeSuivante(1,2);updateProgressFacture(2)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2">
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2">
                 Suivant
                 <i class="fas fa-arrow-right text-sm"></i>
             </button>
@@ -88,9 +88,8 @@
                 Précédent
             </button>
 
-            <button type="button"
-                    onclick="etapeSuivante(2,3);updateProgressFacture(3)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2">
+            <button type="button" onclick="etapeSuivante(2,3);updateProgressFacture(3)"
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2">
                 Suivant
                 <i class="fas fa-arrow-right text-sm"></i>
             </button>
@@ -143,7 +142,7 @@
             </button>
 
             <button type="button" onclick="etapeSuivante(3,4);updateProgressFacture(4)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2">
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2">
                 Suivant
                 <i class="fas fa-arrow-right text-sm"></i>
             </button>

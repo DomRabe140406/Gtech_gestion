@@ -17,63 +17,128 @@
 
 <body  class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
 
-<header>
-    <nav class="flex justify-between items-center px-5 py-4 shadow dark:border-gray-700">
+<header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300 sticky top-0 z-40">
+    <nav class="flex justify-between items-center px-5 md:px-8 py-3">
 
         <div>
-            <img src="{{ asset('img/Logo.png') }}" alt="Logo"
-                class="w-28 md:w-32">
+            <!-- Logo mode clair -->
+            <img
+                src="{{ asset('img/Logo.png') }}"
+                alt="Logo"
+                class="w-28 md:w-32 block dark:hidden">
+
+            <!-- Logo mode sombre -->
+            <img
+                src="{{ asset('img/Logo-dark.png') }}"
+                alt="Logo"
+                class="w-28 md:w-32 hidden dark:block">
         </div>
 
-
-        <ul class="flex items-center gap-4 md:gap-6">
+        <ul class="flex items-center gap-3 md:gap-5">
 
             <li>
-                <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition" title="Changer de thème">
-                    <i id="iconSun" class="fa-solid fa-sun text-yellow-500 hidden dark:inline"></i>
-                    <i id="iconMoon" class="fa-solid fa-moon text-gray-600 dark:hidden"></i>
+                <button id="themeToggle" class="w-10 h-10 flex items-center 
+                        justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300" title="Changer de thème">
+                    <i id="iconSun" class="fa-solid fa-sun text-yellow-500 hidden dark:inline text-lg"></i>
+                    <i id="iconMoon" class="fa-solid fa-moon text-gray-600 dark:hidden text-lg"></i>
                 </button>
             </li>
-            <li class= "flex space-x-1">
-                <p class="font-semibold border border-gray-500 rounded-full px-3 py-1 shadow hover:shadow-md transition duration-300">
-                    {{ Auth::user()->name }}
-                    <i class="fas fa-user text-gray-500 bg-gray-200 rounded-full p-2"></i>
-                </p>
+
+            <li>
+                <div class="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50
+                            hover:shadow-md transition-shadow duration-300">
+                    <span class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-user text-sm"></i>
+                    </span>
+                    <span class="font-medium text-sm text-gray-700 dark:text-gray-200 hidden sm:inline">
+                        {{ Auth::user()->name }}
+                    </span>
+                </div>
             </li>
 
             <li>
-
-                <a href="{{ route('logout') }}"
-                class="text-xl md:text-2xl hover:text-red-500">
-
-                    <i class="fa-solid fa-right-from-bracket"></i>
-
+                <a href="{{ route('logout') }}" title="Se déconnecter"
+                   class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300
+                          hover:bg-red-50 dark:hover:bg-red-900/30 hover:text-red-500 transition-colors duration-300">
+                    <i class="fa-solid fa-right-from-bracket text-lg"></i>
                 </a>
-
             </li>
 
             <li onclick="Menu()"
-                class="text-xl md:text-2xl cursor-pointer hover:text-blue-500">
-
-                <i class="fa-solid fa-bars"></i>
-
+                class="w-10 h-10 flex items-center justify-center rounded-full cursor-pointer text-gray-600 dark:text-gray-300
+                       hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-500 transition-colors duration-300">
+                <i class="fa-solid fa-bars text-lg"></i>
             </li>
 
         </ul>
     </nav>
 </header>
 
-<div id="sidebar" class="sidebar">
-    <div class="closebtn" onclick="Menu()"><i class="fa-solid fa-xmark"></i></div>
+<div id="sidebarOverlay" onclick="Menu()" class="fixed inset-0  z-40 hidden "></div>
 
-    <a href="{{ route('dashboard') }}"> <i class="fa-solid fa-chart-line"></i> Dashboard</a>
-    <h4 class="ml-10 text-gray-300">Gestion</h4>
-    <a href="{{ route('liste.index') }}"><i class="fa-solid fa-graduation-cap"></i>  Liste Formation</a>
-    <a href="{{ route('formateurs.index') }}"> <i class="fa-solid fa-users"></i>  Liste des Formateurs</a>
-    <h4 class="ml-10 text-gray-300">Generation pdf</h4 >
-    <a href="{{ route('fiche.create') }}"><i class="fa-solid fa-calendar-days"></i>  Fiche Formation</a>
-    <a href="{{ route('proforma.create') }}"><i class="fa-solid fa-calendar-days"></i>  Generation Proforma</a>
-    <a href="{{ route('factures.create') }}"><i class="fa-solid fa-calendar-days"></i>  Generation Facture</a>
+<!-- Sidebar -->
+<div id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-gray-900 dark:bg-gray-950 text-gray-300 z-50 shadow-2xl
+                  transform -translate-x-full transition-transform duration-300 ease-in-out pt-6 overflow-y-auto">
+
+    <!-- Bouton fermer -->
+    <div onclick="Menu()"
+         class="absolute top-5 right-4 w-9 h-9 flex items-center justify-center rounded-full text-gray-400 hover:bg-red-500/15 hover:text-red-400
+                cursor-pointer transition-colors duration-200">
+        <i class="fa-solid fa-xmark text-lg"></i>
+    </div>
+
+    <div class="px-6 pb-6 mb-2 border-b border-gray-700">
+        <span class="text-white font-semibold text-lg">GASY TECH</span>
+    </div>
+
+    <nav class="flex flex-col px-3">
+
+        <a href="{{ route('dashboard') }}"
+           class="flex items-center gap-3 px-4 py-3 mx-1 my-0.5 rounded-lg hover:bg-blue-500/15 hover:text-white transition-colors duration-200">
+            <i class="fa-solid fa-chart-line w-5 text-center text-gray-500"></i>
+            Dashboard
+        </a>
+
+        <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 px-4 mt-6 mb-2">
+            Gestion
+        </p>
+
+        <a href="{{ route('liste.index') }}"
+           class="flex items-center gap-3 px-4 py-3 mx-1 my-0.5 rounded-lg hover:bg-blue-500/15 hover:text-white transition-colors duration-200">
+            <i class="fa-solid fa-graduation-cap w-5 text-center text-gray-500"></i>
+            Liste Formation
+        </a>
+
+        <a href="{{ route('formateurs.index') }}"
+           class="flex items-center gap-3 px-4 py-3 mx-1 my-0.5 rounded-lg hover:bg-blue-500/15 hover:text-white transition-colors duration-200">
+            <i class="fa-solid fa-users w-5 text-center text-gray-500"></i>
+            Liste des Formateurs
+        </a>
+
+        <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 px-4 mt-6 mb-2">
+            Génération PDF
+        </p>
+
+        <a href="{{ route('fiche.create') }}"
+           class="flex items-center gap-3 px-4 py-3 mx-1 my-0.5 rounded-lg hover:bg-blue-500/15 hover:text-white transition-colors duration-200">
+            <i class="fa-solid fa-file-lines w-5 text-center text-gray-500"></i>
+            Fiche Formation
+        </a>
+
+        <a href="{{ route('proforma.create') }}"
+           class="flex items-center gap-3 px-4 py-3 mx-1 my-0.5 rounded-lg hover:bg-blue-500/15 hover:text-white transition-colors duration-200">
+            <i class="fa-solid fa-file-invoice w-5 text-center text-gray-500"></i>
+            Génération Proforma
+        </a>
+
+        <a href="{{ route('factures.create') }}"
+           class="flex items-center gap-3 px-4 py-3 mx-1 my-0.5 rounded-lg hover:bg-blue-500/15 hover:text-white transition-colors duration-200">
+            <i class="fa-solid fa-file-invoice-dollar w-5 text-center text-gray-500"></i>
+            Génération Facture
+        </a>
+
+    </nav>
+
 </div>
 
 <main>

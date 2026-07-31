@@ -39,13 +39,13 @@
 
         <div class="flex justify-between pt-6">
             <button type="button" onclick="etapeSuivante(1,2);updateProgressFacture(2)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2">
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2">
                 Suivant
                 <i class="fas fa-arrow-right text-sm"></i>
             </button>
 
             <button type="button" onclick="annulerForm()"
-                    class="bg-gray-100 dark:bg-gray-700 hover:bg-red-500 dark:hover:bg-red-600 text-gray-600 dark:text-gray-200 hover:text-white
+                    class="bg-gray-100 dark:bg-red-900/40 hover:bg-red-500 dark:hover:bg-red-600 text-gray-600 dark:text-gray-200 hover:text-white
                            px-6 py-3 rounded-xl transition-colors duration-300">
                 Annuler
             </button>
@@ -88,7 +88,7 @@
             </button>
 
             <button type="button" onclick="etapeSuivante(2,3);updateProgressFacture(3)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition-colors duration-300
                            flex items-center gap-2">
                 Suivant
                 <i class="fas fa-arrow-right text-sm"></i>
@@ -143,7 +143,7 @@
             </button>
 
             <button type="button" onclick="etapeSuivante(3,4);updateProgressFacture(4)"
-                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500
+                    class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-900/40 dark:hover:bg-blue-500
                            text-white px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2">
                 Suivant
                 <i class="fas fa-arrow-right text-sm"></i>

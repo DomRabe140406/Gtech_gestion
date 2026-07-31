@@ -291,7 +291,17 @@
 
         <div class="flex items-center gap-3">
 
-            <img src="{{ asset('img/Logo.png') }}" class="h-10" alt="Logo">
+          <!-- Logo mode clair -->
+            <img
+                src="{{ asset('img/Logo.png') }}"
+                alt="Logo"
+                class="w-28 md:w-32 block dark:hidden">
+
+            <!-- Logo mode sombre -->
+            <img
+                src="{{ asset('img/Logo-dark.png') }}"
+                alt="Logo"
+                class="w-28 md:w-32 hidden dark:block">
 
         </div>
 
