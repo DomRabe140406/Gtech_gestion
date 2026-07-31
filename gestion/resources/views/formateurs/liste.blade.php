@@ -9,87 +9,72 @@
     <div class="flex flex-col lg:flex-row justify-between items-center gap-4 mb-8">
 
         <div>
-            <h2 class="text-2xl font-bold text-gray-700">
+            <h2 class="text-2xl font-bold text-gray-700 dark:text-gray-400">
                 Gestion des formateurs
             </h2>
-            <p class="text-gray-500 mt-1">
+            <p class="text-gray-500 mt-1 dark:text-gray-500">
                 Consultez, modifiez et supprimez les formateurs.
             </p>
         </div>
     
-        <!-- Notifications -->
-        @if(session('success'))
-            <div id="notif"
-                class="mb-6 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-md transition-all duration-500">
-
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-circle-check text-green-600 text-xl"></i>
-                    <span>{{ session('success') }}</span>
-                </div>
-            </div>
-        @endif
-
-        @if(session('error'))
-            <div id="notif"
-                class="mb-6 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-md transition-all duration-500">
-
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-circle-xmark text-red-600 text-xl"></i>
-                    <span>{{ session('error') }}</span>
-                </div>
-            </div>
-        @endif
-            
+        
         <!-- BTN AJOUT formateur -->
         <a href="{{ route('formateurs.create') }}"
-            class="inline-flex items-center gap-3
-            bg-gradient-to-r from-blue-600 to-blue-500
-            hover:from-blue-700 hover:to-blue-600
-            text-white
-            px-6 py-3
-            rounded-xl
-            shadow-lg
-            transition">
-
-            <i class="fa-solid fa-plus"></i>
-            Ajouter un formateur
+           class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600
+           text-white px-6 py-3 rounded-xl shadow-lg transition dark:text-gray-200 dark:bg-blue-900/40">
+        
+        <i class="fa-solid fa-plus "></i>
+        Ajouter un formateur
         </a>
-
-        <!-- BTN AJOUT spécialité -->
-       <button
-            type="button"
-            onclick="ouvrirPopupSpecialite()"
-            class="inline-flex items-center gap-3
-            bg-gradient-to-r from-blue-600 to-blue-500
-            hover:from-blue-700 hover:to-blue-600
-            text-white
-            px-6 py-3
-            rounded-xl
-            shadow-lg
-            transition">
-
-            <i class="fa-solid fa-plus mr-2"></i>
+    
+    <!-- BTN AJOUT spécialité -->
+        <button type="button" onclick="ouvrirPopupSpecialite()"
+                class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white
+                px-6 py-3 rounded-xl shadow-lg transition dark:bg-blue-900/40">
+    
+        <i class="fa-solid fa-plus mr-2"></i>
             Ajouter une spécialité
         </button>
 
-        <!-- BTN SUPPRIMER spécialité -->
-        <button
-            type="button"
-            onclick="ouvrirPopupSuppressionSpecialite()"
-            class="inline-flex items-center gap-3
-            bg-gradient-to-r from-red-600 to-red-500
-            hover:from-red-700 hover:to-red-600
-            text-white px-6 py-3 rounded-xl shadow-lg transition">
+    <!-- BTN SUPPRIMER spécialité -->
+        <button type="button" onclick="ouvrirPopupSuppressionSpecialite()"
+                class="inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600
+                text-white px-6 py-3 rounded-xl shadow-lg transition dark:bg-blue-900/40">
 
-            <i class="fa-solid fa-trash"></i>
-            Supprimer des spécialités
+                 <i class="fa-solid fa-trash"></i>
+                Supprimer des spécialités
         </button>
-    </div>
+</div>
 
-    <!-- CARTES -->
+<!-- Notifications -->
+    @if(session('success'))
+        <div id="notif"
+            class="mb-6 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-md transition-all duration-500">
+
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-circle-check text-green-600 text-xl"></i>
+                <span>{{ session('success') }}</span>
+            </div>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div id="notif"
+            class="mb-6 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-md transition-all duration-500">
+
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-circle-xmark text-red-600 text-xl"></i>
+                <span>{{ session('error') }}</span>
+            </div>
+        </div>
+    @endif
+
+<!-- CARTES -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
         <!-- CARTES TOTAL FORMATEURS -->
-        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition">
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition
+                    dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
+                    hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
             <div class="flex items-center gap-4">
 
@@ -98,10 +83,10 @@
                 </div>
 
                 <div>
-                    <p class="text-gray-500 text-sm">
+                    <p class="text-gray-500 text-sm dark:text-gray-500">
                         Total formateurs
                     </p>
-                    <h3 class="text-3xl font-bold">
+                    <h3 class="text-3xl font-bold dark:text-gray-500">
                         {{ $totalFormateurs }}
                     </h3>
                 </div>
@@ -143,7 +128,9 @@
                     'color' => 'text-gray-500'
                 ];
             @endphp
-            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition">
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition 
+                        dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
+                        hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
                 <div class="flex items-center gap-4">
 
@@ -152,11 +139,11 @@
                     </div>
 
                     <div>
-                        <p class="text-gray-500 text-sm">
+                        <p class="text-gray-500 text-sm dark:text-gray-500">
                             {{ $specialiteStat->nom_specialite }}
                         </p>
 
-                        <h3 class="text-3xl font-bold">
+                        <h3 class="text-3xl font-bold dark:text-gray-400">
                             {{ $specialiteStat->formateurs_count }}
                         </h3>
                     </div>
@@ -170,7 +157,8 @@
     </div>
 
     <!--  Tableau  -->
-    <div class="bg-white rounded-3xl border border-gray-200 shadow-lg p-6">
+    <div class="bg-white rounded-3xl border border-gray-200 shadow-lg p-6  dark:bg-gray-800 rounded-2xl border 
+                dark:border-gray-700 shadow-sm transition-all    duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
         <div class="flex flex-col lg:flex-row justify-between gap-4 mb-6">
             <form action="{{ route('formateurs.index') }}" method="GET" id="searchForm" class="flex flex-col md:flex-row gap-3 w-full">
                 <!-- Barre de recherche -->
@@ -202,12 +190,11 @@
                 </select>
             </form>
         </div>
-    </div>
-
-    <div class="overflow-x-auto">
+        
+        <div class="overflow-x-auto">
         <table class="w-full">
 
-            <thead class="bg-slate-100">
+            <thead class="bg-slate-100 dark:bg-gray-700">
                 <tr>
                     <th class="p-4 text-left">Spécialité(s)</th>
                     <th class="p-4 text-left">Nom</th>
@@ -220,82 +207,68 @@
             <tbody>
 
                 @foreach($formateurs as $formateur)
-
-                    <tr class="border-b border-gray-200 hover:bg-slate-50 transition duration-300">
-
-                        <td class="px-6 py-5 font-medium text-gray-700">
-                            @foreach($formateur->specialites as $specialite)
+                
+                <tr class="border-b border-gray-200 hover:bg-slate-50 transition duration-300 dark:border-gray-700
+                           hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-300">
+                    
+                    <td class="px-6 py-5 font-medium text-gray-700 dark:text-gray-300">
+                        @foreach($formateur->specialites as $specialite)
                                 <span>{{ $specialite->nom_specialite }}</span><br>
                             @endforeach
                         </td>
                         <!-- Nom -->
                         <td class="px-6 py-5">
                             <div class="flex items-center gap-3">
-                                <div class="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center">
+                                <div class="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center dark:bg-blue-900/40">
                                     <i class="fa-solid fa-user text-blue-600"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-800">
+                                    <h3 class="font-semibold text-gray-800 dark:text-gray-300">
                                         {{ $formateur->nom_formateur }}
                                     </h3>
                                 </div>
                             </div>
                         </td>
-
+                        
                         <td class="px-6 py-5">
                             {{ $formateur->prenom_formateur }}
                         </td>
                         
                         <td class="px-4 py-2">
-
+                            
                             @if($formateur->email)
                                 <div><i class="fa-regular fa-envelope"></i> {{ $formateur->email }}</div>
-                            @endif
+                                @endif
 
                             @if($formateur->telephone)
-                                <div><i class="fa-solid fa-phone"></i> {{ $formateur->telephone }}</div>
+                            <div><i class="fa-solid fa-phone"></i> {{ $formateur->telephone }}</div>
                             @endif
 
                         </td>
-
+                        
                         <td class="px-6 py-5">
-
+                            
                             <div class="flex justify-center gap-4">
-
+                                
                                 {{-- MODIFIER --}}
                                 <a href="{{ route('formateurs.edit', $formateur->id) }}"
-                                  class="w-10 h-10 rounded-full
-                                        bg-blue-100
-                                        text-blue-600
-                                        hover:bg-blue-600
-                                        hover:text-white
-                                        transition
-                                        duration-300
-                                        flex items-center justify-center">
+                                  class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white
+                                        transition duration-300 flex items-center justify-center dark:bg-blue-900/40">
 
                                     <i class="fa-solid fa-pen"></i>
 
                                 </a>
 
                                 {{-- SUPPRIMER --}}
-                                <form action="{{ route('formateurs.destroy', $formateur->id) }}"
-                                      method="POST"
-                                      onsubmit="return confirm('Supprimer ce formateur ?')">
+                                <form action="{{ route('formateurs.destroy', $formateur->id) }}" method="POST" onsubmit="return confirm('Supprimer ce formateur ?')">
 
                                     @csrf
 
                                     @method('DELETE')
-
-                                    <button type="submit"
-                                            style="cursor: pointer;"
-                                            class="w-10 h-10 rounded-full
-                                            bg-red-100
-                                            text-red-600
-                                            hover:bg-red-600
-                                            hover:text-white
-                                            transition
-                                            duration-300
-                                            flex items-center justify-center">
+                                    
+                                    <button type="submit" style="cursor: pointer;"
+                                            class="w-10 h-10 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition duration-300
+                                            flex items-center justify-center dark:bg-red-900/40">
 
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
@@ -311,7 +284,7 @@
 </div>
 
 @if($formateurs->count() == 0)
-    <div class="py-16 text-center">
+<div class="py-16 text-center">
         <div class="w-24 h-24 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
             <i class="fa-solid fa-folder-open text-4xl text-gray-400"></i>
         </div>
@@ -322,10 +295,11 @@
             Essayez une autre recherche ou ajoutez un nouveau formateur.
         </p>
     </div>
-@endif
-
-<!--  Pagination  -->
-@if($formateurs->hasPages())
+    @endif
+    
+</div>
+    <!--  Pagination  -->
+    @if($formateurs->hasPages())
     <div class="mt-8 flex justify-center">
         {{ $formateurs->links() }}
     </div>

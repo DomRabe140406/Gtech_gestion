@@ -8,13 +8,13 @@
 
 <div class="text-center mt-8 ">
 
-    <h1 class="text-2xl md:text-4xl font-bold text-gray-700 tracking-tight">
+    <h1 class="text-2xl md:text-4xl font-bold text-gray-700 tracking-tight dark:text-gray-400">
 
         Tableau de bord administrateur
 
     </h1>
 
-    <p class="mt-3 text-gray-500 text-base md:text-lg">
+    <p class="mt-3 text-gray-500 text-base md:text-lg dark:text-gray-500">
         Consultez les statistiques et l'historique des activités de la plateforme.
     </p>
 
@@ -27,84 +27,78 @@
 
         <!-- Formateurs -->
         <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm
-                   p-5 transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-xl
-                   hover:border-blue-300">
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                   hover:border-blue-300 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
+               hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
             <div class="flex items-center justify-between mb-3">
-                <i class="fas fa-chalkboard-teacher text-blue-500 text-xl"></i>
+                <i class="fas fa-chalkboard-teacher text-blue-500 text-xl dark:text-blue-400 text-xl"></i>
             </div>
 
-            <p class="text-2xl font-bold text-gray-800">
+            <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
                 {{ $totalFormateurs ?? 0 }}
             </p>
 
-            <p class="text-sm text-gray-500 mt-1">
+            <p class="text-sm text-gray-500 mt-1 dark:text-gray-400 mt-1">
                 Formateurs
             </p>
 
         </div>
 
         <!-- Factures -->
-        <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm
-                   p-5 transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-xl
-                   hover:border-orange-300">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                hover:border-orange-300 dark:hover:border-orange-500">
 
             <div class="flex items-center justify-between mb-3">
-                <i class="fas fa-file-invoice-dollar text-orange-500 text-xl"></i>
+                <i class="fas fa-file-invoice-dollar text-orange-500 dark:text-orange-400 text-xl"></i>
             </div>
 
-            <p class="text-2xl font-bold text-gray-800">
+            <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
                 {{ $totalFactures ?? 0 }}
             </p>
 
-            <p class="text-sm text-gray-500 mt-1">
-                Factures téléchargées <span class="text-gray-400">(ce mois)</span>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 ">
+                Factures téléchargées <span class="text-gray-400 dark:text-gray-500">(ce mois)</span>
             </p>
 
         </div>
 
         <!-- Proforma -->
         <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm
-                   p-5 transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-xl
-                   hover:border-purple-300">
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                   hover:border-purple-300 dark:bg-gray-800 rounded-2xl dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                   hover:border-purple-300 dark:hover:border-purple-500">
 
             <div class="flex items-center justify-between mb-3">
-                <i class="fas fa-file-signature text-purple-500 text-xl"></i>
+                <i class="fas fa-file-signature text-purple-500 text-xl dark:text-purple-400 text-xl"></i>
             </div>
 
-            <p class="text-2xl font-bold text-gray-800">
+            <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
                 {{ $totalProforma ?? 0 }}
             </p>
 
             <p class="text-sm text-gray-500 mt-1">
-                Proforma téléchargées <span class="text-gray-400">(ce mois)</span>
+                Proforma téléchargées <span class="text-gray-400 dark:text-gray-500">(ce mois)</span>
             </p>
 
         </div>
 
         <!-- Fiches téléchargées -->
         <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm
-                   p-5 transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-xl
-                   hover:border-green-300">
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                   hover:border-green-300 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
+                   hover:-translate-y-1 hover:shadow-xl hover:border-green-300 dark:hover:border-green-500">
 
             <div class="flex items-center justify-between mb-3">
-                <i class="fas fa-download text-green-500 text-xl"></i>
+                <i class="fas fa-download text-green-500 text-xl dark:text-green-400 text-xl"></i>
             </div>
 
-            <p class="text-2xl font-bold text-gray-800">
+            <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
                 {{ $totalFiches ?? 0 }}
             </p>
 
-            <p class="text-sm text-gray-500 mt-1">
-                Fiches téléchargées <span class="text-gray-400">(ce mois)</span>
+            <p class="text-sm text-gray-500 mt-1 dark:text-gray-400 mt-1">
+                Fiches téléchargées <span class="text-gray-400 dark:text-gray-500">(ce mois)</span>
             </p>
 
         </div>
@@ -120,12 +114,11 @@
         <!-- Evolution -->
 
         <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm
-                   p-6 transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-xl
-                   hover:border-blue-300">
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                   hover:border-blue-300 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-6 transition-all duration-300
+                   hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
-            <h2 class="text-xl font-semibold text-gray-800 mb-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-6 dark:text-gray-100 mb-6">
                 Evolution du nombre de formations
             </h2>
 
@@ -137,9 +130,8 @@
 
                 <button
                     id="btnPrev"
-                    class="w-11 h-11 rounded-full bg-slate-100
-                           hover:bg-blue-500 hover:text-white
-                           transition duration-300 shadow">
+                    class="w-11 h-11 rounded-full bg-slate-100 hover:bg-blue-500 hover:text-white transition duration-300 shadow dark:bg-gray-700
+                           hover:bg-blue-500 hover:text-white dark:text-gray-200 dark:hover:bg-blue-500 dark:hover:text-white transition duration-300 shadow">
 
                     <i class="fas fa-chevron-left"></i>
 
@@ -147,8 +139,8 @@
 
                 <button
                     id="btnNext"
-                    class="w-11 h-11 rounded-full bg-slate-100
-                           hover:bg-blue-500 hover:text-white
+                    class="w-11 h-11 rounded-full bg-slate-100 hover:bg-blue-500 hover:text-white transition duration-300 shadow dark:bg-gray-700
+                           hover:bg-blue-500 hover:text-white dark:text-gray-200 dark:hover:bg-blue-500 dark:hover:text-white
                            transition duration-300 shadow">
 
                     <i class="fas fa-chevron-right"></i>
@@ -162,12 +154,11 @@
         <!-- Doughnut -->
 
         <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm
-                   p-6 transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-xl
-                   hover:border-blue-300">
+            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                   hover:border-blue-300 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-6 transition-all duration-300
+                   hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
-            <h2 class="text-xl font-semibold text-gray-800 mb-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-6 dark:text-gray-100 mb-6">
                 Répartition des formations
             </h2>
 
@@ -184,18 +175,16 @@
     <!-- tableau des historiques -->
 <!-- tableau des historiques -->
 
-<div
-    class="mt-8 bg-white rounded-2xl border border-gray-200
-           shadow-sm transition-all duration-300
-           hover:shadow-xl hover:border-blue-300">
+<div class="mt-8 bg-white rounded-2xl border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-300
+            dark:bg-gray-800 rounded-2xl border dark:border-gray-700 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
-    <div class="px-6 py-5 border-b border-gray-200">
+    <div class="px-6 py-5 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
 
-        <h2 class="text-2xl font-semibold text-gray-800">
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">
             Historique des actions
         </h2>
 
-        <p class="text-sm text-gray-500 mt-1">
+        <p class="text-sm text-gray-500 mt-1 dark:text-gray-400 mt-1">
             Toutes les opérations réalisées sur la plateforme.
         </p>
 
@@ -207,19 +196,19 @@
 
         <table class="w-full">
 
-            <thead class="bg-slate-50">
+            <thead class="bg-slate-50 dark:bg-gray-700">
 
                 <tr>
 
-                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">
+                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
                         Date
                     </th>
 
-                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">
+                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
                         Action
                     </th>
 
-                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">
+                    <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
                         Type
                     </th>
 
@@ -237,40 +226,39 @@
                         if (str_contains($msg, 'connexion')) {
                             $typeLabel = 'Connexion';
                             $icon = 'fa-right-to-bracket';
-                            $color = 'text-green-600';
-                            $badgeBg = 'bg-green-100';
-                            $badgeText = 'text-green-700';
+                            $color = 'text-green-600 dark:text-green-400';
+                            $badgeBg = 'bg-green-100 dark:bg-green-900/40';
+                            $badgeText = 'text-green-700 dark:text-green-300';
                         } elseif (str_contains($msg, 'suppress') || str_contains($msg, 'supprim')) {
                             $typeLabel = 'Suppression';
                             $icon = 'fa-trash';
-                            $color = 'text-red-600';
-                            $badgeBg = 'bg-red-100';
-                            $badgeText = 'text-red-700';
+                            $color = 'text-red-600 dark:text-red-400';
+                            $badgeBg = 'bg-red-100 dark:bg-red-900/40';
+                            $badgeText = 'text-red-700 dark:text-red-300';
                         } elseif (str_contains($msg, 'créat') || str_contains($msg, 'ajout') || str_contains($msg, 'création')) {
                             $typeLabel = 'Création';
                             $icon = 'fa-file-circle-plus';
-                            $color = 'text-blue-600';
-                            $badgeBg = 'bg-blue-100';
-                            $badgeText = 'text-blue-700';
+                            $color = 'text-blue-600 dark:text-blue-400';
+                            $badgeBg = 'bg-blue-100 dark:bg-blue-900/40';
+                            $badgeText = 'text-blue-700vdark:text-blue-300 ';
                         } else {
                             $typeLabel = 'Autre';
                             $icon = 'fa-pen';
-                            $color = 'text-gray-500';
-                            $badgeBg = 'bg-gray-100';
-                            $badgeText = 'text-gray-600';
+                            $color = 'text-gray-500 dark:text-gray-400';
+                            $badgeBg = 'bg-gray-100 dark:bg-gray-700';
+                            $badgeText = 'text-gray-600 dark:text-gray-300';
                         }
                     @endphp
 
                     <tr
-                        class="border-t border-gray-200
-                               hover:bg-blue-50
-                               transition duration-300">
+                        class="border-t border-gray-200 hover:bg-blue-50 transition duration-300 dark:border-gray-700
+                               hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-300">
 
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-600">
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-300">
                             {{ $item['time'] }}
                         </td>
 
-                        <td class="px-6 py-4 text-gray-700">
+                        <td class="px-6 py-4 text-gray-700 dark:text-gray-200">
                             <i class="fa-solid {{ $icon }} {{ $color }} mr-2"></i>
                             {{ $item['message'] }}
                         </td>
@@ -292,8 +280,8 @@
         @else
 
         <div class="py-16 text-center">
-            <i class="fa-solid fa-clock-rotate-left text-5xl text-gray-300 mb-4"></i>
-            <p class="text-gray-500 text-lg">
+            <i class="fa-solid fa-clock-rotate-left text-5xl text-gray-300 mb-4 dark:text-gray-600 mb-4"></i>
+            <p class="text-gray-500 text-lg dark:text-gray-400 text-lg">
                 Aucun historique disponible.
             </p>
         </div>
@@ -307,21 +295,19 @@
 </div>    
 <footer class="mt-12 bg-white border-t border-gray-200">
 
-    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col lg:flex-row justify-between items-center gap-6">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col lg:flex-row justify-between items-center gap-6 dark:bg-gray-800">
 
         <div class="flex items-center gap-3">
 
-            <img src="{{ asset('img/Logo.png') }}"
-                 class="h-10"
-                 alt="Logo">
+            <img src="{{ asset('img/Logo.png') }}" class="h-10" alt="Logo">
 
             <div>
 
-                <h3 class="font-bold text-gray-700">
+                <h3 class="font-bold text-gray-700 dark:text-gray-100">
                     GASY TECH
                 </h3>
 
-                <p class="text-sm text-gray-500">
+                <p class="text-sm text-gray-500 dark:text-gray-100">
                     Gestion intelligente des formations
                 </p>
 
@@ -331,10 +317,10 @@
 
         <div class="text-center">
 
-            <p class="text-gray-500 text-sm">
+            <p class="text-gray-500 text-sm dark:text-gray-100">
 
                 © {{ date('Y') }}
-                <span class="font-semibold text-gray-700">
+                <span class="font-semibold text-gray-700 dark:text-gray-100">
                     GASY TECH
                 </span>
 

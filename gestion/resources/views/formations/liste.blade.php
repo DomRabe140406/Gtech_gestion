@@ -10,121 +10,125 @@
     <div class="flex flex-col lg:flex-row justify-between items-center gap-4 mb-8">
 
         <div>
-            <h2 class="text-2xl font-bold text-gray-700">
+            <h2 class="text-2xl font-bold text-gray-700 dark:text-gray-400">
                 Gestion des formations
             </h2>
-            <p class="text-gray-500 mt-1">
+            <p class="text-gray-500 mt-1 dark:text-gray-500">
                 Consultez, modifiez et supprimez les formations.
             </p>
         </div>
     
-        <!-- Notifications -->
-        {{-- Notifications --}}
-
-        @if(session('success'))
-            <div id="notif"
-                class="mb-6 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-md transition-all duration-500">
-
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-circle-check text-green-600 text-xl"></i>
-                    <span>{{ session('success') }}</span>
-                </div>
-            </div>
-        @endif
-
-        @if(session('error'))
-            <div id="notif"
-                class="mb-6 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-md transition-all duration-500">
-
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-circle-xmark text-red-600 text-xl"></i>
-                    <span>{{ session('error') }}</span>
-                </div>
-            </div>
-        @endif
-            
+        
         <!-- BTN AJOUT de formation -->
-        <a href="{{ route('formations.create') }}"
-            class="inline-flex items-center gap-3
-            bg-gradient-to-r from-blue-600 to-blue-500
-            hover:from-blue-700 hover:to-blue-600
-            text-white
-            px-6 py-3
-            rounded-xl
-            shadow-lg
-            transition">
+        <a href="{{ route('formations.create') }}" class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600
+        text-white px-6 py-3 rounded-xl shadow-lg transition dark:text-gray-200 dark:bg-blue-900/40">
+        
+        <i class="fa-solid fa-plus dark:text-gray-200"></i>
+        Ajouter une formation
+    </a>
+</div>
 
-            <i class="fa-solid fa-plus"></i>
-            Ajouter une formation
-        </a>
-    </div>
+<!-- Notifications -->
+    {{-- Notifications --}}
 
-    <!-- CARTES -->
+    @if(session('success'))
+        <div id="notif"
+            class="mb-6 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-green-700 shadow-md transition-all duration-500">
+
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-circle-check text-green-600 text-xl"></i>
+                <span>{{ session('success') }}</span>
+            </div>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div id="notif"
+            class="mb-6 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-red-700 shadow-md transition-all duration-500">
+
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-circle-xmark text-red-600 text-xl"></i>
+                <span>{{ session('error') }}</span>
+            </div>
+        </div>
+    @endif
+
+<!-- CARTES -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+        <!-- CARTES TOTALES FORMATIONS-->
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition
+                        dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
+                        hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
-        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition">
+                <div class="flex items-center gap-4">
 
-            <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-blue-100 flex justify-center items-center  dark:bg-blue-900/40">
+                        <i class="fa-solid fa-graduation-cap text-blue-600 text-2xl dark:text-blue-400 text-xl"></i>
+                    </div>
 
-                <div class="w-16 h-16 rounded-full bg-blue-100 flex justify-center items-center">
-                    <i class="fa-solid fa-graduation-cap text-blue-600 text-2xl"></i>
-                </div>
-
-                <div>
-                    <p class="text-gray-500 text-sm">
-                        Total formations
-                    </p>
-                    <h3 class="text-3xl font-bold">
-                        {{ $totalFormations }}
-                    </h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition">
-
-            <div class="flex items-center gap-4">
-
-                <div class="w-16 h-16 rounded-full bg-blue-50 flex justify-center items-center">
-                    <i class="fa-solid fa-user-plus text-blue-500 text-2xl"></i>
-                </div>
-                <div>
-                    <p class="text-gray-500 text-sm">
-                        En inscription
-                    </p>
-                    <h3 class="text-3xl font-bold">
-                        {{ $formationsInscription }}
-                    </h3>
+                    <div>
+                        <p class="text-gray-500 text-sm dark:text-gray-100">
+                            Total formations
+                        </p>
+                        <h3 class="text-3xl font-bold dark:text-gray-100">
+                            {{ $totalFormations }}
+                        </h3>
+                    </div>
                 </div>
             </div>
-        </div>
+        <!-- CARTES TOTALES EN INSCRIPTION-->
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition
+                        dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
+                        hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
-        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition">
-            <div class="flex items-center gap-4">
-                <div class="w-16 h-16 rounded-full bg-orange-100 flex justify-center items-center">
-                    <i class="fa-solid fa-spinner text-orange-500 text-2xl"></i>
-                </div>
-                <div>
-                    <p class="text-gray-500 text-sm">
-                        En cours
-                    </p>
-                    <h3 class="text-3xl font-bold">
-                        {{ $formationsEnCours }}
-                    </h3>
+                <div class="flex items-center gap-4">
+
+                    <div class="w-16 h-16 rounded-full bg-blue-50 flex justify-center items-center  dark:bg-blue-900/40">
+                        <i class="fa-solid fa-user-plus text-blue-500 text-2xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm dark:text-gray-100">
+                            En inscription
+                        </p>
+                        <h3 class="text-3xl font-bold">
+                            {{ $formationsInscription }}
+                        </h3>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition">
+        <!-- CARTES TOTALES EN COURS-->
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition
+                        dark:bg-gray-800 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                        hover:border-orange-300 dark:hover:border-orange-500">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-orange-100 flex justify-center items-center  dark:bg-orange-900/40">
+                        <i class="fa-solid fa-spinner text-orange-500 text-2xl dark:text-orange-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm dark:text-gray-100">
+                            En cours
+                        </p>
+                        <h3 class="text-3xl font-bold dark:text-gray-100">
+                            {{ $formationsEnCours }}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+    <!-- CARTES TOTALES TERMINEES-->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 hover:-translate-y-1 hover:shadow-xl transition 
+                    dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
+                    hover:-translate-y-1 hover:shadow-xl hover:border-green-300 dark:hover:border-green-500">
             <div class="flex items-center gap-4">
-                <div class="w-16 h-16 rounded-full bg-green-100 flex justify-center items-center">
+                <div class="w-16 h-16 rounded-full bg-green-100 flex justify-center items-center  dark:bg-green-900/40">
                     <i class="fa-solid fa-circle-check text-green-600 text-2xl"></i>
                 </div>
                 <div>
-                    <p class="text-gray-500 text-sm">
+                    <p class="text-gray-500 text-sm dark:text-gray-100">
                         Terminées
                     </p>
-                    <h3 class="text-3xl font-bold">
+                    <h3 class="text-3xl font-bold dark:text-gray-100">
                         {{ $formationsTerminees }}
                     </h3>
                 </div>
@@ -133,11 +137,10 @@
     </div>
 
     <!--  Tableau  -->
-    <div class="bg-white rounded-3xl border border-gray-200 shadow-lg p-6">
+    <div class="bg-white rounded-3xl border border-gray-200 shadow-lg p-6  dark:bg-gray-800 rounded-2xl border 
+                dark:border-gray-700 shadow-sm transition-all    duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
         <div class="flex flex-col lg:flex-row justify-between gap-4 mb-6">
-            <form action="{{ route('formations.index') }}"
-                    method="GET"
-                    id="searchForm"
+            <form action="{{ route('formations.index') }}" method="GET" id="searchForm"
                     class="flex flex-col md:flex-row gap-3 w-full">
 
                 <div class="relative w-full md:w-96">
@@ -172,7 +175,7 @@
 
         <div class="overflow-x-auto">
             <table class="w-full">
-                <thead class="bg-slate-100">
+                <thead class="bg-slate-100  dark:bg-gray-700">
                     <tr>
                         <th class="px-6 py-4 text-left">Référence</th>
                         <th class="px-6 py-4 text-left">Formation</th>
@@ -182,20 +185,21 @@
                 </thead>
                 <tbody>
                     @foreach($formations as $formation)
-                    <tr class="border-b border-gray-200 hover:bg-slate-50 transition duration-300">
+                    <tr class="border-b border-gray-200 hover:bg-slate-50 transition duration-300 dark:border-gray-700
+                               hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-300">
                         <!-- Référence -->
-                        <td class="px-6 py-5 font-medium text-gray-700">
+                        <td class="px-6 py-5 font-medium text-gray-700 dark:text-gray-300">
                             {{ $formation->ref_formation }}
                         </td>
 
                         <!-- Nom -->
                         <td class="px-6 py-5">
                             <div class="flex items-center gap-3">
-                                <div class="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center">
-                                    <i class="fa-solid fa-graduation-cap text-blue-600"></i>
+                                <div class="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center  dark:bg-green-900/40">
+                                    <i class="fa-solid fa-graduation-cap text-blue-600  "></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-800">
+                                    <h3 class="font-semibold text-gray-800 dark:text-gray-300">
                                         {{ $formation->nom_formation }}
                                     </h3>
                                 </div>
@@ -206,8 +210,8 @@
                         <td class="px-6 py-5">
                             @switch($formation->statut)
                                 @case('en_inscription')
-                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
-                                        <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold dark:bg-green-900/40 dark:text-blue-400">
+                                        <span class="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-900/40 dark:text-green-400"></span>
                                         En inscription
                                     </span>
                                 @break
@@ -220,8 +224,8 @@
                                 @break
 
                                 @case('termine')
-                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
-                                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-700 text-sm font-semibold dark:bg-green-900/40">
+                                        <span class="w-2 h-2 rounded-full bg-green-500 dark:bg-green-900/40 dark:text-green-300" ></span>
                                         Terminée
                                     </span>
                                 @break
@@ -239,14 +243,8 @@
                             <div class="flex justify-center items-center gap-3">
                                 <!-- Modifier -->
                                 <a href="{{ route('liste.edit',$formation->id) }}"
-                                    class="w-10 h-10 rounded-full
-                                        bg-blue-100
-                                        text-blue-600
-                                        hover:bg-blue-600
-                                        hover:text-white
-                                        transition
-                                        duration-300
-                                        flex items-center justify-center">
+                                    class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300
+                                        flex items-center justify-center  dark:bg-blue-900/40">
 
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
@@ -260,14 +258,8 @@
                                     @method('DELETE')
 
                                     <button
-                                        class="w-10 h-10 rounded-full
-                                            bg-red-100
-                                            text-red-600
-                                            hover:bg-red-600
-                                            hover:text-white
-                                            transition
-                                            duration-300
-                                            flex items-center justify-center">
+                                        class="w-10 h-10 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition duration-300
+                                               flex items-center justify-center  dark:bg-red-900/40">
 
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
@@ -284,10 +276,10 @@
 
 @if($formations->count() == 0)
     <div class="py-16 text-center">
-        <div class="w-24 h-24 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
+        <div class="w-24 h-24 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6  dark:bg-gray-900/40">
             <i class="fa-solid fa-folder-open text-4xl text-gray-400"></i>
         </div>
-        <h2 class="text-2xl font-semibold text-gray-700">
+        <h2 class="text-2xl font-semibold text-gray-700 ">
             Aucune formation trouvée
         </h2>
         <p class="text-gray-500 mt-2">

@@ -4,15 +4,11 @@
 
 @section('content')
 @include('layouts.notification')
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-6">
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 p-6">
 
-<form id="form_principale"
-      action="{{ route('formations.store') }}"
-      method="POST"
-      class="bg-white shadow-2xl rounded-3xl p-5 w-full max-w-2xl transition-all">
-      
-
-    @csrf
+<form id="form_principale" action="{{ route('formations.store') }}" method="POST"
+      class="bg-white shadow-2xl rounded-3xl p-5 w-full max-w-2xl transition-all ">
+      @csrf
 
     <!-- ETAPE 1 -->
     <div id="etape1" class="etape active space-y-5">
@@ -23,10 +19,7 @@
 
         <div>
             <label for="Ref_formation" class="block mb-1 font-medium text-gray-600">Référence:</label>
-            <input type="text"
-                   name="ref_formation"
-                    id="Ref_formation"
-                    placeholder="Référence de la formation"
+            <input type="text" name="ref_formation" id="Ref_formation" placeholder="Référence de la formation"
                    class="w-full border border-gray-300 rounded-xl p-5 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <!-- Message d'erreur en cas de champ invalide -->
             @error('ref_formation')
@@ -39,10 +32,7 @@
 
         <div>
             <label for="Nom_formation" class="block mb-1 font-medium text-gray-600">Nom formation:</label>
-            <input type="text"
-                   name="nom_formation"
-                    id="Nom_formation"
-                    placeholder="Nom de la formation"
+            <input type="text" name="nom_formation" id="Nom_formation" placeholder="Nom de la formation"
                    class="w-full border border-gray-300 rounded-xl p-5 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <!-- Message d'erreur en cas de champ invalide -->
             @error('nom_formation')
@@ -55,9 +45,7 @@
 
         <div>
             <label class="block mb-1 font-medium text-gray-600" for="Date">Date de début:</label>
-            <input type="date"
-                    id="Date"
-                   name="date"
+            <input type="date" id="Date" name="date"
                    class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <!-- Message d'erreur en cas de champ invalide -->
             @error('date')
@@ -70,11 +58,7 @@
 
         <div>
             <label class="block mb-1 font-medium text-gray-600" for="Nb_j">Nombre de jours:</label>
-            <input type="number"
-                   name="capacite"
-                   min="1"
-                   id="Nb_j"
-                   value="5"
+            <input type="number" name="capacite" min="1" id="Nb_j" value="5"
                    class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <!-- Message d'erreur en cas de champ invalide -->
             @error('capacite')
@@ -104,14 +88,12 @@
 
         <div class="flex justify-between">
 
-            <button type="button"
-                    onclick="passerEtape(1)"
+            <button type="button" onclick="passerEtape(1)"
                     class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition shadow">
                 Suivant
             </button>
 
-            <button type="button"
-                    onclick="annulerForm()"
+            <button type="button" onclick="annulerForm()"
                     class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl transition shadow">
                 Annuler
             </button>
@@ -131,10 +113,7 @@
                 Nombre de participant
             </label>
 
-            <input type="number"
-                   id="Nb_participant"
-                   name="nb_participant"
-                   value="20"
+            <input type="number" id="Nb_participant" name="nb_participant" value="20"
                    class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <!-- Message d'erreur en cas de champ invalide -->
             @error('nb_participant')
@@ -147,14 +126,12 @@
 
         <div class="flex justify-between pt-6">
 
-            <button type="button"
-                    onclick="etapePrecedente(2,1); updateProgress(1)"
+            <button type="button" onclick="etapePrecedente(2,1); updateProgress(1)"
                     class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition shadow">
                 Précédent
             </button>
 
-            <button type="button"
-                    onclick="passerEtape(2)"
+            <button type="button" onclick="passerEtape(2)"
                     class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition shadow">
                 Suivant
             </button>
@@ -175,8 +152,7 @@
                 Nom formateur
             </label>
 
-            <input type="text"
-                   name="nom_formateur"
+            <input type="text" name="nom_formateur"
                    class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
         </div>
 
@@ -185,15 +161,13 @@
                 Prénom formateur
             </label>
 
-            <input type="text"
-                   name="prenom_formateur"
+            <input type="text" name="prenom_formateur"
                    class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
         </div>
 
         <div class="flex justify-between pt-6">
 
-            <button type="button"
-                    onclick="etapePrecedente(3,2); updateProgress(2)"
+            <button type="button" onclick="etapePrecedente(3,2); updateProgress(2)"
                     class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-xl transition shadow">
                 Précédent
             </button>
@@ -211,8 +185,7 @@
 
         <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
             <div id="progress"
-                 class="bg-blue-500 h-3 rounded-full transition-all duration-500"
-                 style="width: 33%;">
+                 class="bg-blue-500 h-3 rounded-full transition-all duration-500" style="width: 33%;">
             </div>
         </div>
         <div class="flex justify-between  text-sm mt-3 text-gray-500 px-1">
@@ -223,7 +196,5 @@
 
     </div>
 </form>
-
 </div>
-
 @endsection

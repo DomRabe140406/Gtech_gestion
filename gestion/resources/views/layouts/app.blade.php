@@ -3,6 +3,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
+     <script>
+        if (localStorage.getItem('theme') === 'dark' ||(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
@@ -10,10 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
-<body>
+<body  class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
 
 <header>
-    <nav class="flex justify-between items-center px-5 py-4 shadow">
+    <nav class="flex justify-between items-center px-5 py-4 shadow dark:border-gray-700">
 
         <div>
             <img src="{{ asset('img/Logo.png') }}" alt="Logo"
@@ -23,6 +28,12 @@
 
         <ul class="flex items-center gap-4 md:gap-6">
 
+            <li>
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition" title="Changer de thème">
+                    <i id="iconSun" class="fa-solid fa-sun text-yellow-500 hidden dark:inline"></i>
+                    <i id="iconMoon" class="fa-solid fa-moon text-gray-600 dark:hidden"></i>
+                </button>
+            </li>
             <li class= "flex space-x-1">
                 <p class="font-semibold border border-gray-500 rounded-full px-3 py-1 shadow hover:shadow-md transition duration-300">
                     {{ Auth::user()->name }}
@@ -87,6 +98,14 @@
                 setTimeout(() => notif.remove(), 500);
             }, 3000); // disparaît après 3 secondes
         }
+    });
+
+    document.getElementById('themeToggle')?.addEventListener('click', function () {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem(
+        'theme',
+        document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+        );
     });
 </script>
 @yield('scripts')
