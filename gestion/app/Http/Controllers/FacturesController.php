@@ -133,6 +133,7 @@ class FacturesController extends Controller
             // Enregistrement du téléchargement pour les stats du dashboard
               FactureDownload::create([
               'client_nom' => $client,
+               'montant' => $total,
                'user_id' => auth()->id(),
               'downloaded_at' => now(),
           ]);

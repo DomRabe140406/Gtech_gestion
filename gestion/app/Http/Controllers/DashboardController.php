@@ -58,7 +58,9 @@ class DashboardController extends Controller
         $totalFiches = FicheDownload::whereMonth('downloaded_at', now()->month)
             ->whereYear('downloaded_at', now()->year)
             ->count();
-
+        $chiffreAffaires = FactureDownload::whereMonth('downloaded_at', now()->month)
+        ->whereYear('downloaded_at', now()->year)
+        ->sum('montant');
         // Comparaison des valeurs avec ceux du mois derniers
 
         $moisDernier = now()->subMonth();
@@ -91,7 +93,22 @@ class DashboardController extends Controller
         ->whereYear('created_at', $moisDernier->year)
         ->count();
 
+        $chiffreAffairesMoisDernier = FactureDownload::whereMonth('downloaded_at', $moisDernier->month)
+        ->whereYear('downloaded_at', $moisDernier->year)
+        ->sum('montant');
         
+        $prochaineFormation = Formation::where('date_debut', '>=', now())
+        ->orderBy('date_debut', 'asc')
+        ->first();
+
+        $joursRestants = null;
+        if ($prochaineFormation) {
+            $joursRestants = now()->startOfDay()->diffInDays(
+                Carbon::parse($prochaineFormation->date_debut)->startOfDay(),
+                false
+            );
+        }
+        $ecartChiffreAffaires = $chiffreAffaires - $chiffreAffairesMoisDernier;
         $ecartFormations = $formationsCeMois - $formationsMoisDernier;
         $ecartFormateurs = $formateursCeMois - $formateursMoisDernier;
         $ecartFactures = $totalFactures - $facturesMoisDernier;
@@ -149,7 +166,11 @@ class DashboardController extends Controller
             'ecartFactures',
             'ecartProforma',
             'ecartFiches',
-            'ecartFormations'
+            'ecartFormations',
+            'chiffreAffaires',
+            'ecartChiffreAffaires',
+            'prochaineFormation',
+            'joursRestants'
         ));
     }
     /**

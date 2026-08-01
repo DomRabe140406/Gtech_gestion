@@ -197,6 +197,110 @@
 
                     </div>
                 </a>
+                <!-- chIFFRE D'affaire n'augmente que lors de telechargement de facture et non une apperçue  -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                      hover:border-green-400 dark:hover:border-green-600">
+
+                    <div class="flex items-center justify-between mb-3">
+                        <i class="fas fa-sack-dollar text-green-700 dark:text-green-500 text-xl"></i>
+                    </div>
+
+                    <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                        {{ number_format($chiffreAffaires ?? 0, 0, ',', ' ') }} Ar
+                    </p>
+
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        Chiffre d'affaires <span class="text-gray-400 dark:text-gray-500">(ce mois)</span>
+                    </p>
+
+                    @if($ecartChiffreAffaires > 0)
+                        <p class="text-xs text-green-700 dark:text-green-500 mt-2 flex items-center gap-1">
+                            <i class="fas fa-arrow-up"></i> +{{ number_format($ecartChiffreAffaires, 0, ',', ' ') }} Ar vs mois dernier
+                        </p>
+                    @elseif($ecartChiffreAffaires < 0)
+                        <p class="text-xs text-red-500 dark:text-red-400 mt-2 flex items-center gap-1">
+                            <i class="fas fa-arrow-down"></i> {{ number_format($ecartChiffreAffaires, 0, ',', ' ') }} Ar vs mois dernier
+                        </p>
+                    @else
+                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                            Stable vs mois dernier
+                        </p>
+                    @endif
+
+                </div>
+
+                <!-- Date de la prochaine formation  -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700
+                        shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                        hover:border-indigo-300 dark:hover:border-indigo-500
+                        md:col-span-2">
+
+                        @if($prochaineFormation)
+
+                                    <div class="flex items-center justify-between">
+
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/40
+                                                flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-calendar-check text-indigo-600 dark:text-indigo-400 text-lg"></i>
+                                            </div>
+
+                                        <div>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                                            Prochaine formation
+                                        </p>
+                                        <p class="text-lg font-bold text-gray-800 dark:text-gray-100">
+                                            {{ $prochaineFormation->nom_formation }}
+                                        </p>
+                                        <p class="text-sm text-gray-400 dark:text-gray-500">
+                                            Le {{ \Carbon\Carbon::parse($prochaineFormation->date_debut)->translatedFormat('d F Y') }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="text-right flex-shrink-0">
+                                    @if($joursRestants == 0)
+                                        <span class="inline-block px-3 py-1.5 rounded-full text-sm font-medium
+                                                    bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-400">
+                                            Aujourd'hui
+                                        </span>
+                                    @elseif($joursRestants == 1)
+                                        <span class="inline-block px-3 py-1.5 rounded-full text-sm font-medium
+                                                    bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-400">
+                                            Demain
+                                        </span>
+                                    @else
+                                        <span class="inline-block px-3 py-1.5 rounded-full text-sm font-medium
+                                                    bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-400">
+                                            Dans {{ $joursRestants }} jours
+                                        </span>
+                                    @endif
+                                </div>
+
+                            </div>
+
+                        @else
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-700
+                                            flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-calendar-xmark text-gray-400 dark:text-gray-500 text-lg"></i>
+                                </div>
+
+                                <div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                                        Prochaine formation
+                                    </p>
+                                    <p class="text-base text-gray-400 dark:text-gray-500">
+                                        Aucune formation planifiée pour le moment
+                                    </p>
+                                </div>
+                            </div>
+
+                        @endif
+
+        </div>
+                                
     </div>
 
     <div class="max-w-7xl mx-auto px-6 py-6">
