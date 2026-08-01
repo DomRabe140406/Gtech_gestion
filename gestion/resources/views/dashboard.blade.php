@@ -23,84 +23,145 @@
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
 
-        <!-- Formateurs -->
-        <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
-                   hover:border-blue-300 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
-               hover:-translate-y-1 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
+            <!-- Formateurs -->
+                <a href="{{ route('formateurs.index') }}" class="block">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                                hover:border-blue-300 dark:hover:border-blue-500 cursor-pointer">
 
-            <div class="flex items-center justify-between mb-3">
-                <i class="fas fa-chalkboard-teacher text-blue-500 text-xl dark:text-blue-400 text-xl"></i>
-            </div>
+                        <div class="flex items-center justify-between mb-3">
+                            <i class="fas fa-chalkboard-teacher text-blue-500 dark:text-blue-400 text-xl"></i>
+                            <i class="fas fa-arrow-right text-gray-300 dark:text-gray-600 text-sm"></i>
+                        </div>
 
-            <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                {{ $totalFormateurs ?? 0 }}
-            </p>
+                        <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                            {{ $totalFormateurs ?? 0 }}
+                        </p>
 
-            <p class="text-sm text-gray-500 mt-1 dark:text-gray-400 mt-1">
-                Formateurs
-            </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                            Formateurs
+                        </p>
 
-        </div>
+                        @if($ecartFormateurs > 0)
+                            <p class="text-xs text-green-600 dark:text-green-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-arrow-up"></i> +{{ $ecartFormateurs }} vs mois dernier
+                            </p>
+                        @elseif($ecartFormateurs < 0)
+                            <p class="text-xs text-red-500 dark:text-red-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-arrow-down"></i> {{ $ecartFormateurs }} vs mois dernier
+                            </p>
+                        @else
+                            <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                                Stable vs mois dernier
+                            </p>
+                        @endif
 
-        <!-- Factures -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
-                hover:border-orange-300 dark:hover:border-orange-500">
+                    </div>
+                </a>
 
-            <div class="flex items-center justify-between mb-3">
-                <i class="fas fa-file-invoice-dollar text-orange-500 dark:text-orange-400 text-xl"></i>
-            </div>
+            <!-- Factures -->
+                <a href="{{ route('factures.create') }}" class="block">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                                hover:border-orange-300 dark:hover:border-orange-500 cursor-pointer">
 
-            <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                {{ $totalFactures ?? 0 }}
-            </p>
+                        <div class="flex items-center justify-between mb-3">
+                            <i class="fas fa-file-invoice-dollar text-orange-500 dark:text-orange-400 text-xl"></i>
+                            <i class="fas fa-arrow-right text-gray-300 dark:text-gray-600 text-sm"></i>
+                        </div>
 
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 ">
-                Factures téléchargées <span class="text-gray-400 dark:text-gray-500">(ce mois)</span>
-            </p>
+                        <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                            {{ $totalFactures ?? 0 }}
+                        </p>
 
-        </div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                            Factures téléchargées <span class="text-gray-400 dark:text-gray-500">(ce mois)</span>
+                        </p>
 
-        <!-- Proforma -->
-        <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
-                   hover:border-purple-300 dark:bg-gray-800 rounded-2xl dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
-                   hover:border-purple-300 dark:hover:border-purple-500">
+                        @if($ecartFactures > 0)
+                            <p class="text-xs text-green-600 dark:text-green-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-arrow-up"></i> +{{ $ecartFactures }} vs mois dernier
+                            </p>
+                        @elseif($ecartFactures < 0)
+                            <p class="text-xs text-red-500 dark:text-red-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-arrow-down"></i> {{ $ecartFactures }} vs mois dernier
+                            </p>
+                        @else
+                            <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                                Stable vs mois dernier
+                            </p>
+                        @endif
 
-            <div class="flex items-center justify-between mb-3">
-                <i class="fas fa-file-signature text-purple-500 text-xl dark:text-purple-400 text-xl"></i>
-            </div>
+                    </div>
+                </a>
 
-            <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                {{ $totalProforma ?? 0 }}
-            </p>
+            <!-- Proforma -->
+                <a href="{{ route('proforma.create') }}" class="block">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                                hover:border-purple-300 dark:hover:border-purple-500 cursor-pointer">
 
-            <p class="text-sm text-gray-500 mt-1">
-                Proforma téléchargées <span class="text-gray-400 dark:text-gray-500">(ce mois)</span>
-            </p>
+                        <div class="flex items-center justify-between mb-3">
+                            <i class="fas fa-file-signature text-purple-500 dark:text-purple-400 text-xl"></i>
+                            <i class="fas fa-arrow-right text-gray-300 dark:text-gray-600 text-sm"></i>
+                        </div>
 
-        </div>
+                        <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                            {{ $totalProforma ?? 0 }}
+                        </p>
 
-        <!-- Fiches téléchargées -->
-        <div
-            class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
-                   hover:border-green-300 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300
-                   hover:-translate-y-1 hover:shadow-xl hover:border-green-300 dark:hover:border-green-500">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                            Proforma téléchargées <span class="text-gray-400 dark:text-gray-500">(ce mois)</span>
+                        </p>
 
-            <div class="flex items-center justify-between mb-3">
-                <i class="fas fa-download text-green-500 text-xl dark:text-green-400 text-xl"></i>
-            </div>
+                        @if($ecartProforma > 0)
+                            <p class="text-xs text-green-600 dark:text-green-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-arrow-up"></i> +{{ $ecartProforma }} vs mois dernier
+                            </p>
+                        @elseif($ecartProforma < 0)
+                            <p class="text-xs text-red-500 dark:text-red-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-arrow-down"></i> {{ $ecartProforma }} vs mois dernier
+                            </p>
+                        @else
+                            <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                                Stable vs mois dernier
+                            </p>
+                        @endif
 
-            <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                {{ $totalFiches ?? 0 }}
-            </p>
+                    </div>
+                </a>
 
-            <p class="text-sm text-gray-500 mt-1 dark:text-gray-400 mt-1">
-                Fiches téléchargées <span class="text-gray-400 dark:text-gray-500">(ce mois)</span>
-            </p>
+            <!-- Fiches téléchargées -->
+                <a href="{{ route('fiche.create') }}" class="block">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                                hover:border-green-300 dark:hover:border-green-500 cursor-pointer">
 
-        </div>
+                        <div class="flex items-center justify-between mb-3">
+                            <i class="fas fa-download text-green-500 dark:text-green-400 text-xl"></i>
+                            <i class="fas fa-arrow-right text-gray-300 dark:text-gray-600 text-sm"></i>
+                        </div>
 
+                        <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                            {{ $totalFiches ?? 0 }}
+                        </p>
+
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                            Fiches téléchargées <span class="text-gray-400 dark:text-gray-500">(ce mois)</span>
+                        </p>
+
+                        @if($ecartFiches > 0)
+                            <p class="text-xs text-green-600 dark:text-green-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-arrow-up"></i> +{{ $ecartFiches }} vs mois dernier
+                            </p>
+                        @elseif($ecartFiches < 0)
+                            <p class="text-xs text-red-500 dark:text-red-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-arrow-down"></i> {{ $ecartFiches }} vs mois dernier
+                            </p>
+                        @else
+                            <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                                Stable vs mois dernier
+                            </p>
+                        @endif
+
+                    </div>
+                </a>
     </div>
 
     <div class="max-w-7xl mx-auto px-6 py-6">

@@ -17,44 +17,79 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
     public function index()
     {
         $total = Formation::count();
 
-        //récupération du nombre total de formateurs
+        // récupération du nombre total de formateurs
         $totalFormateurs = Formateur::count();
 
-        $enInscription = Formation::where(
-            'statut',
-            'en_inscription'
-        )->count();
+        $enInscription = Formation::where('statut', 'en_inscription')->count();
+        $enCours = Formation::where('statut', 'en_cours')->count();
+        $termine = Formation::where('statut', 'termine')->count();
 
-        $enCours = Formation::where(
-            'statut',
-            'en_cours'
-        )->count();
-
-        $termine = Formation::where(
-            'statut',
-            'termine'
-        )->count();
-
-        $history = AdminHistory::get();//pour afficher l'historique de l'admin sur le dashboard
+        $history = AdminHistory::get();
 
         $totalFactures = FactureDownload::whereMonth('downloaded_at', now()->month)
-        ->whereYear('downloaded_at', now()->year)
-        ->count();
+            ->whereYear('downloaded_at', now()->year)
+            ->count();
 
         $totalProforma = ProformaDownload::whereMonth('downloaded_at', now()->month)
-        ->whereYear('downloaded_at', now()->year)
-        ->count();
+            ->whereYear('downloaded_at', now()->year)
+            ->count();
 
         $totalFiches = FicheDownload::whereMonth('downloaded_at', now()->month)
-        ->whereYear('downloaded_at', now()->year)
-        ->count();
-        //pour le graphe
-        //on récupère les données( date de création et le nombre de formations créées par mois) de la table formations
-        // Toutes les formations regroupées par mois
+            ->whereYear('downloaded_at', now()->year)
+            ->count();
+
+        // Comparaison des valeurs avec ceux du mois derniers
+
+        $moisDernier = now()->subMonth();
+
+        $formateursCeMois = Formateur::whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->count();
+
+        $formateursMoisDernier = Formateur::whereMonth('created_at', $moisDernier->month)
+            ->whereYear('created_at', $moisDernier->year)
+            ->count();
+
+        $facturesMoisDernier = FactureDownload::whereMonth('downloaded_at', $moisDernier->month)
+            ->whereYear('downloaded_at', $moisDernier->year)
+            ->count();
+
+        $proformaMoisDernier = ProformaDownload::whereMonth('downloaded_at', $moisDernier->month)
+            ->whereYear('downloaded_at', $moisDernier->year)
+            ->count();
+
+        $fichesMoisDernier = FicheDownload::whereMonth('downloaded_at', $moisDernier->month)
+            ->whereYear('downloaded_at', $moisDernier->year)
+            ->count();
+
+        $ecartFormateurs = $formateursCeMois - $formateursMoisDernier;
+        $ecartFactures = $totalFactures - $facturesMoisDernier;
+        $ecartProforma = $totalProforma - $proformaMoisDernier;
+        $ecartFiches = $totalFiches - $fichesMoisDernier;
+
+        // Graphe
+
         $formations = Formation::select(
                 DB::raw('YEAR(created_at) as annee'),
                 DB::raw('MONTH(created_at) as mois'),
@@ -63,27 +98,20 @@ class DashboardController extends Controller
             ->groupBy('annee', 'mois')
             ->get();
 
-        // Tableau associatif
         $donnees = [];
-
         foreach ($formations as $formation) {
-
             $cle = $formation->annee.'-'.$formation->mois;
-
             $donnees[$cle] = $formation->total;
         }
 
-        // Déterminer le premier mois de la base
         $premiereFormation = Formation::orderBy('created_at')->first();
 
         if ($premiereFormation) {
             $debut = Carbon::parse($premiereFormation->created_at)->startOfMonth();
         } else {
-            //si aucune formation n'existe, on prend le mois actuel comme début
             $debut = now()->startOfMonth();
         }
 
-        // Dernier mois = après 11 mois à partir du premier mois
         $fin = $debut->copy()->addMonths(11);
 
         $labels = [];
@@ -106,26 +134,13 @@ class DashboardController extends Controller
             'data',
             'totalFactures',
             'totalProforma',
-            'totalFiches'
+            'totalFiches',
+            'ecartFormateurs',
+            'ecartFactures',
+            'ecartProforma',
+            'ecartFiches'
         ));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      */
