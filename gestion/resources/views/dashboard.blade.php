@@ -23,6 +23,41 @@
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
 
+            <!-- Total Formations -->
+                <a href="{{ route('liste.index') }}" class="block">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                                hover:border-teal-300 dark:hover:border-teal-500 cursor-pointer">
+
+                        <div class="flex items-center justify-between mb-3">
+                            <i class="fas fa-graduation-cap text-teal-500 dark:text-teal-400 text-xl"></i>
+                            <i class="fas fa-arrow-right text-gray-300 dark:text-gray-600 text-sm"></i>
+                        </div>
+
+                        <p class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                            {{ $total ?? 0 }}
+                        </p>
+
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                            Formations
+                        </p>
+
+                        @if($ecartFormations > 0)
+                            <p class="text-xs text-green-600 dark:text-green-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-arrow-up"></i> +{{ $ecartFormations }} vs mois dernier
+                            </p>
+                        @elseif($ecartFormations < 0)
+                            <p class="text-xs text-red-500 dark:text-red-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-arrow-down"></i> {{ $ecartFormations }} vs mois dernier
+                            </p>
+                        @else
+                            <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                                Stable vs mois dernier
+                            </p>
+                        @endif
+
+                    </div>
+                </a>
+
             <!-- Formateurs -->
                 <a href="{{ route('formateurs.index') }}" class="block">
                     <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
@@ -398,7 +433,7 @@
 @endsection
 @section('scripts')
 <script>
-    //pour le doughnut
+    //pour le donut
     window.dashboardData = {
         enInscription: @json($enInscription),
         enCours: @json($enCours),

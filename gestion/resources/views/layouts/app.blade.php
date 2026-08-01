@@ -138,6 +138,13 @@
         </a>
 
     </nav>
+    <div class="border-t border-gray-700 mt-6 pt-3">
+        <a href="{{ route('profil.edit') }}"
+        class="flex items-center gap-3 px-4 py-3 mx-1 my-0.5 rounded-lg hover:bg-blue-500/15 hover:text-white transition-colors duration-200">
+            <i class="fa-solid fa-user-gear w-5 text-center text-gray-500"></i>
+            Paramètres du compte
+        </a>
+    </div>
 
 </div>
 

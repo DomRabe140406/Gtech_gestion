@@ -83,6 +83,16 @@ class DashboardController extends Controller
             ->whereYear('downloaded_at', $moisDernier->year)
             ->count();
 
+        $formationsCeMois = Formation::whereMonth('created_at', now()->month)
+        ->whereYear('created_at', now()->year)
+        ->count();
+
+        $formationsMoisDernier = Formation::whereMonth('created_at', $moisDernier->month)
+        ->whereYear('created_at', $moisDernier->year)
+        ->count();
+
+        
+        $ecartFormations = $formationsCeMois - $formationsMoisDernier;
         $ecartFormateurs = $formateursCeMois - $formateursMoisDernier;
         $ecartFactures = $totalFactures - $facturesMoisDernier;
         $ecartProforma = $totalProforma - $proformaMoisDernier;
@@ -138,7 +148,8 @@ class DashboardController extends Controller
             'ecartFormateurs',
             'ecartFactures',
             'ecartProforma',
-            'ecartFiches'
+            'ecartFiches',
+            'ecartFormations'
         ));
     }
     /**

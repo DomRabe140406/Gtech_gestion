@@ -10,6 +10,7 @@ use App\Http\Controllers\FicheController;
 use App\Http\Controllers\ListeController;
 use App\Http\Controllers\FormateursController;
 use App\Http\Controllers\SpecialitesController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -36,6 +37,9 @@ Route::resource('fiche', FicheController::class)->middleware('auth');
 Route::resource('liste', ListeController::class)->middleware('auth');
 Route::resource('formateurs', FormateursController::class)->middleware('auth');
 Route::resource('specialites', SpecialitesController::class)->middleware('auth');
+
+Route::get('/profil', [ProfilController::class, 'edit'])->name('profil.edit');
+Route::put('/profil', [ProfilController::class, 'update'])->name('profil.update');
 
 //pour suppression de specialité
 Route::delete('/specialites-suppression-multiple', 
