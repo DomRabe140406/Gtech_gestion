@@ -70,7 +70,11 @@
             </button>
 
         </form>
-
+        <div class="text-right mt-2">
+            <a href="{{ route('password.request') }}" class="text-sm text-blue-500 dark:text-blue-400 hover:underline">
+                Mot de passe oublié ?
+            </a>
+        </div>
         <div class="footer">
 
             <div class="separator">

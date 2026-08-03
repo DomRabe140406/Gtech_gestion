@@ -12,6 +12,7 @@ use App\Http\Controllers\FormateursController;
 use App\Http\Controllers\SpecialitesController;
 use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\PasswordResetController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,3 +47,10 @@ Route::delete('/specialites-suppression-multiple',
     [SpecialitesController::class, 'destroyMultiple'])
     ->name('specialites.destroyMultiple')
     ->middleware('auth');
+
+//pour mdp oublier 
+
+Route::get('/mot-de-passe-oublie', [PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/mot-de-passe-oublie', [PasswordResetController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reinitialiser-mot-de-passe/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reinitialiser-mot-de-passe', [PasswordResetController::class, 'reset'])->name('password.update');
