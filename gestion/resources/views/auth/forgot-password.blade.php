@@ -2,7 +2,6 @@
 @section('title', 'Mot de passe oublié')
 @section('content')
 
-//formulaire quand on clique sur mdp oublier
 <div class="login-page">
 
     <div class="background-circle circle1"></div>

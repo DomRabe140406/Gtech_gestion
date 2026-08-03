@@ -2,7 +2,6 @@
 @section('title', 'Réinitialiser le mot de passe')
 @section('content')
 
-//formulire de reinitialisation du mdp apres avoir cliquer sur le lien 
 <div class="login-page">
 
     <div class="background-circle circle1"></div>
