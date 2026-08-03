@@ -20,7 +20,6 @@ window.onclick = function(event) {
     }
 }
 
-
 function verifierForm() {
     let titre = document.getElementById("modif_titre").value;
 

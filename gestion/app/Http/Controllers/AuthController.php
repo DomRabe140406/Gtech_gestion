@@ -16,7 +16,7 @@ class AuthController extends Controller
         ]);
         if (Auth::attempt($request->only('email', 'password'))) {
             \App\Helpers\AdminHistory::add("Connexion au système");//ajout d'une ligne dans l'historique de l'admin
-            return redirect('/dashboard')->with('success', 'Bienvenue Admin');
+            return redirect('/dashboard')->with('success', 'Bienvenue '.Auth::user()->name);
         }
 
         return back()->with('error', 'Identifiants incorrects');

@@ -48,7 +48,7 @@
 
                 <div>
                     <label class="flex items-center gap-2 mb-2 font-medium text-gray-600 dark:text-gray-300">
-                        <i class="fas fa-book text-blue-500 dark:text-blue-400 text-sm"></i>
+                        <i class="fas fa-user text-blue-500 dark:text-blue-400 text-sm"></i>
                         Formateur
                     </label>
                     <select
@@ -79,7 +79,7 @@
                         <i class="fas fa-calendar text-blue-500 dark:text-blue-400 text-sm"></i>
                         Date de début
                     </label>
-                    <input type="date" name="date_debut" value="{{ $formation->date_debut }}"
+                    <input type="date" id="date_debut" name="date_debut" value="{{ $formation->date_debut }}"
                         class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
                                focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-colors [color-scheme:light] dark:[color-scheme:dark]">
                 </div>
@@ -96,10 +96,21 @@
 
                 <div>
                     <label class="flex items-center gap-2 mb-2 font-medium text-gray-600 dark:text-gray-300">
+                        <i class="fas fa-users text-blue-500 dark:text-blue-400 text-sm"></i>
+                        Nombre de participants
+                    </label>
+                    <input type="number" name="nb_participant" min="1" value="{{ $formation->nb_participant }}"
+                        class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
+                               focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-colors [color-scheme:light] dark:[color-scheme:dark]">
+                </div>
+
+                <div>
+                    <label class="flex items-center gap-2 mb-2 font-medium text-gray-600 dark:text-gray-300">
                         <i class="fas fa-list-check text-blue-500 dark:text-blue-400 text-sm"></i>
                         Statut
                     </label>
-                    <select name="statut"
+                    <select id="statut" 
+                    name="statut"
                             class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
                                focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-colors">
 

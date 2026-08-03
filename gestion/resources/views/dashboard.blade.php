@@ -359,9 +359,7 @@
                 <div class="h-72 flex justify-center items-center">
                     <canvas id="formationsChart"></canvas>
                 </div>
-
         </div>
-
     </div>
 
     <!-- tableau des historiques -->
@@ -370,15 +368,12 @@
                 dark:bg-gray-800 rounded-2xl border dark:border-gray-700 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
 
         <div class="px-6 py-5 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-2xl">
-
             <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">
                 Historique des actions
             </h2>
-
             <p class="text-sm text-gray-500 mt-1 dark:text-gray-400 mt-1">
                 Toutes les opérations réalisées sur la plateforme.
             </p>
-
         </div>
 
         <div class="overflow-x-auto">
@@ -386,25 +381,18 @@
             @if(count($history))
 
             <table class="w-full">
-
                 <thead class="bg-slate-50 dark:bg-gray-700">
-
                     <tr>
-
                         <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
                             Date
                         </th>
-
                         <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
                             Action
                         </th>
-
                         <th class="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600 dark:text-gray-300">
                             Type
                         </th>
-
                     </tr>
-
                 </thead>
 
                 <tbody>
@@ -458,13 +446,9 @@
                                     {{ $typeLabel }}
                                 </span>
                             </td>
-
                         </tr>
-
                     @endforeach
-
                 </tbody>
-
             </table>
 
             @else
@@ -477,11 +461,8 @@
             </div>
 
             @endif
-
         </div>
-
     </div>
-
 </div>
 
 <!-- footer -->

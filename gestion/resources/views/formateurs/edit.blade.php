@@ -76,7 +76,7 @@
                         <i class="fas fa-envelope text-blue-500 dark:text-blue-400 text-sm"></i>
                         Email
                     </label>
-                    <input type="text" name="email" value="{{ $formateur->email }}"
+                    <input type="text" id="email" name="email" value="{{ $formateur->email }}"
                         class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
                                focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-colors">
                 </div>
@@ -86,7 +86,7 @@
                         <i class="fas fa-phone text-blue-500 dark:text-blue-400 text-sm"></i>
                         Téléphone
                     </label>
-                    <input type="text" name="telephone" value="{{ $formateur->telephone }}"
+                    <input type="text" id="telephone" name="telephone" value="{{ $formateur->telephone }}"
                            class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
                            focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-colors">
                 </div>

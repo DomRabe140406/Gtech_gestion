@@ -165,22 +165,37 @@ class ListeController extends Controller
             ->with('error', "Impossible de modifier une formation en cours.");
         }
 
-        // Si la formation était "terminée" et qu'on veut la remettre  "en inscription", la date doit être supérieure à aujourd'hui.
-        if (
-            $formation->statut === 'termine' &&
-            $request->statut === 'en_inscription' &&
-            Carbon::parse($request->date_debut)->lte(Carbon::today())
-        ) {
-            return back()
-                ->withErrors([
-                    'statut' => "Impossible de remettre cette formation en inscription. Choisissez une date de début supérieure à aujourd'hui."
-                ])
-                ->withInput();
+        $dateDebut = Carbon::parse($request->date_debut);
+
+        if ($formation->statut === 'termine') {
+
+            // Retour en inscription : uniquement si la nouvelle date est dans le futur
+            // Si la formation était "terminée" et quon veut la remettre  "en inscription", la date doit être supérieure à aujourd'hui.
+            if (
+                $request->statut === 'en_inscription' &&
+                $dateDebut->lte(Carbon::today())
+            ) {
+                return back()
+                    ->withErrors([
+                        'statut' => "La date de début doit être supérieure à aujourd'hui."
+                    ])
+                    ->withInput();
+            }
+
+            // Interdire le passage manuel à "en_cours"
+            if ($request->statut === 'en_cours') {
+                return back()
+                    ->withErrors([
+                        'statut' => "Le statut 'En cours' est attribué automatiquement."
+                    ])
+                    ->withInput();
+            }
         }
 
         $formation->update([
             'nom_formation' => $request->nom_formation,
             'date_debut' => $request->date_debut,
+            'nb_participant' => $request->nb_participant,
             'nb_jours' => $request->nb_jours,
             'statut' => $request->statut,
             'specialite_id' => $request->specialite_id,
