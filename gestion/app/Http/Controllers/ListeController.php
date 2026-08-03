@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Formation;
 use App\Models\Specialite;
 use App\Models\Formateur;
+//carbon sert a creer manipuler comparer calcul des dates en php
 use Carbon\Carbon;
 
 class ListeController extends Controller
@@ -17,9 +18,7 @@ class ListeController extends Controller
      */
     public function index(Request $request)
     {
-        // ==========================================
         // Mise à jour automatique des statuts
-        // ==========================================
 
         $aujourdhui = Carbon::today();
 
@@ -62,9 +61,8 @@ class ListeController extends Controller
             }
         }
 
-        // ==========================================
         // Liste complète
-        // ==========================================
+
         $search = $request->search;
         $statut = $request->statut;
 
@@ -118,8 +116,17 @@ class ListeController extends Controller
      */
     public function edit($id)
     {
-        //pour modifier une formation, on va chercher la formation dont l'id est $id et on retourne la vue de modification
+        // Récupérer la formation
         $formation = Formation::findOrFail($id);
+
+        // Empêcher l'accès au formulaire si la formation est en cours
+        if ($formation->statut === 'en_cours') {
+            return redirect()
+                ->route('liste.index')
+                ->with('error', 'Impossible de modifier une formation en cours.');
+        }
+
+        // Récupérer les données nécessaires au formulaire
         $specialites = Specialite::all();
         $formateurs = Formateur::all();
 
@@ -128,27 +135,47 @@ class ListeController extends Controller
             compact('formation', 'specialites', 'formateurs')
         );
     }
-
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+  public function update(Request $request, $id)
     {
-        //validation des données
-        //after_or_equal:today: il faut que la date soit supérieur ou égal à la date d'aujourd'hui
-        $validator = Validator::make($request->all(),[
-            'ref_formation' => 'required',
+        $validator = Validator::make($request->all(), [
             'nom_formation' => 'required',
-            'date_debut' => 'required|date|after_or_equal:today',
-            'statut' => 'required' ,
+            'date_debut' => 'required|date',
+            'nb_jours' => 'required|integer|min:1',
+            'statut' => 'required|in:en_inscription,en_cours,termine',
+            'specialite_id' => 'required|exists:specialites,id',
+            'formateur_id' => 'nullable|exists:formateurs,id',
         ]);
 
-        /*Va chercher dans la table formations l'enregistrement dont l'id vaut $id, stocke-le dans $formation
-        et si cet enregistrement n'existe pas, retourne automatiquement une erreur 404.*/
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Récupération de la formation
         $formation = Formation::findOrFail($id);
-        
-        if($request->statut == 'en_inscription' && Carbon::parse($request->date_debut)<= Carbon::today()) {
-            $request->date_debut = Carbon::today()->addDays(1);
+
+        //si formation en cours pas de modification possible 
+        if ($formation->statut === 'en_cours') {
+            return redirect()
+            ->back()
+            ->with('error', "Impossible de modifier une formation en cours.");
+        }
+
+        // Si la formation était "terminée" et qu'on veut la remettre  "en inscription", la date doit être supérieure à aujourd'hui.
+        if (
+            $formation->statut === 'termine' &&
+            $request->statut === 'en_inscription' &&
+            Carbon::parse($request->date_debut)->lte(Carbon::today())
+        ) {
+            return back()
+                ->withErrors([
+                    'statut' => "Impossible de remettre cette formation en inscription. Choisissez une date de début supérieure à aujourd'hui."
+                ])
+                ->withInput();
         }
 
         $formation->update([
@@ -160,15 +187,18 @@ class ListeController extends Controller
             'formateur_id' => $request->formateur_id,
         ]);
 
-        //historique
+        // Historique
         \App\Helpers\AdminHistory::add(
-            "Modification de la formation : ".$formation->nom_formation." | Référence : ".$formation->specialite->nom_specialite
+            "Modification de la formation : " .
+            $formation->nom_formation .
+            " | Référence : " .
+            $formation->specialite->nom_specialite
         );
+
         return redirect()
             ->route('liste.index')
-            ->with('success', 'Formation modifiée');
+            ->with('success', 'Formation modifiée avec succès.');
     }
-
     /**
      * Remove the specified resource from storage.
      */
