@@ -116,9 +116,8 @@ class ProformaController extends Controller
                 'text' => "8. La formation sera assurée par un formateur qualifié et se déroulera à ".$client.", situé à ".$adresse."."
             ]
         ];
-        // =========================
+
         // PDF
-        // =========================
 
         $pdf = Pdf::loadView('proforma.pdf', [
 
@@ -147,9 +146,8 @@ class ProformaController extends Controller
         $pdf->setPaper('A4', 'portrait');
         $filename = 'proforma_gasy_tech_' . Carbon::now()->format('Y-m-d_His') . '.pdf';
 
-        // =========================
         // APERÇU
-        // =========================
+
         if ($request->has('btn_apercu')) {
             //historique
             \App\Helpers\AdminHistory::add(
@@ -158,9 +156,7 @@ class ProformaController extends Controller
             return $pdf->stream($filename);
         }
 
-        // =========================
         // TÉLÉCHARGEMENT
-        // =========================
         if ($request->has('btn_telecharge')) {
 
             // Enregistrement du téléchargement pour les stats du dashboard

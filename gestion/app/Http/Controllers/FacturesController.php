@@ -31,9 +31,7 @@ class FacturesController extends Controller
      */
     public function store(Request $request)
     {
-        // =========================
         // DONNÉES
-        // =========================
 
         $client = $request->input('nom') ?: 'Client inconnu';
         $adresse = $request->input('adresse') ?: 'Adresse inconnue';
@@ -60,9 +58,7 @@ class FacturesController extends Controller
         $date_facture = Carbon::now()->format('d/m/Y');
         $date1 = Carbon::now()->format('Y-m');
 
-        // =========================
         // CALCULS
-        // =========================
 
         $montant_service = $duree * $montant_unitaire;
         $montant_indemnite = $duree * $indemnite;
@@ -74,9 +70,8 @@ class FacturesController extends Controller
             + $montant_indemnite
             + $tva_total;
         $lettre = nombreEnLettres((int)$total);
-        // =========================
+
         // PDF
-        // =========================
         //“Prends la vue Blade factures.pdf et transforme son HTML en PDF.”
         $pdf = Pdf::loadView('factures.pdf', [
 
@@ -114,9 +109,8 @@ class FacturesController extends Controller
             Carbon::now()->format('Y-m-d_His') .
             '.pdf';
 
-        // =========================
         // APERÇU
-        // =========================
+
         if ($request->has('btn_apercu')) {
             //historique
             \App\Helpers\AdminHistory::add(
@@ -125,9 +119,8 @@ class FacturesController extends Controller
             return $pdf->stream($filename);
         }
 
-        // =========================
         // TÉLÉCHARGEMENT
-        // =========================
+        
         if ($request->has('btn_telecharge')) {
 
             // Enregistrement du téléchargement pour les stats du dashboard

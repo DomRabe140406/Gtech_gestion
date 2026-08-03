@@ -1,9 +1,8 @@
 @extends('layouts.auth')
-
 @section('title', 'Réinitialiser le mot de passe')
-
 @section('content')
 
+//formulire de reinitialisation du mdp apres avoir cliquer sur le lien 
 <div class="login-page">
 
     <div class="background-circle circle1"></div>
@@ -67,6 +66,9 @@
                 <div class="input-box">
                     <i class="fa-solid fa-lock"></i>
                     <input id="password_confirmation" type="password" name="password_confirmation" placeholder="************" required>
+                    <button type="button" id="togglePassword">
+                        <i id="eyeIcon" class="fa-solid fa-eye"></i>
+                    </button>
                 </div>
 
             </div>

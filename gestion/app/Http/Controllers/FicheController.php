@@ -60,14 +60,12 @@ class FicheController extends Controller
             'conclusion' => $conclusion
         ]);
 
-        // =========================
         // OUTPUT
-        // =========================
                 
         $filename = 'fiche_gasy_tech_' . Carbon::now()->format('Y-m-d_His') . '.pdf';
-        // =========================
+
         // APERCU
-        // =========================
+
         if ($request->has('btn_apercu')) {
             //historique
             \App\Helpers\AdminHistory::add(
@@ -76,9 +74,8 @@ class FicheController extends Controller
             return $pdf->stream($filename);
         }
 
-        // =========================
         // TÉLÉCHARGEMENT
-        // =========================
+        
         if ($request->has('btn_telecharge')) {
 
             // Enregistrement du téléchargement pour les stats du dashboard

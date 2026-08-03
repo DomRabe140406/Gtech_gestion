@@ -17,7 +17,8 @@ use App\Http\Controllers\Auth\PasswordResetController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Composition d'une route 
+//Route::protocole HTTP('URL', CONTROLLEUR::class, 'nom de la fontion appeler dans le controlleur')
 Route::get('/login', function () {
     return view('welcome');
 })->name('login');
@@ -30,7 +31,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::get('/logout', [AuthController::class, 'logout'])
     ->name('logout');
-
+//resource miantso ny protocole http rehetra toy n get post delete update etc 
 Route::resource('formations', FormationsController::class)->middleware('auth');
 Route::resource('factures', FacturesController::class)->middleware('auth');
 Route::resource('proforma', ProformaController::class)->middleware('auth');
@@ -49,8 +50,11 @@ Route::delete('/specialites-suppression-multiple',
     ->middleware('auth');
 
 //pour mdp oublier 
-
+//affiche le formulaire mdp oublier
 Route::get('/mot-de-passe-oublie', [PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
+//envoie du lien de reinitialisation de mdp route appeler quan l'utilisateur clique sur envoyer 
 Route::post('/mot-de-passe-oublie', [PasswordResetController::class, 'sendResetLinkEmail'])->name('password.email');
+//affiche la page de nouveau mdp 
 Route::get('/reinitialiser-mot-de-passe/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+//Enregistrement du nouveau mdp
 Route::post('/reinitialiser-mot-de-passe', [PasswordResetController::class, 'reset'])->name('password.update');
