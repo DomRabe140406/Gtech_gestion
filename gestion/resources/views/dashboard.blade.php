@@ -197,7 +197,7 @@
 
                     </div>
                 </a>
-                <!-- chIFFRE D'affaire n'augmente que lors de telechargement de facture et non une apperçue  -->
+                <!-- Chiffre d'affaire n'augmente que lors de telechargement de facture et non une apperçue  -->
                 <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
                       hover:border-green-400 dark:hover:border-green-600">
 

@@ -143,7 +143,7 @@
     <div class="bg-white rounded-3xl border border-gray-200 shadow-lg p-6  dark:bg-gray-800 rounded-2xl border 
                 dark:border-gray-700 shadow-sm transition-all    duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500">
         <div class="flex flex-col lg:flex-row justify-between gap-4 mb-6">
-            <form action="{{ route('formations.index') }}" method="GET" id="searchForm"
+            <form action="{{ route('liste.index') }}" method="GET" id="searchForm"
                     class="flex flex-col md:flex-row gap-3 w-full">
 
                 <!-- Barre de recherche -->

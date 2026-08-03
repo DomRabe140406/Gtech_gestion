@@ -22,7 +22,7 @@ function annulerForm(){
 function annulerFormFormation(){
     let confirmation = confirm("Voulez-vous annuler le formulaire ?");
     if(confirmation){
-        window.location.href= "/formations";
+        window.location.href= "/liste";
     }
 }
 

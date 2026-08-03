@@ -15,30 +15,6 @@ class FormationsController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->search;
-        $statut = $request->statut;
-        //recherche par nom
-        $formations = Formation::with(['formateur', 'specialite'])
-        ->when($search, function ($query) use ($search) {
-            $query->where('nom_formation', 'like', "%{$search}%");
-        })
-        //filtre par statut
-        ->when($statut, function ($query) use ($statut) {
-            $query->where('statut', $statut);
-        })
-        ->orderBy('nom_formation', 'asc')   // Tri alphabétique A → Z
-        //->get();
-        ->paginate(5) // Pagination avec 5 éléments par page
-        ->withQueryString();//pour conserver les paramètres de recherche lors de la pagination
-
-        $totalFormations = Formation::count();
-        //récupération du nombre de formations par statut
-        $formationsInscription = Formation::where('statut', 'en_inscription')->count();
-        $formationsEnCours = Formation::where('statut', 'en_cours')->count();
-        $formationsTerminees = Formation::where('statut', 'termine')->count();
-
-        //on fait une recherche et renvois la liste des formations concernées 
-        return view('formations.liste', compact('formations', 'totalFormations', 'formationsInscription', 'formationsEnCours', 'formationsTerminees'));
     }
 
     /**

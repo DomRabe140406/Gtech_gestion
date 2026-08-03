@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Formation;
 use App\Models\Specialite;
 use App\Models\Formateur;
+use Carbon\Carbon;
 
 class ListeController extends Controller
 {
@@ -16,6 +17,54 @@ class ListeController extends Controller
      */
     public function index(Request $request)
     {
+        // ==========================================
+        // Mise à jour automatique des statuts
+        // ==========================================
+
+        $aujourdhui = Carbon::today();
+
+        // Les formations qui doivent passer en cours
+        $formationsEnCours = Formation::whereDate('date_debut', '<=', $aujourdhui)
+            ->where('statut', 'en_inscription')
+            ->get();
+
+        foreach ($formationsEnCours as $formation) {
+
+            $formation->update([
+                'statut' => 'en_cours'
+            ]);
+
+            //historique
+            \App\Helpers\AdminHistory::add(
+                "Changement automatique du statut de la formation (en_cours): ".$formation->nom_formation." | Référence : ".$formation->specialite->nom_specialite
+            );
+        }
+
+        // Les formations qui doivent être terminées
+        $formationsEnCours = Formation::where('statut', 'en_cours')->get();
+
+        foreach ($formationsEnCours as $formation) {
+            // Calcul de la date de fin
+            $dateFin = Carbon::parse($formation->date_debut)
+                    ->addDays($formation->nb_jours - 1); 
+            // Si la date de fin est dépassée
+            //Si la date d'aujourd'hui est strictement supérieure à la date de fin de la formation.
+            // est une méthode de Carbon qui signifie Greater Than (supérieur à)
+            if ($aujourdhui->gt($dateFin)) {
+
+                $formation->update([
+                    'statut' => 'termine'
+                ]);
+                //historique
+                \App\Helpers\AdminHistory::add(
+                    "Changement automatique du statut de la formation (termine): ".$formation->nom_formation." | Référence : ".$formation->specialite->nom_specialite
+                );
+            }
+        }
+
+        // ==========================================
+        // Liste complète
+        // ==========================================
         $search = $request->search;
         $statut = $request->statut;
 
@@ -98,9 +147,14 @@ class ListeController extends Controller
         et si cet enregistrement n'existe pas, retourne automatiquement une erreur 404.*/
         $formation = Formation::findOrFail($id);
         
+        if($request->statut == 'en_inscription' && Carbon::parse($request->date_debut)<= Carbon::today()) {
+            $request->date_debut = Carbon::today()->addDays(1);
+        }
+
         $formation->update([
             'nom_formation' => $request->nom_formation,
             'date_debut' => $request->date_debut,
+            'nb_jours' => $request->nb_jours,
             'statut' => $request->statut,
             'specialite_id' => $request->specialite_id,
             'formateur_id' => $request->formateur_id,

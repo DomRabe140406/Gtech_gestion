@@ -71,9 +71,8 @@
                             </option>
 
                         @endforeach
-
                     </select>
-                    </div>
+                </div>
 
                 <div>
                     <label class="flex items-center gap-2 mb-2 font-medium text-gray-600 dark:text-gray-300">
@@ -81,6 +80,16 @@
                         Date de début
                     </label>
                     <input type="date" name="date_debut" value="{{ $formation->date_debut }}"
+                        class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
+                               focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-colors [color-scheme:light] dark:[color-scheme:dark]">
+                </div>
+
+                <div>
+                    <label class="flex items-center gap-2 mb-2 font-medium text-gray-600 dark:text-gray-300">
+                        <i class="fas fa-calendar text-blue-500 dark:text-blue-400 text-sm"></i>
+                        Nombre de jours
+                    </label>
+                    <input type="number" name="nb_jours" min="1" value="{{ $formation->nb_jours }}"
                         class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
                                focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-colors [color-scheme:light] dark:[color-scheme:dark]">
                 </div>
