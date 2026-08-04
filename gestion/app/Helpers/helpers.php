@@ -1,6 +1,7 @@
 <?php
 //ici se trouve les fonctions utilitaires
-
+use App\Models\Formation;
+use Carbon\Carbon;
     //conversion nombre en lettre
     function nombreEnLettres($nombre){
 
@@ -121,3 +122,5 @@
     function formatNumber($nb) {
         return number_format($nb, 2, ',', ' ');//2 chiffre apres virgule; ',' comme séparateur décimal et ' ' comme séparateur de milliers
     }
+
+    

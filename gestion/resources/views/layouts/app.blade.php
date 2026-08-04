@@ -33,9 +33,61 @@
                 alt="Logo"
                 class="w-28 md:w-32 hidden dark:block">
         </div>
-
+        
+        <!-- Notification -->
         <ul class="flex items-center gap-3 md:gap-5">
+            <li class="relative">
+                <button id="notifToggle"
+                        class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700
+                        transition-colors duration-300 relative">
+                        <i class="fa-solid fa-bell text-gray-600 dark:text-gray-300 text-lg"></i>
 
+                        @if(count($headerAlerts ?? []) > 0)
+                            <span class="absolute top-1.5 right-1.5 w-4 h-4 bg-red-500 text-white text-[10px]
+                                        rounded-full flex items-center justify-center font-bold">
+                                {{ count($headerAlerts) }}
+                            </span>
+                        @endif
+                </button>
+
+                <!-- Interieur de la notification -->
+                <div id="notifDropdown"
+                    class="hidden absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700
+                            max-h-96 overflow-y-auto z-50">
+
+                    <div class="p-4 border-b border-gray-100 dark:border-gray-700">
+                        <p class="font-semibold text-gray-700 dark:text-gray-200">Notifications</p>
+                    </div>
+
+                    @forelse($headerAlerts ?? [] as $alerte)
+                        <a href="{{ $alerte['lien'] }}"
+                            class="flex items-start gap-3 p-4 border-b border-gray-50 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0
+                                        {{ $alerte['type'] === 'danger' ? 'bg-red-100 dark:bg-red-900/40' : '' }}
+                                        {{ $alerte['type'] === 'warning' ? 'bg-orange-100 dark:bg-orange-900/40' : '' }}
+                                        {{ $alerte['type'] === 'info' ? 'bg-blue-100 dark:bg-blue-900/40' : '' }}">
+                                <i class="fa-solid {{ $alerte['icon'] }} text-xs
+                                        {{ $alerte['type'] === 'danger' ? 'text-red-600 dark:text-red-400' : '' }}
+                                        {{ $alerte['type'] === 'warning' ? 'text-orange-600 dark:text-orange-400' : '' }}
+                                        {{ $alerte['type'] === 'info' ? 'text-blue-600 dark:text-blue-400' : '' }}"></i>
+                            </div>
+
+                            <p class="text-sm text-gray-600 dark:text-gray-300">
+                                {{ $alerte['message'] }}
+                            </p>
+
+                        </a>
+                    @empty
+                        <p class="p-6 text-center text-sm text-gray-400 dark:text-gray-500">
+                            Aucune alerte pour le moment.
+                        </p>
+                    @endforelse
+
+                </div>
+            </li>
+
+            <!-- bouton theme sombre et clair -->
             <li>
                 <button id="themeToggle" class="w-10 h-10 flex items-center 
                         justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300" title="Changer de thème">
@@ -44,6 +96,7 @@
                 </button>
             </li>
 
+            <!-- Nom de l'admin avec font  -->
             <li>
                 <div class="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50
                             hover:shadow-md transition-shadow duration-300">
@@ -55,7 +108,8 @@
                     </span>
                 </div>
             </li>
-
+            
+            <!-- bouton de deconnexion -->
             <li>
                 <a href="{{ route('logout') }}" title="Se déconnecter"
                    class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300
@@ -64,6 +118,7 @@
                 </a>
             </li>
 
+            <!-- Bouton burger pour sidebar -->
             <li onclick="Menu()"
                 class="w-10 h-10 flex items-center justify-center rounded-full cursor-pointer text-gray-600 dark:text-gray-300
                        hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-500 transition-colors duration-300">
@@ -179,6 +234,20 @@
         document.documentElement.classList.contains('dark') ? 'dark' : 'light'
         );
     });
+
+
+    document.getElementById('notifToggle')?.addEventListener('click', function (e) {
+    e.stopPropagation();
+    document.getElementById('notifDropdown')?.classList.toggle('hidden');
+});
+
+document.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('notifDropdown');
+    const toggle = document.getElementById('notifToggle');
+    if (dropdown && !dropdown.contains(e.target) && !toggle.contains(e.target)) {
+        dropdown.classList.add('hidden');
+    }
+});
 </script>
 @yield('scripts')
 

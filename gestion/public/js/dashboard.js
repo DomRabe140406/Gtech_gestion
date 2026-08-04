@@ -290,3 +290,4 @@ document
 
 updateChart();
 updateButtons();
+
