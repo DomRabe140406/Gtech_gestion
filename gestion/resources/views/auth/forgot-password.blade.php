@@ -66,3 +66,6 @@
             </p>
 
         </div>
+    </div>
+</div>
+@endsection
